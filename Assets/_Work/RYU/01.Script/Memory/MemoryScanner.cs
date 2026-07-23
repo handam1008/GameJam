@@ -4,40 +4,46 @@ using UnityEngine;
 namespace RYU.Memory
 {
     /// <summary>
-    /// 메모리 칸을 왼쪽에서 오른쪽으로 훑는 프로그램 카운터.
-    /// 칸의 오른쪽 끝에 닿으면 그 칸이 실행된다.
-    /// 한 회차가 끝나면 맨 앞으로 돌아가고, 다음 회차는 한 칸 더 나아간다.
-    /// (1번 → 1,2번 → 1,2,3번 …)
-    /// 빈 칸에 닿으면 거기서 멈추고 처음부터 다시 시작한다.
+    /// 일정한 틱으로 도는 프로그램 카운터.
     ///
-    /// 실행된 칸을 어떻게 처리할지는 아직 정하지 않았다.
-    /// 지금은 어느 칸이 실행됐는지 알리기만 한다.
+    /// 시계는 게임 내내 멈추지 않는다. 스택이 비어 있어도 틱은 계속 센다.
+    /// 스캐너는 한 틱 동안 한 칸에 머무르고, 틱이 끝나는 순간 그 칸을 처리한 뒤 다음 칸으로 옮긴다.
+    /// 다음 칸이 몇 칸 아래에 있든, 꼭대기로 되돌아가든 이동은 항상 한 틱이다.
+    /// 그래서 어떤 규칙이 붙어도 박자가 흔들리지 않는다.
+    ///
+    /// 비어 있는 동안에도 틱이 돌기 때문에, 새로 쌓으면 다음 틱에 맞춰 중간부터 이어진다.
     /// </summary>
     public class MemoryScanner : MonoBehaviour
     {
         [SerializeField] private MemoryController memory;
 
-        [Tooltip("한 칸을 지나가는 데 걸리는 시간(초). 작을수록 빠르다.")]
-        [SerializeField, Min(0.01f)] private float secondsPerSlot = 0.5f;
+        [Tooltip("1초에 몇 틱이 지나갈지. 게임 전체의 박자를 정한다.")]
+        public float gameSpeed = 2f;
 
-        /// <summary>맨 왼쪽이 0. 1.5면 1번 칸의 한가운데. UI가 이 값으로 스캔선을 그린다.</summary>
-        private float _position;
+        /// <summary>이번 틱이 얼마나 지났는지. 0에서 1 사이.</summary>
+        private float _tick;
 
-        /// <summary>이번 회차에 실행할 칸 수. 1부터 시작해 회차마다 하나씩 는다.</summary>
+        /// <summary>지금 머무르고 있는 칸. 훑을 게 없으면 -1.</summary>
+        private int _current = -1;
+
+        /// <summary>이번 회차에 실행할 칸 수.</summary>
         private int _cycleLength = 1;
 
-        /// <summary>다음에 오른쪽 끝이 닿을 칸.</summary>
-        private int _nextSlot;
+        private int _executed;
 
-        public float Position => _position;
+        /// <summary>훑을 게 있어서 스캔선이 떠 있는 상태.</summary>
+        public bool IsActive => _current >= 0;
 
-        /// <summary>스캐너가 지금 지나고 있는 칸. 아직 시작 전이면 0.</summary>
-        public int CurrentIndex => Mathf.FloorToInt(_position);
+        /// <summary>스캔선이 지금 있는 칸. 없으면 -1.</summary>
+        public int CurrentIndex => _current;
+
+        /// <summary>그 칸의 어디쯤인지. 0이면 위쪽 끝, 1이면 아래쪽 끝.</summary>
+        public float Fraction => _tick;
 
         /// <summary>칸이 실행됐을 때 그 칸의 인덱스를 발행한다.</summary>
         public event Action<int> OnSlotExecuted;
 
-        /// <summary>한 회차가 끝나 맨 앞으로 돌아갈 때 발행한다.</summary>
+        /// <summary>회차가 끝나 꼭대기로 돌아갈 때 발행한다.</summary>
         public event Action OnCycleReset;
 
         private void Reset()
@@ -56,62 +62,117 @@ namespace RYU.Memory
             if (memory == null)
                 return;
 
-            _position += Time.deltaTime / secondsPerSlot;
+            _tick += Time.deltaTime * Mathf.Max(0f, gameSpeed);
 
-            // 한 프레임에 여러 칸을 지나칠 수 있으므로 닿은 경계를 모두 처리한다.
-            while (_position >= _nextSlot + 1)
+            // 프레임이 길어 틱을 여러 번 넘겼어도 넘긴 만큼 모두 처리한다.
+            while (_tick >= 1f)
             {
-                if (!TryExecute(_nextSlot))
-                    break;
-
-                _nextSlot++;
-
-                if (_nextSlot >= _cycleLength)
-                {
-                    EndCycle();
-                    break;
-                }
-            }
-        }
-
-        /// <summary>칸을 실행한다. 비어 있어서 처음으로 돌아갔으면 false.</summary>
-        private bool TryExecute(int index)
-        {
-            if (index >= memory.Capacity || memory.GetSlot(index) == SlotState.Free)
-            {
-                RestartFromBeginning();
-                return false;
+                _tick -= 1f;
+                Advance();
             }
 
-            // 칸에 담긴 게 있으면 그 내용을 처리한다. 디버그 키로 채운 칸은 내용이 없어 지나간다.
-            memory.GetItem(index)?.Execute();
-
-            OnSlotExecuted?.Invoke(index);
-            return true;
+            AcquireIfIdle();
         }
 
-        /// <summary>이번 회차를 끝내고 한 칸 더 긴 회차를 준비한다.</summary>
-        private void EndCycle()
+        /// <summary>
+        /// 비어 있다가 뭔가 생기면 다음 틱을 기다리지 않고 지금 위상에 바로 붙는다.
+        /// 틱이 절반 지났으면 스캔선도 그 칸의 절반 지점에서 시작한다.
+        /// </summary>
+        private void AcquireIfIdle()
         {
-            _cycleLength++;
+            if (_current >= 0)
+                return;
 
-            if (_cycleLength > memory.Capacity)
+            int top = FindTopOccupied();
+            if (top < 0)
+                return;
+
+            _cycleLength = 1;
+            _executed = 0;
+            _current = top;
+
+            OnCycleReset?.Invoke();
+        }
+
+        /// <summary>틱 경계. 머물던 칸을 처리하고 다음 칸으로 옮긴다.</summary>
+        private void Advance()
+        {
+            if (_current >= 0)
+                Resolve(_current);
+
+            _current = ChooseNext();
+        }
+
+        private void Resolve(int index)
+        {
+            SlotState state = memory.GetSlot(index);
+
+            // 가비지는 지나가며 치운다. 실행 횟수에는 세지 않는다.
+            if (state == SlotState.Garbage)
             {
-                RestartFromBeginning();
+                memory.ClearSlot(index);
                 return;
             }
 
-            _position = 0f;
-            _nextSlot = 0;
-            OnCycleReset?.Invoke();
+            if (state != SlotState.Data)
+                return;
+
+            memory.GetItem(index)?.Execute();
+            OnSlotExecuted?.Invoke(index);
+
+            // 쓴 것은 사라진다.
+            memory.ClearSlot(index);
+            _executed++;
         }
 
-        private void RestartFromBeginning()
+        /// <summary>다음에 머무를 칸을 고른다. 없으면 -1.</summary>
+        private int ChooseNext()
         {
-            _position = 0f;
-            _nextSlot = 0;
+            // 이번 회차 몫을 다 썼으면 한 칸 더 깊은 회차로 넘어간다.
+            if (_executed >= _cycleLength)
+            {
+                _cycleLength++;
+                if (_cycleLength > memory.Capacity)
+                    _cycleLength = 1;
+
+                return StartNewCycle();
+            }
+
+            // 아래로 내려가며 다음 찬 칸을 찾는다. 빈칸은 세지 않으니 건너뛰어도 한 틱이다.
+            for (int i = _current - 1; i >= 0; i--)
+            {
+                if (memory.GetSlot(i) != SlotState.Free)
+                    return i;
+            }
+
+            // 바닥까지 훑었으면 처음부터 다시.
             _cycleLength = 1;
-            OnCycleReset?.Invoke();
+            return StartNewCycle();
+        }
+
+        private int StartNewCycle()
+        {
+            _executed = 0;
+
+            int top = FindTopOccupied();
+            if (top >= 0)
+                OnCycleReset?.Invoke();
+
+            return top;
+        }
+
+        /// <summary>
+        /// 가장 위에 있는 찬 칸. 가비지도 지나가며 치워야 하므로 같이 센다.
+        /// 하나도 없으면 -1.
+        /// </summary>
+        private int FindTopOccupied()
+        {
+            for (int i = memory.Capacity - 1; i >= 0; i--)
+            {
+                if (memory.GetSlot(i) != SlotState.Free)
+                    return i;
+            }
+            return -1;
         }
     }
 }

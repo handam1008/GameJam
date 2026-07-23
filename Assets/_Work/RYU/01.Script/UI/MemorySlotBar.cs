@@ -5,11 +5,11 @@ using UnityEngine.UI;
 namespace RYU.UI
 {
     /// <summary>
-    /// 메모리 칸을 가로로 늘어놓고, 칸 상태와 스캐너 위치를 보여준다.
+    /// 메모리 칸을 세로로 쌓고, 칸 상태와 스캐너 위치를 보여준다. 0번 칸이 맨 위다.
     /// 칸은 Capacity만큼 자동 생성하며, 재생하지 않아도 에디터에서 미리 보인다.
     /// </summary>
     [ExecuteAlways]
-    [RequireComponent(typeof(HorizontalLayoutGroup))]
+    [RequireComponent(typeof(VerticalLayoutGroup))]
     public class MemorySlotBar : MonoBehaviour
     {
         [Header("References")]
@@ -24,20 +24,76 @@ namespace RYU.UI
         [SerializeField] private Color frameColor = new Color(0.15f, 0.15f, 0.18f);
         [SerializeField] private Color scanFrameColor = new Color(1f, 0.85f, 0.2f);
         [SerializeField] private Color freeColor = new Color(0.25f, 0.28f, 0.35f);
+        [Tooltip("아직 실행하지 않은 데이터.")]
+        [SerializeField] private Color dataColor = new Color(0.3f, 0.75f, 0.95f);
+        [Tooltip("실행이 끝났거나 피격으로 망가진 칸.")]
         [SerializeField] private Color garbageColor = new Color(0.85f, 0.25f, 0.3f);
 
         [Header("Scan Line")]
         [SerializeField, Min(1f)] private float beamWidth = 6f;
         [SerializeField] private Color beamColor = new Color(1f, 0.95f, 0.4f);
 
+        [Header("Execute Flash")]
+        [Tooltip("실행되는 순간 칸이 이 색으로 번쩍인다.")]
+        [SerializeField] private Color flashColor = new Color(1f, 0.75f, 0.15f);
+        [Tooltip("번쩍임이 사라지는 데 걸리는 시간(초).")]
+        [SerializeField, Min(0.01f)] private float flashDuration = 0.25f;
+        [Tooltip("실행 순간 칸이 커지는 배율.")]
+        [SerializeField, Min(1f)] private float flashScale = 1.25f;
+
+        [Header("Insert / Remove")]
+        [Tooltip("스택에 들어올 때 칸이 이 색으로 번쩍인다.")]
+        [SerializeField] private Color appearFlash = Color.white;
+        [SerializeField, Min(0.01f)] private float appearDuration = 0.22f;
+        [Tooltip("들어오는 순간 부풀었다가 줄어드는 배율.")]
+        [SerializeField, Min(1f)] private float appearScale = 1.45f;
+        [SerializeField, Min(0.01f)] private float vanishDuration = 0.3f;
+        [Tooltip("빠질 때 쪼그라드는 배율.")]
+        [SerializeField, Range(0f, 1f)] private float vanishScale = 0.55f;
+
+        [Header("Smoothing")]
+        [Tooltip("색이 바뀔 때 스며드는 속도. 낮을수록 부드럽고 높을수록 즉각적이다.")]
+        [SerializeField, Min(0.5f)] private float colorSpeed = 8f;
+
         private Image[] _frames;
         private Image[] _fills;
         private Image _beam;
+
+        /// <summary>칸별 번쩍임 잔여 시간.</summary>
+        private float[] _flashTimers;
+
+        /// <summary>들어오고 빠지는 연출의 잔여 시간.</summary>
+        private float[] _appearTimers;
+        private float[] _vanishTimers;
+
+        /// <summary>지금 화면에 보이는 색. 목표 색으로 서서히 스며든다.</summary>
+        private Color[] _fillColors;
+        private Color[] _frameColors;
+
+        /// <summary>지난 프레임의 칸 상태. 바뀐 순간을 잡아 연출을 건다.</summary>
+        private SlotState[] _lastStates;
 
         private void OnEnable()
         {
             ResolveReferences();
             Rebuild();
+
+            if (scanner != null)
+                scanner.OnSlotExecuted += StartFlash;
+        }
+
+        private void OnDisable()
+        {
+            if (scanner != null)
+                scanner.OnSlotExecuted -= StartFlash;
+        }
+
+        private void StartFlash(int index)
+        {
+            if (_flashTimers == null || index < 0 || index >= _flashTimers.Length)
+                return;
+
+            _flashTimers[index] = flashDuration;
         }
 
 #if UNITY_EDITOR
@@ -62,9 +118,71 @@ namespace RYU.UI
 
         private void LateUpdate()
         {
+            DetectChanges();
+            TickTimers();
             Refresh();
             UpdateBeam();
         }
+
+        /// <summary>칸이 차거나 비는 순간을 잡아 연출을 건다.</summary>
+        private void DetectChanges()
+        {
+            if (_lastStates == null || memory == null)
+                return;
+
+            for (int i = 0; i < _lastStates.Length; i++)
+            {
+                SlotState now = memory.GetSlot(i);
+                SlotState before = _lastStates[i];
+                if (now == before)
+                    continue;
+
+                _lastStates[i] = now;
+
+                if (before == SlotState.Free)
+                {
+                    _appearTimers[i] = appearDuration;
+                }
+                else if (now == SlotState.Free)
+                {
+                    _vanishTimers[i] = vanishDuration;
+                }
+            }
+        }
+
+        private void TickTimers()
+        {
+            if (_flashTimers == null)
+                return;
+
+            for (int i = 0; i < _flashTimers.Length; i++)
+            {
+                if (_flashTimers[i] > 0f)
+                    _flashTimers[i] -= Time.deltaTime;
+                if (_appearTimers[i] > 0f)
+                    _appearTimers[i] -= Time.deltaTime;
+                if (_vanishTimers[i] > 0f)
+                    _vanishTimers[i] -= Time.deltaTime;
+            }
+        }
+
+        /// <summary>끝으로 갈수록 느려진다. 갑자기 멈추지 않게.</summary>
+        private static float EaseOutCubic(float t) => 1f - Mathf.Pow(1f - t, 3f);
+
+        /// <summary>목표를 살짝 넘겼다 돌아온다. 튕기는 느낌을 준다.</summary>
+        private static float EaseOutBack(float t)
+        {
+            const float overshoot = 1.70158f;
+            float p = t - 1f;
+            return 1f + (overshoot + 1f) * p * p * p + overshoot * p * p;
+        }
+
+        private Color ColorOf(SlotState state) => state switch
+        {
+            SlotState.Data => dataColor,
+            SlotState.Garbage => garbageColor,
+            _ => freeColor
+        };
 
         /// <summary>인스펙터에서 연결하지 않았으면 씬에서 찾아 쓴다.</summary>
         private void ResolveReferences()
@@ -86,6 +204,20 @@ namespace RYU.UI
             int count = memory.Capacity;
             _frames = new Image[count];
             _fills = new Image[count];
+            _flashTimers = new float[count];
+            _appearTimers = new float[count];
+            _vanishTimers = new float[count];
+            _fillColors = new Color[count];
+            _frameColors = new Color[count];
+
+            // 시작하자마자 없던 연출이 터지지 않도록 지금 상태를 기준으로 삼는다.
+            _lastStates = new SlotState[count];
+            for (int i = 0; i < count; i++)
+            {
+                _lastStates[i] = memory.GetSlot(i);
+                _fillColors[i] = ColorOf(_lastStates[i]);
+                _frameColors[i] = frameColor;
+            }
 
             for (int i = 0; i < count; i++)
             {
@@ -152,11 +284,11 @@ namespace RYU.UI
             beam.transform.SetParent(transform, false);
             MarkEditorOnly(beam);
 
-            // 스캔선은 칸이 아니므로 가로 배치에서 빼야 한다.
+            // 스캔선은 칸이 아니므로 세로 배치에서 빼야 한다.
             beam.GetComponent<LayoutElement>().ignoreLayout = true;
 
             var rect = beam.GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(beamWidth, slotSize.y + framePadding * 2f);
+            rect.sizeDelta = new Vector2(slotSize.x + framePadding * 2f, beamWidth);
 
             var image = beam.GetComponent<Image>();
             image.color = beamColor;
@@ -178,10 +310,52 @@ namespace RYU.UI
 
             int scanIndex = scanner != null ? scanner.CurrentIndex : -1;
 
+            // 에디터 미리보기에서는 deltaTime이 0일 수 있어 색이 멈춰버린다.
+            float smoothDelta = Application.isPlaying ? Time.deltaTime : 1f / 60f;
+
             for (int i = 0; i < _fills.Length; i++)
             {
-                _fills[i].color = memory.GetSlot(i) == SlotState.Garbage ? garbageColor : freeColor;
-                _frames[i].color = i == scanIndex ? scanFrameColor : frameColor;
+                // 0에서 1로 흐르는 진행도. 남은 시간이 아니라 지나온 정도를 쓴다.
+                float flash = 1f - Mathf.Clamp01(_flashTimers[i] / flashDuration);
+                float appear = 1f - Mathf.Clamp01(_appearTimers[i] / appearDuration);
+                float vanish = 1f - Mathf.Clamp01(_vanishTimers[i] / vanishDuration);
+
+                bool appearing = _appearTimers[i] > 0f;
+                bool vanishing = _vanishTimers[i] > 0f;
+
+                Color targetFill = ColorOf(memory.GetSlot(i));
+
+                // 들어오는 순간에만 하얗게 물들이고, 그 뒤로는 제 색으로 풀린다.
+                if (appearing)
+                    targetFill = Color.Lerp(targetFill, appearFlash, 1f - EaseOutCubic(appear));
+
+                Color targetFrame = i == scanIndex ? scanFrameColor : frameColor;
+                if (_flashTimers[i] > 0f)
+                    targetFrame = Color.Lerp(targetFrame, flashColor, 1f - EaseOutCubic(flash));
+
+                // 색은 목표를 향해 계속 스며든다. 상태가 바뀌어도 툭 끊기지 않는다.
+                float blend = 1f - Mathf.Exp(-colorSpeed * smoothDelta);
+                _fillColors[i] = Color.Lerp(_fillColors[i], targetFill, blend);
+                _frameColors[i] = Color.Lerp(_frameColors[i], targetFrame, blend);
+
+                _fills[i].color = _fillColors[i];
+                _frames[i].color = _frameColors[i];
+
+                // 크기는 세 연출이 겹칠 수 있어 배율을 곱해서 함께 반영한다.
+                float scale = 1f;
+
+                if (_flashTimers[i] > 0f)
+                    scale *= Mathf.Lerp(flashScale, 1f, EaseOutCubic(flash));
+
+                // 부풀었다가 살짝 넘겼다 돌아오게 해서 툭 튀는 느낌을 준다.
+                if (appearing)
+                    scale *= Mathf.LerpUnclamped(appearScale, 1f, EaseOutBack(appear));
+
+                // 쪼그라들었다 제자리로. 양 끝이 0이라 매끄럽게 이어진다.
+                if (vanishing)
+                    scale *= Mathf.Lerp(1f, vanishScale, Mathf.Sin(vanish * Mathf.PI));
+
+                _frames[i].rectTransform.localScale = Vector3.one * scale;
             }
         }
 
@@ -190,17 +364,26 @@ namespace RYU.UI
             if (_beam == null || _frames == null || _frames.Length == 0 || scanner == null)
                 return;
 
-            float position = scanner.Position;
-            int index = Mathf.Clamp(Mathf.FloorToInt(position), 0, _frames.Length - 1);
-            float fraction = Mathf.Clamp01(position - index);
+            int index = scanner.CurrentIndex;
+            if (!scanner.IsActive || index < 0)
+            {
+                _beam.enabled = false;
+                return;
+            }
+
+            _beam.enabled = true;
+            index = Mathf.Clamp(index, 0, _frames.Length - 1);
+            float fraction = Mathf.Clamp01(scanner.Fraction);
 
             Vector3 center = _frames[index].rectTransform.position;
+
+            // 인덱스가 오를수록 위로 가는 간격. 스캔선은 그 반대로 내려온다.
             float stride = _frames.Length > 1
-                ? Mathf.Abs(_frames[1].rectTransform.position.x - _frames[0].rectTransform.position.x)
-                : slotSize.x;
+                ? _frames[1].rectTransform.position.y - _frames[0].rectTransform.position.y
+                : slotSize.y;
 
             Vector3 beamPosition = center;
-            beamPosition.x = center.x + (fraction - 0.5f) * stride;
+            beamPosition.y = center.y + (0.5f - fraction) * stride;
             _beam.rectTransform.position = beamPosition;
         }
     }

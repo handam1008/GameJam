@@ -78,9 +78,16 @@ namespace RYU.Dev
 
             _builder.Clear();
             for (int i = 0; i < _memory.Capacity; i++)
-                _builder.Append(_memory.GetSlot(i) == SlotState.Garbage ? "[X]" : "[ ]");
+            {
+                _builder.Append(_memory.GetSlot(i) switch
+                {
+                    SlotState.Data => "[O]",
+                    SlotState.Garbage => "[X]",
+                    _ => "[ ]"
+                });
+            }
 
-            _builder.Append($"   가비지 {_memory.GarbageCount}/{_memory.Capacity}");
+            _builder.Append($"   메모리 {_memory.UsedCount}/{_memory.Capacity} (가비지 {_memory.GarbageCount})");
 
             if (_memory.IsStunned)
                 _builder.Append("   << OVERFLOW >>");

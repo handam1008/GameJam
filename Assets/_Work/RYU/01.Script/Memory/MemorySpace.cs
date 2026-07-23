@@ -20,56 +20,15 @@ namespace RYU.Memory
 
         public int Capacity => _slots.Length;
 
-        public int GarbageCount
-        {
-            get
-            {
-                int count = 0;
-                for (int i = 0; i < _slots.Length; i++)
-                {
-                    if (_slots[i] == SlotState.Garbage)
-                        count++;
-                }
-                return count;
-            }
-        }
+        public int UsedCount => Count(state => state != SlotState.Free);
 
-        public int FreeCount => Capacity - GarbageCount;
+        public int GarbageCount => Count(state => state == SlotState.Garbage);
+
+        public int FreeCount => Capacity - UsedCount;
 
         public SlotState GetSlot(int index) => _slots[index];
 
         public AbstractStack GetItem(int index) => _items[index];
-
-        public bool TryPushLeft(AbstractStack item)
-        {
-            if (item == null)
-                return false;
-
-            int free = FindFirstFree();
-            if (free < 0)
-                return false;
-
-            // 왼쪽에 자리를 만들기 위해 빈칸까지의 내용을 한 칸씩 오른쪽으로 민다.
-            for (int i = free; i > 0; i--)
-            {
-                _slots[i] = _slots[i - 1];
-                _items[i] = _items[i - 1];
-            }
-
-            _slots[0] = SlotState.Garbage;
-            _items[0] = item;
-            return true;
-        }
-
-        private int FindFirstFree()
-        {
-            for (int i = 0; i < _slots.Length; i++)
-            {
-                if (_slots[i] == SlotState.Free)
-                    return i;
-            }
-            return -1;
-        }
 
         public bool TryAllocate(int cost)
         {
@@ -81,9 +40,51 @@ namespace RYU.Memory
                 return false;
 
             for (int i = start; i < start + cost; i++)
-                _slots[i] = SlotState.Garbage;
+                _slots[i] = SlotState.Data;
 
             return true;
+        }
+
+        public bool TryPushBottom(AbstractStack item)
+        {
+            if (item == null)
+                return false;
+
+            int free = FindFirstFree();
+            if (free < 0)
+                return false;
+
+            // 맨 아래에 자리를 만들기 위해 빈칸까지의 내용을 한 칸씩 위로 민다.
+            for (int i = free; i > 0; i--)
+            {
+                _slots[i] = _slots[i - 1];
+                _items[i] = _items[i - 1];
+            }
+
+            _slots[0] = SlotState.Data;
+            _items[0] = item;
+            return true;
+        }
+
+        public void Clear(int index)
+        {
+            _slots[index] = SlotState.Free;
+            _items[index] = null;
+        }
+
+        public int Corrupt()
+        {
+            for (int i = 0; i < _slots.Length; i++)
+            {
+                if (_slots[i] == SlotState.Garbage)
+                    continue;
+
+                _slots[i] = SlotState.Garbage;
+                _items[i] = null;
+                return i;
+            }
+
+            return -1;
         }
 
         public int CollectGarbage()
@@ -91,7 +92,7 @@ namespace RYU.Memory
             int cleared = 0;
             for (int i = 0; i < _slots.Length; i++)
             {
-                if (_slots[i] != SlotState.Garbage)
+                if (_slots[i] == SlotState.Free)
                     continue;
 
                 _slots[i] = SlotState.Free;
@@ -99,6 +100,27 @@ namespace RYU.Memory
                 cleared++;
             }
             return cleared;
+        }
+
+        private int Count(Func<SlotState, bool> match)
+        {
+            int count = 0;
+            for (int i = 0; i < _slots.Length; i++)
+            {
+                if (match(_slots[i]))
+                    count++;
+            }
+            return count;
+        }
+
+        private int FindFirstFree()
+        {
+            for (int i = 0; i < _slots.Length; i++)
+            {
+                if (_slots[i] == SlotState.Free)
+                    return i;
+            }
+            return -1;
         }
 
         private int FindContiguousFree(int length)

@@ -119,6 +119,181 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &113005408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113005411}
+  - component: {fileID: 113005410}
+  - component: {fileID: 113005409}
+  - component: {fileID: 113005412}
+  - component: {fileID: 113005413}
+  m_Layer: 5
+  m_Name: SelectCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &113005409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113005408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &113005410
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113005408}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &113005411
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113005408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1176522122}
+  - {fileID: 380915604}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &113005412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113005408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c86c858be6cae4cbefedb209249a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.UI.SkillPanel
+  inventory: {fileID: 772882199}
+  memory: {fileID: 811884649}
+  buttonPrefab: {fileID: 4831814517160831718, guid: ab7ba59e0ebda404fb2a7cf5c81d3e6d, type: 3}
+  buttonParent: {fileID: 380915604}
+--- !u!114 &113005413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113005408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!1 &189696562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 189696563}
+  - component: {fileID: 189696564}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &189696563
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189696562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 346866467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &189696564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189696562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b7e2a82b43706448f28ca5cd38d020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.UI.TickBar
+  scanner: {fileID: 811884652}
+  size: {x: 420, y: 18}
+  offset: {x: 0, y: -40}
+  backgroundColor: {r: 0.12, g: 0.12, b: 0.15, a: 0.85}
+  fillColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  beatColor: {r: 1, g: 1, b: 1, a: 1}
+  beatFlash: 0.12
 --- !u!1 &346866464
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +370,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 594014100}
+  - {fileID: 1167915977}
+  - {fileID: 1131700374}
+  - {fileID: 1437712794}
+  - {fileID: 189696563}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -330,6 +508,108 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &380915603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 380915604}
+  - component: {fileID: 380915606}
+  - component: {fileID: 380915605}
+  - component: {fileID: 380915607}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &380915604
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380915603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 113005411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -537, y: -316}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &380915605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380915603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &380915606
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380915603}
+  m_CullTransparentMesh: 1
+--- !u!114 &380915607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380915603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 3
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 1
 --- !u!1 &475134951
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,8 +622,9 @@ GameObject:
   - component: {fileID: 475134952}
   - component: {fileID: 475134954}
   - component: {fileID: 475134955}
+  - component: {fileID: 475134956}
   m_Layer: 0
-  m_Name: images_0
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,12 +679,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8957324059118975939, guid: 57467537027e7a34594197570929b73f, type: 3}
+  m_Sprite: {fileID: -4355272409397247203, guid: 42b1383acd17c7849a6a8c4bb6061b0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.54, y: 5.54}
+  m_Size: {x: 3.57, y: 3.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -474,14 +755,27 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.54, y: 5.54}
-    newSize: {x: 5.54, y: 5.54}
+    oldSize: {x: 3.57, y: 3.57}
+    newSize: {x: 3.57, y: 3.57}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 5.54, y: 5.54}
   m_EdgeRadius: 0
+--- !u!114 &475134956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475134951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ce023fb9ca2a54bad0d970ca5e3674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Skill.SkillPickup
+  skill: {fileID: 11400000, guid: e28a539551a04fe4eab37370f4fcaf41, type: 2}
 --- !u!1 &578394442
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,91 +855,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &594014099
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 594014100}
-  - component: {fileID: 594014102}
-  - component: {fileID: 594014101}
-  m_Layer: 5
-  m_Name: MemoryBar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &594014100
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594014099}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 346866467}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 60}
-  m_SizeDelta: {x: 900, y: 90}
-  m_Pivot: {x: 0.5, y: 0}
---- !u!114 &594014101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594014099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f321208c4abc7c4b8081c7ac84ab158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RYU.UI.MemorySlotBar
-  memory: {fileID: 1201795656}
-  scanner: {fileID: 1201795660}
-  slotSize: {x: 72, y: 72}
-  framePadding: 6
-  frameColor: {r: 0.15, g: 0.15, b: 0.18, a: 1}
-  scanFrameColor: {r: 1, g: 0.85, b: 0.2, a: 1}
-  freeColor: {r: 0.25, g: 0.28, b: 0.35, a: 1}
-  garbageColor: {r: 0.85, g: 0.25, b: 0.3, a: 1}
-  beamWidth: 6
-  beamColor: {r: 1, g: 0.95, b: 0.4, a: 1}
---- !u!114 &594014102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594014099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 8
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &665306735
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,8 +867,9 @@ GameObject:
   - component: {fileID: 665306738}
   - component: {fileID: 665306737}
   - component: {fileID: 665306736}
+  - component: {fileID: 665306740}
   m_Layer: 0
-  m_Name: images_0 (2)
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -703,8 +913,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.54, y: 5.54}
-    newSize: {x: 5.54, y: 5.54}
+    oldSize: {x: 3.57, y: 3.57}
+    newSize: {x: 3.57, y: 3.57}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -773,12 +983,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8957324059118975939, guid: 57467537027e7a34594197570929b73f, type: 3}
+  m_Sprite: {fileID: -4355272409397247203, guid: 42b1383acd17c7849a6a8c4bb6061b0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.54, y: 5.54}
+  m_Size: {x: 3.57, y: 3.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -792,12 +1002,176 @@ Transform:
   m_GameObject: {fileID: 665306735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.31, y: 2.87, z: 0}
+  m_LocalPosition: {x: -0.35, y: 2.87, z: 0}
   m_LocalScale: {x: 0.2621, y: 0.2621, z: 0.2621}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &665306740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665306735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ce023fb9ca2a54bad0d970ca5e3674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Skill.SkillPickup
+  skill: {fileID: 11400000, guid: e28a539551a04fe4eab37370f4fcaf41, type: 2}
+--- !u!1 &772882197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 772882198}
+  - component: {fileID: 772882199}
+  m_Layer: 0
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &772882198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772882197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1201795657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &772882199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772882197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd38858f20f77124682eb5d93eee54d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Skill.SkillInventory
+--- !u!1 &811884647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 811884648}
+  - component: {fileID: 811884649}
+  - component: {fileID: 811884650}
+  - component: {fileID: 811884651}
+  - component: {fileID: 811884652}
+  m_Layer: 0
+  m_Name: Memory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &811884648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811884647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1201795657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &811884649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a8a8da65350cb42ab7f07671b7c9ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Memory.MemoryController
+  capacity: 10
+  attackCost: 1
+  gcKey: 32
+  gcCooldown: 0.5
+  overflowStunDuration: 1
+  overflowDeathTime: 1.5
+  useDebugAttackKey: 1
+  debugAttackKey: 40
+  debugSkillKey: 38
+  debugSkillCost: 2
+  debugHitKey: 17
+--- !u!114 &811884650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9fd931ec78be148ac5581d867e3051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Combat.GarbageBlast
+  baseRadius: 1.5
+  radiusPerGarbage: 0.3
+  maxRadius: 8
+  damagePerGarbage: 5
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &811884651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67efc93116f92c3418fbee47911b0792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Dev.MemoryDebugView
+  fontSize: 48
+  font: {fileID: 12800000, guid: 45f0d6d519d83da4d9ba6a3d5f643fa9, type: 3}
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  scanner: {fileID: 811884652}
+--- !u!114 &811884652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4ce523d80367545b715e4f16da9bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Memory.MemoryScanner
+  memory: {fileID: 811884649}
+  gameSpeed: 2
 --- !u!1 &866273024
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +1314,220 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1131700373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1131700374}
+  - component: {fileID: 1131700375}
+  m_Layer: 5
+  m_Name: BlueScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1131700374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131700373}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 346866467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1131700375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131700373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45d11cf2d4977645bf19768be2196e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.UI.BlueScreen
+  memory: {fileID: 811884649}
+  font: {fileID: 12800000, guid: 45f0d6d519d83da4d9ba6a3d5f643fa9, type: 3}
+  backgroundColor: {r: 0, g: 0.32, b: 0.63, a: 1}
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  progressDuration: 3
+  message: "\uC7A5\uCE58\uC5D0 \uBB38\uC81C\uAC00 \uBC1C\uC0DD\uD558\uC5EC \uB2E4\uC2DC
+    \uC2DC\uC791\uD574\uC57C \uD569\uB2C8\uB2E4. \uC77C\uBD80 \uC624\uB958 \uC815\uBCF4\uB97C
+    \uC218\uC9D1\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4. \uADF8\uB7F0 \uB2E4\uC74C
+    \uC790\uB3D9\uC73C\uB85C \uB2E4\uC2DC \uC2DC\uC791\uD569\uB2C8\uB2E4."
+  stopCode: "\uC911\uC9C0 \uCF54\uB4DC: MEMORY_OVERFLOW"
+--- !u!1 &1167915976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1167915977}
+  - component: {fileID: 1167915978}
+  - component: {fileID: 1167915979}
+  m_Layer: 5
+  m_Name: CrackOverlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1167915977
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167915976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 346866467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1167915978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167915976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e76d5cf4eaa184487ce465fcd2a18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.UI.CrackOverlay
+  m_Material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_Color: {r: 0.85, g: 0.05, b: 0.08, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  memory: {fileID: 811884649}
+  maxLines: 140
+  lineWidth: 3
+  minLength: 0.06
+  maxLength: 0.8
+  jitterAngle: 40
+  seed: 12345
+  fullMemoryIntensity: 0.86
+--- !u!222 &1167915979
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167915976}
+  m_CullTransparentMesh: 1
+--- !u!1 &1176522121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176522122}
+  - component: {fileID: 1176522124}
+  - component: {fileID: 1176522123}
+  - component: {fileID: 1176522125}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1176522122
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176522121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 113005411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -55.364807, y: -324.5621}
+  m_SizeDelta: {x: 1049.2704, y: 219.1242}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1176522123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176522121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.50732166, b: 0.073584795, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1176522124
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176522121}
+  m_CullTransparentMesh: 1
+--- !u!114 &1176522125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176522121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1201795653
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,14 +1537,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1201795657}
-  - component: {fileID: 1201795656}
-  - component: {fileID: 1201795655}
-  - component: {fileID: 1201795654}
   - component: {fileID: 1201795658}
   - component: {fileID: 1201795659}
-  - component: {fileID: 1201795660}
   - component: {fileID: 1201795661}
   - component: {fileID: 1201795662}
+  - component: {fileID: 1201795663}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -964,62 +1549,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1201795654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201795653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67efc93116f92c3418fbee47911b0792, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RYU.Dev.MemoryDebugView
-  fontSize: 48
-  font: {fileID: 12800000, guid: 45f0d6d519d83da4d9ba6a3d5f643fa9, type: 3}
-  textColor: {r: 1, g: 1, b: 1, a: 1}
-  scanner: {fileID: 0}
---- !u!114 &1201795655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201795653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9fd931ec78be148ac5581d867e3051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RYU.Combat.GarbageBlast
-  baseRadius: 1.5
-  radiusPerGarbage: 0.3
-  maxRadius: 8
-  damagePerGarbage: 5
-  targetLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1201795656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201795653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a8a8da65350cb42ab7f07671b7c9ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RYU.Memory.MemoryController
-  capacity: 10
-  attackCost: 1
-  gcKey: 32
-  gcCooldown: 0.5
-  overflowStunDuration: 1
-  useDebugAttackKey: 1
-  debugAttackKey: 40
-  debugSkillKey: 38
-  debugSkillCost: 2
 --- !u!4 &1201795657
 Transform:
   m_ObjectHideFlags: 0
@@ -1032,7 +1561,9 @@ Transform:
   m_LocalPosition: {x: -2.77, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 811884648}
+  - {fileID: 772882198}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1201795658
@@ -1124,20 +1655,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1201795660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201795653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a4ce523d80367545b715e4f16da9bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RYU.Memory.MemoryScanner
-  memory: {fileID: 1201795656}
-  secondsPerSlot: 0.5
 --- !u!70 &1201795661
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1202,6 +1719,114 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1201795663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201795653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc34b94b907c1864baa9f1c21d8f4266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
+  _speed: 5
+--- !u!1 &1437712793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1437712794}
+  - component: {fileID: 1437712796}
+  - component: {fileID: 1437712795}
+  m_Layer: 5
+  m_Name: MemoryBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1437712794
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437712793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 346866467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 1747, y: 0}
+  m_SizeDelta: {x: 100, y: 880}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1437712795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437712793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f321208c4abc7c4b8081c7ac84ab158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.UI.MemorySlotBar
+  memory: {fileID: 811884649}
+  scanner: {fileID: 811884652}
+  slotSize: {x: 72, y: 72}
+  framePadding: 6
+  frameColor: {r: 0.15, g: 0.15, b: 0.18, a: 1}
+  scanFrameColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  freeColor: {r: 0.25, g: 0.28, b: 0.35, a: 1}
+  dataColor: {r: 0.3, g: 0.75, b: 0.95, a: 1}
+  garbageColor: {r: 0.85, g: 0.25, b: 0.3, a: 1}
+  beamWidth: 6
+  beamColor: {r: 1, g: 0.95, b: 0.4, a: 1}
+  flashColor: {r: 1, g: 0.75, b: 0.15, a: 1}
+  flashDuration: 0.25
+  flashScale: 1.25
+  appearFlash: {r: 1, g: 1, b: 1, a: 1}
+  appearDuration: 0.22
+  appearScale: 1.75
+  vanishDuration: 0.3
+  vanishScale: 0.55
+  colorSpeed: 8
+--- !u!114 &1437712796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437712793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 7
+  m_Spacing: 8
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 1
 --- !u!1 &1602079612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,8 +2026,9 @@ GameObject:
   - component: {fileID: 1903906599}
   - component: {fileID: 1903906598}
   - component: {fileID: 1903906597}
+  - component: {fileID: 1903906601}
   m_Layer: 0
-  m_Name: images_0 (1)
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1446,8 +2072,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.54, y: 5.54}
-    newSize: {x: 5.54, y: 5.54}
+    oldSize: {x: 3.57, y: 3.57}
+    newSize: {x: 3.57, y: 3.57}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1516,12 +2142,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8957324059118975939, guid: 57467537027e7a34594197570929b73f, type: 3}
+  m_Sprite: {fileID: -4355272409397247203, guid: 42b1383acd17c7849a6a8c4bb6061b0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.54, y: 5.54}
+  m_Size: {x: 3.57, y: 3.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1535,12 +2161,25 @@ Transform:
   m_GameObject: {fileID: 1903906596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.86, y: 2.87, z: 0}
+  m_LocalPosition: {x: -2.19, y: 2.87, z: 0}
   m_LocalScale: {x: 0.2621, y: 0.2621, z: 0.2621}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1903906601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903906596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ce023fb9ca2a54bad0d970ca5e3674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Skill.SkillPickup
+  skill: {fileID: 11400000, guid: e28a539551a04fe4eab37370f4fcaf41, type: 2}
 --- !u!1 &1958856580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,6 +2614,7 @@ SceneRoots:
   - {fileID: 578394445}
   - {fileID: 1602079614}
   - {fileID: 346866467}
+  - {fileID: 113005411}
   - {fileID: 475134953}
   - {fileID: 1903906600}
   - {fileID: 665306739}
