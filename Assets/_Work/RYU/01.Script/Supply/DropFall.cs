@@ -1,0 +1,69 @@
+using DG.Tweening;
+using UnityEngine;
+
+public class DropFall : MonoBehaviour
+{
+    // 내려오는 데 걸리는 시간. 비행기의 Marker Hide Delay와 맞추면 표시와 착지가 일치한다
+    [SerializeField] private float fallTime = 1.5f;
+
+    // 착지 지점보다 얼마나 위에서 시작할지 (화면 기준 위쪽)
+    [SerializeField] private float fallHeight = 6f;
+
+    // 시작할 때 몇 배 크기로 떠 있을지
+    [SerializeField] private float startScale = 1.3f;
+
+    // 착지 전까지 꺼둘 것들. 적 AI, 콜라이더 등을 넣으면 공중에 있는 동안 얌전하다
+    [SerializeField] private Behaviour[] enableOnLand;
+
+    private Vector3 groundScale;
+    private Vector3 landingLocal;
+    private float t;
+    private bool landed;
+
+    private void Start()
+    {
+        foreach (Behaviour b in enableOnLand)
+            b.enabled = false;
+
+        groundScale = transform.localScale;
+
+        // 착지 지점을 바닥 기준으로 기억한다. 맵이 돌아도 마커와 같은 자리에 내린다
+        landingLocal = transform.localPosition;
+    }
+
+    private void Update()
+    {
+        if (landed)
+            return;
+
+        t += Time.deltaTime / fallTime;
+        float k = Mathf.Clamp01(t);
+
+        // 아래로 갈수록 빨라지는 낙하 곡선
+        float ease = k * k;
+
+        // 지금 이 순간의 착지 지점 (바닥이 돌아간 것 반영)
+        Vector3 ground = transform.parent != null
+            ? transform.parent.TransformPoint(landingLocal)
+            : landingLocal;
+
+        // 위에서 착지점으로 내려오면서 크기도 같이 줄인다
+        transform.position = ground + Vector3.up * (fallHeight * (1f - ease));
+        transform.localScale = Vector3.Lerp(groundScale * startScale, groundScale, ease);
+
+        if (k >= 1f)
+            Land();
+    }
+
+    private void Land()
+    {
+        landed = true;
+
+        foreach (Behaviour b in enableOnLand)
+            b.enabled = true;
+
+        // 착지 순간 살짝 눌렸다 펴지는 반동
+        transform.DOPunchScale(Vector3.one * -0.15f, 0.25f, 6)
+            .SetLink(gameObject);
+    }
+}

@@ -35,6 +35,9 @@ public class SupplyPlane : MonoBehaviour
     // 표시가 두근거리는 정도. 0이면 안 움직인다
     [SerializeField] private float markerPulse = 0.15f;
 
+    // 지점을 지날 때 떨어뜨릴 것 (적, 아이템 등). DropFall이 붙어 있으면 낙하 연출이 나온다
+    [SerializeField] private GameObject dropPrefab;
+
     // 나중에 마커/보급이 구독할 신호. 떨굴 지점 위를 지나는 순간 위치를 넘긴다
     public event Action<Vector2> OnDropPoint;
 
@@ -85,6 +88,14 @@ public class SupplyPlane : MonoBehaviour
             dropped = true;
             OnDropPoint?.Invoke(target);
             Debug.Log($"[Plane] 보급 지점 통과: {target}");
+
+            // 낙하물을 지점에 떨어뜨린다. 바닥의 자식으로 붙여서 맵이 돌면 같이 돈다
+            if (dropPrefab != null)
+            {
+                GameObject drop = Instantiate(dropPrefab, target, Quaternion.identity);
+                if (floor != null)
+                    drop.transform.SetParent(floor, true);
+            }
 
             // 낙하물이 내려올 시간만큼 있다가 표시를 거둔다
             if (marker != null)
