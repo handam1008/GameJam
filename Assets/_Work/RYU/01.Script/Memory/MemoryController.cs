@@ -23,14 +23,6 @@ namespace RYU.Memory
         [Tooltip("메모리가 꽉 찬 채로 이 시간이 지나면 죽는다.")]
         [SerializeField, Min(0.1f)] private float overflowDeathTime = 3f;
 
-        [Header("Debug")]
-        [Tooltip("아래 디버그 키 두 개를 모두 켜고 끈다.")]
-        [SerializeField] private bool useDebugAttackKey;
-        [SerializeField] private Key debugAttackKey = Key.Z;
-        [SerializeField] private Key debugSkillKey = Key.X;
-        [SerializeField, Min(1)] private int debugSkillCost = 2;
-        [Tooltip("적에게 맞은 것처럼 오른쪽에 밀어넣어 본다.")]
-        [SerializeField] private Key debugHitKey = Key.C;
 
         private IMemorySpace _memory;
         private float _stunTimer;
@@ -140,8 +132,6 @@ namespace RYU.Memory
 
             if (_gcTimer > 0f)
                 _gcTimer -= Time.deltaTime;
-
-            ReadInput();
         }
 
         /// <summary>
@@ -181,28 +171,6 @@ namespace RYU.Memory
             _gcTimer = gcCooldown;
             OnMemoryChanged?.Invoke();
             OnGarbageCollected?.Invoke(cleared);
-        }
-
-        private void ReadInput()
-        {
-            Keyboard keyboard = Keyboard.current;
-            if (keyboard == null)
-                return;
-
-            if (keyboard[gcKey].wasPressedThisFrame)
-                CollectGarbage();
-
-            if (!useDebugAttackKey)
-                return;
-
-            if (keyboard[debugAttackKey].wasPressedThisFrame)
-                TryConsume();
-
-            if (keyboard[debugSkillKey].wasPressedThisFrame)
-                TryConsume(debugSkillCost);
-
-            if (keyboard[debugHitKey].wasPressedThisFrame)
-                TakeHit();
         }
     }
 }

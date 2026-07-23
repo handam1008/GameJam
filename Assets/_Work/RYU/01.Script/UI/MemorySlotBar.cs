@@ -1,4 +1,5 @@
 using RYU.Memory;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,8 +56,16 @@ namespace RYU.UI
         [Tooltip("색이 바뀔 때 스며드는 속도. 낮을수록 부드럽고 높을수록 즉각적이다.")]
         [SerializeField, Min(0.5f)] private float colorSpeed = 8f;
 
+        [Header("Icon / Text")]
+        [Tooltip("칸에 담긴 스택의 아이콘/이름을 보여줄지.")]
+        [SerializeField] private bool showItemInfo = true;
+        [SerializeField, Min(1f)] private float labelFontSize = 14f;
+        [SerializeField] private Color labelColor = Color.white;
+
         private Image[] _frames;
         private Image[] _fills;
+        private Image[] _icons;
+        private TextMeshProUGUI[] _labels;
         private Image _beam;
 
         /// <summary>칸별 번쩍임 잔여 시간.</summary>
@@ -204,6 +213,8 @@ namespace RYU.UI
             int count = memory.Capacity;
             _frames = new Image[count];
             _fills = new Image[count];
+            _icons = new Image[count];
+            _labels = new TextMeshProUGUI[count];
             _flashTimers = new float[count];
             _appearTimers = new float[count];
             _vanishTimers = new float[count];
@@ -223,6 +234,8 @@ namespace RYU.UI
             {
                 _frames[i] = CreateFrame(i);
                 _fills[i] = CreateFill(_frames[i].rectTransform);
+                _icons[i] = CreateIcon(_frames[i].rectTransform);
+                _labels[i] = CreateLabel(_frames[i].rectTransform);
             }
 
             _beam = CreateBeam();
@@ -244,6 +257,8 @@ namespace RYU.UI
 
             _frames = null;
             _fills = null;
+            _icons = null;
+            _labels = null;
             _beam = null;
         }
 
@@ -276,6 +291,46 @@ namespace RYU.UI
             rect.offsetMax = new Vector2(-framePadding, -framePadding);
 
             return fill.GetComponent<Image>();
+        }
+
+        private Image CreateIcon(RectTransform parent)
+        {
+            var icon = new GameObject("Icon", typeof(RectTransform), typeof(Image));
+            icon.transform.SetParent(parent, false);
+            MarkEditorOnly(icon);
+
+            var rect = icon.GetComponent<RectTransform>();
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = new Vector2(framePadding, framePadding);
+            rect.offsetMax = new Vector2(-framePadding, -framePadding);
+
+            var image = icon.GetComponent<Image>();
+            image.raycastTarget = false;
+            image.preserveAspect = true;
+            image.enabled = false;
+            return image;
+        }
+
+        private TextMeshProUGUI CreateLabel(RectTransform parent)
+        {
+            var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
+            label.transform.SetParent(parent, false);
+            MarkEditorOnly(label);
+
+            var rect = label.GetComponent<RectTransform>();
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+
+            var text = label.GetComponent<TextMeshProUGUI>();
+            text.alignment = TextAlignmentOptions.Bottom;
+            text.fontSize = labelFontSize;
+            text.color = labelColor;
+            text.raycastTarget = false;
+            text.text = string.Empty;
+            return text;
         }
 
         private Image CreateBeam()
@@ -341,6 +396,8 @@ namespace RYU.UI
                 _fills[i].color = _fillColors[i];
                 _frames[i].color = _frameColors[i];
 
+                RefreshItemInfo(i);
+
                 // 크기는 세 연출이 겹칠 수 있어 배율을 곱해서 함께 반영한다.
                 float scale = 1f;
 
@@ -357,6 +414,24 @@ namespace RYU.UI
 
                 _frames[i].rectTransform.localScale = Vector3.one * scale;
             }
+        }
+
+        /// <summary>칸에 담긴 스택의 아이콘/이름을 채운다. 비었거나 가비지면 지운다.</summary>
+        private void RefreshItemInfo(int index)
+        {
+            AbstractStack item = showItemInfo && memory.GetSlot(index) == SlotState.Data
+                ? memory.GetItem(index)
+                : null;
+
+            if (_icons != null && _icons[index] != null)
+            {
+                Sprite sprite = item?.Icon;
+                _icons[index].sprite = sprite;
+                _icons[index].enabled = sprite != null;
+            }
+
+            if (_labels != null && _labels[index] != null)
+                _labels[index].text = item != null ? item.DisplayName : string.Empty;
         }
 
         private void UpdateBeam()

@@ -9,6 +9,6 @@ namespace RYU.Skill
     {
         [SerializeField, Min(0f)] private float damage = 10f;
 
-        public override AbstractStack CreateStack() => new AttackStack(damage);
+        public override AbstractStack CreateStack() => new AttackStack(damage, Icon);
     }
 }

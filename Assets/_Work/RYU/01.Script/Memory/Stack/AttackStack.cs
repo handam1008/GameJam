@@ -8,13 +8,16 @@ namespace RYU.Memory
     public class AttackStack : AbstractStack
     {
         private readonly float _damage;
+        private readonly Sprite _icon;
 
-        public AttackStack(float damage)
+        public AttackStack(float damage, Sprite icon = null)
         {
             _damage = damage;
+            _icon = icon;
         }
 
         public override string DisplayName => $"공격 {_damage}";
+        public override Sprite Icon => _icon;
 
         public override void Execute()
         {
