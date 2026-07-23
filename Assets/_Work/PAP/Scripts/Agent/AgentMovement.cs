@@ -78,9 +78,9 @@ namespace _Work.PAP.Scripts.Agent
             transform.DOMove(map.CellToWorld(target), moveDuration).OnComplete(() =>
             {
                 _isMoving = false;
-                GridOccupancy.Release(prevCell, this);
                 _moveDir = Vector2Int.zero;
             }).SetEase(moveEase);
+            GridOccupancy.Release(prevCell, this);
             _isMoving = true;
             return;
         }

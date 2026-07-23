@@ -14,6 +14,9 @@ namespace _Work.PAP.Scripts.Systems
         /// <summary>OnBeforeMoveEvent에서 확정된 방향으로 실제 이동/행동을 실행하는 단계.</summary>
         public event Action OnMoveEvent;
 
+        /// <summary>같은 틱 안에서 항상 OnMoveEvent보다 나중에 불린다. 이동이 끝난 뒤에 판정해야 하는 것(예: 적 공격 텔레그래프/타격).</summary>
+        public event Action OnAfterMoveEvent;
+
         public float GameSpeed = 2f;
 
         public float targetSpeed;
@@ -30,6 +33,7 @@ namespace _Work.PAP.Scripts.Systems
             {
                 OnBeforeMoveEvent?.Invoke();
                 OnMoveEvent?.Invoke();
+                OnAfterMoveEvent?.Invoke();
                 targetSpeed -= 1f;
             }
         }

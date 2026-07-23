@@ -23,7 +23,11 @@ namespace RYU.Memory
 
         public override string DisplayName => $"이동 {DirectionLabel(_direction)}";
 
-        public override Sprite Icon => _icon;
+        public override Sprite Icon
+        {
+            get => _icon;
+            set => value = _icon;
+        }
 
         public override void Execute()
         {

@@ -10,14 +10,29 @@ namespace RYU.Memory
         private readonly float _damage;
         private readonly Sprite _icon;
 
-        public AttackStack(float damage, Sprite icon = null)
+        /// <summary>어느 스킬에서 나왔는지. 같은 출처면 병합 대상으로 본다.</summary>
+        private readonly object _source;
+
+        public AttackStack(float damage, Sprite icon = null, object source = null)
         {
             _damage = damage;
             _icon = icon;
+            _source = source;
         }
 
         public override string DisplayName => $"공격 {_damage}";
-        public override Sprite Icon => _icon;
+        public override Sprite Icon
+        {
+            get => _icon;
+            set => value = _icon;
+        }
+
+        public override bool CanMergeWith(AbstractStack other)
+        {
+            return other is AttackStack otherAttack
+                   && _source != null
+                   && _source.Equals(otherAttack._source);
+        }
 
         public override void Execute()
         {

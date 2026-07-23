@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RYU.Memory;
 using TMPro;
 using UnityEngine;
@@ -81,6 +82,12 @@ namespace RYU.UI
 
         /// <summary>지난 프레임의 칸 상태. 바뀐 순간을 잡아 연출을 건다.</summary>
         private SlotState[] _lastStates;
+
+        /// <summary>
+        /// 같은 능력이 여러 칸에 걸쳐 있을 때(병합) 아이콘/텍스트를 중복으로 보여주지 않기 위해
+        /// 이번 갱신에서 이미 그린 스택을 기록해둔다. 매 프레임 Refresh 시작에 비운다.
+        /// </summary>
+        private readonly HashSet<AbstractStack> _shownStacks = new HashSet<AbstractStack>();
 
         private void OnEnable()
         {
@@ -368,6 +375,8 @@ namespace RYU.UI
             // 에디터 미리보기에서는 deltaTime이 0일 수 있어 색이 멈춰버린다.
             float smoothDelta = Application.isPlaying ? Time.deltaTime : 1f / 60f;
 
+            _shownStacks.Clear();
+
             for (int i = 0; i < _fills.Length; i++)
             {
                 // 0에서 1로 흐르는 진행도. 남은 시간이 아니라 지나온 정도를 쓴다.
@@ -416,22 +425,36 @@ namespace RYU.UI
             }
         }
 
-        /// <summary>칸에 담긴 스택의 아이콘/이름을 채운다. 비었거나 가비지면 지운다.</summary>
+        /// <summary>
+        /// 칸에 담긴 스택의 아이콘/이름을 채운다. 비어 있으면 지운다.
+        /// 가비지(예: 피격으로 쌓인 HitStack)도 다른 스택과 똑같이 실제 AbstractStack 객체라 이름/아이콘을 보여준다.
+        /// 병합된 능력은 실제로는 여러 칸을 차지하지만, 아이콘/텍스트는 처음 나온 칸 한 곳에만 그려서
+        /// 스프라이트가 중복되거나 깨져 보이지 않게 한다. 나머지 칸은 배경색(점유 표시)만 남는다.
+        /// </summary>
         private void RefreshItemInfo(int index)
         {
-            AbstractStack item = showItemInfo && memory.GetSlot(index) == SlotState.Data
+            AbstractStack item = showItemInfo && memory.GetSlot(index) != SlotState.Free
                 ? memory.GetItem(index)
                 : null;
 
+            bool showHere = item != null && _shownStacks.Add(item);
+
             if (_icons != null && _icons[index] != null)
             {
-                Sprite sprite = item?.Icon;
+                Sprite sprite = showHere ? item.Icon : null;
                 _icons[index].sprite = sprite;
                 _icons[index].enabled = sprite != null;
             }
 
             if (_labels != null && _labels[index] != null)
-                _labels[index].text = item != null ? item.DisplayName : string.Empty;
+            {
+                // 여러 개가 겹쳐 쌓인 능력은 아이콘 하나에 개수만 붙여서 보여준다.
+                _labels[index].text = !showHere
+                    ? string.Empty
+                    : item.StackCount > 1
+                        ? $"{item.DisplayName} x{item.StackCount}"
+                        : item.DisplayName;
+            }
         }
 
         private void UpdateBeam()

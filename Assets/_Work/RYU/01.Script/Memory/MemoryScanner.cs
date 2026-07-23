@@ -25,11 +25,6 @@ namespace RYU.Memory
         /// <summary>지금 머무르고 있는 칸. 훑을 게 없으면 -1.</summary>
         private int _current = -1;
 
-        /// <summary>이번 회차에 실행할 칸 수.</summary>
-        private int _cycleLength = 1;
-
-        private int _executed;
-
         /// <summary>훑을 게 있어서 스캔선이 떠 있는 상태.</summary>
         public bool IsActive => _current >= 0;
 
@@ -86,8 +81,6 @@ namespace RYU.Memory
             if (top < 0)
                 return;
 
-            _cycleLength = 1;
-            _executed = 0;
             _current = top;
 
             OnCycleReset?.Invoke();
@@ -116,42 +109,32 @@ namespace RYU.Memory
             if (state != SlotState.Data)
                 return;
 
-            memory.GetItem(index)?.Execute();
-            OnSlotExecuted?.Invoke(index);
+            AbstractStack item = memory.GetItem(index);
 
-            // 쓴 것은 사라진다.
+            // 겹쳐 쌓인 능력은 실제로 칸을 여러 개 차지한다. 그 능력을 담은 칸을 하나 지나칠 때마다
+            // 이 칸은 (실행 여부와 상관없이) 항상 비워지지만, 쌓인 개수만큼 다 지나가야(마지막 통과에서만)
+            // 실제로 Execute가 불린다.
+            bool executed = item == null || item.Pass();
+
+            if (executed)
+                OnSlotExecuted?.Invoke(index);
+
+            // 지나친 칸은 사라진다.
             memory.ClearSlot(index);
-            _executed++;
         }
 
-        /// <summary>다음에 머무를 칸을 고른다. 없으면 -1.</summary>
+        /// <summary>
+        /// 다음에 머무를 칸을 고른다. 아래로 내려가며 다음 찬 칸을 찾고,
+        /// 바닥까지 다 훑었으면(더 이상 아래에 찬 칸이 없으면) 처음부터 다시 맨 위에서 시작한다.
+        /// 도중에 새로 쌓여도 이 흐름을 끊지 않는다.
+        /// </summary>
         private int ChooseNext()
         {
-            // 이번 회차 몫을 다 썼으면 한 칸 더 깊은 회차로 넘어간다.
-            if (_executed >= _cycleLength)
-            {
-                _cycleLength++;
-                if (_cycleLength > memory.Capacity)
-                    _cycleLength = 1;
-
-                return StartNewCycle();
-            }
-
-            // 아래로 내려가며 다음 찬 칸을 찾는다. 빈칸은 세지 않으니 건너뛰어도 한 틱이다.
             for (int i = _current - 1; i >= 0; i--)
             {
                 if (memory.GetSlot(i) != SlotState.Free)
                     return i;
             }
-
-            // 바닥까지 훑었으면 처음부터 다시.
-            _cycleLength = 1;
-            return StartNewCycle();
-        }
-
-        private int StartNewCycle()
-        {
-            _executed = 0;
 
             int top = FindTopOccupied();
             if (top >= 0)

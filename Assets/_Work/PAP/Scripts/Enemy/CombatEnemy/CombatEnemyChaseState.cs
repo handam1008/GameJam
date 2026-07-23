@@ -3,6 +3,7 @@ using _Work.PAP.Scripts.Enemy.Enemies;
 using _Work.PAP.Scripts.Enemy.FSM;
 using _Work.PAP.Scripts.Systems;
 using Enemies.FSM;
+using RYU.Combat;
 using UnityEngine;
 
 namespace _Work.PAP.Scripts.Enemy.CombatEnemy
@@ -28,12 +29,15 @@ namespace _Work.PAP.Scripts.Enemy.CombatEnemy
             currentAttack = PickRandomAttack();
             _hasPendingAttack = false;
             _pendingCells.Clear();
-            GameManager.Instance.OnMoveEvent += OnBeat;
+            _lastAttackTime = 0f; // 새로 마주친 만남은 이전 조우의 쿨다운에 막히지 않는다
+
+            // 이동(OnMoveEvent)이 끝난 뒤에 공격을 판정해야 하므로 OnAfterMoveEvent에 붙는다.
+            GameManager.Instance.OnAfterMoveEvent += OnBeat;
         }
 
         public override void Exit()
         {
-            GameManager.Instance.OnMoveEvent -= OnBeat;
+            GameManager.Instance.OnAfterMoveEvent -= OnBeat;
         }
 
         public override void UpdateState()
@@ -79,7 +83,7 @@ namespace _Work.PAP.Scripts.Enemy.CombatEnemy
         }
 
         /// <summary>
-        /// GameManager의 박자(OnMoveEvent)마다 한 단계씩 진행한다.
+        /// GameManager의 박자(OnAfterMoveEvent, 이동이 끝난 다음 단계)마다 한 단계씩 진행한다.
         /// 한 틱: 공격 범위를 예고(텔레그래프)만 하고, 다음 틱: 그 범위를 그대로 타격한다.
         /// </summary>
         private void OnBeat()
@@ -91,7 +95,6 @@ namespace _Work.PAP.Scripts.Enemy.CombatEnemy
             }
 
             if (currentAttack == null || _enemy.target == null) return;
-            if (_enemy.AgentMovement._isMoving) return;
             if (Time.time < _lastAttackTime) return;
 
             int dist = GridNav.Manhattan(_enemy.AgentMovement._currentCell, _enemy.target._currentCell);
@@ -131,7 +134,6 @@ namespace _Work.PAP.Scripts.Enemy.CombatEnemy
             _hasPendingAttack = true;
         }
 
-        /// <summary>예고했던 셀들을 그대로 타격한다. 다음 공격까지의 쿨다운은 여기서부터 계산된다.</summary>
         private void Strike()
         {
             _hasPendingAttack = false;
@@ -139,11 +141,24 @@ namespace _Work.PAP.Scripts.Enemy.CombatEnemy
 
             for (int i = 0; i < _pendingCells.Count; i++)
             {
-                Vector3 worldPos = _enemy.AgentMovement.map.CellToWorld(_pendingCells[i]);
+                Vector3Int cell = _pendingCells[i];
+                Vector3 worldPos = _enemy.AgentMovement.map.CellToWorld(cell);
                 GridMarker.Show(worldPos, new Vector2(0.85f, 0.85f), Color.red, StrikeFlashDuration, 100);
+
+                ApplyHit(cell);
             }
 
             currentAttack = PickRandomAttack();
+        }
+
+        /// <summary>타격 판정이 난 칸에 실제로 뭔가 서 있으면 IDamageable로 피해를 준다.</summary>
+        private void ApplyHit(Vector3Int cell)
+        {
+            Component owner = GridOccupancy.GetOwner(cell);
+            if (owner == null) return;
+
+            IDamageable damageable = owner.GetComponentInParent<IDamageable>();
+            damageable?.TakeDamage(currentAttack.damage);
         }
 
         private AttackPatternSO PickRandomAttack()
