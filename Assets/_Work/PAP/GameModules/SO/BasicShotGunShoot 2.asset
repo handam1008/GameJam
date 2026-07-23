@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAttackPatternSO
   bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
   degree: 180
-  bulletCount: 20
+  bulletCount: 10
   cooldown: 3

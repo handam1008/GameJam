@@ -57,7 +57,7 @@ namespace _Work.PAP.Scripts.Enemy
                 Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 
                 IPoolable bullet = PoolManager.Instance.Pop(currentPattern.bullet.ItemName);
-                bullet.GameObject.transform.position = transform.position + (Vector3)(baseDir * 2);
+                bullet.GameObject.transform.position = transform.position + (Vector3)(dir * 2f);
                 bullet.GameObject.GetComponent<Bullet>().Init(dir);
             }
             currentPattern = patterns[Random.Range(0, patterns.Count)];
