@@ -9,7 +9,7 @@ namespace _Work.PAP.Scripts
     {
         private Controls _controls;
 
-        public event Action<Vector2> OnMovementInputEvent;
+        public Vector2 MovementInput { get; private set; }
         private void OnEnable()
         {
             if (_controls == null)
@@ -30,7 +30,8 @@ namespace _Work.PAP.Scripts
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            if (context.performed) OnMovementInputEvent?.Invoke(context.ReadValue<Vector2>());
+            MovementInput = context.ReadValue<Vector2>();
         }
+
     }
 }
