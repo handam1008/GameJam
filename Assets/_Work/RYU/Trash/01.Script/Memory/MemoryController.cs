@@ -15,7 +15,6 @@ namespace RYU.Memory
         [SerializeField, Min(1)] private int attackCost = 1;
 
         [Header("Garbage Collect")]
-        [SerializeField] private Key gcKey = Key.R;
         [SerializeField, Min(0f)] private float gcCooldown = 0.5f;
 
         [Header("Overflow")]
@@ -23,6 +22,7 @@ namespace RYU.Memory
         [Tooltip("메모리가 꽉 찬 채로 이 시간이 지나면 죽는다.")]
         [SerializeField, Min(0.1f)] private float overflowDeathTime = 3f;
 
+        [SerializeField] private Sprite _icon;
 
         private IMemorySpace _memory;
         private float _stunTimer;
@@ -65,10 +65,24 @@ namespace RYU.Memory
 
         /// <summary>
         /// 바닥에서 주운 것을 스택 맨 아래에 넣는다.
+        /// 이미 같은 능력이 대기 중이면, 그 능력과 같은 인스턴스를 새 칸에도 밀어넣어 칸을 하나 더 쓴다.
+        /// (겉보기엔 한 아이콘으로 합쳐 보이지만, 실제로는 칸을 그만큼 차지해서 지나가는 타이밍만 늦춘다.)
         /// 빈칸이 없으면 줍지 않고 false를 돌려준다.
         /// </summary>
         public bool TryPickUp(AbstractStack item)
         {
+            int mergeIndex = Memory.FindMergeable(item);
+            if (mergeIndex >= 0)
+            {
+                AbstractStack existing = Memory.GetItem(mergeIndex);
+                if (!Memory.TryPushBottom(existing))
+                    return false;
+
+                existing.Merge(item);
+                OnMemoryChanged?.Invoke();
+                return true;
+            }
+
             if (!Memory.TryPushBottom(item))
                 return false;
 
@@ -84,15 +98,12 @@ namespace RYU.Memory
         }
 
         /// <summary>
-        /// 적에게 맞으면 아래에서부터 가비지가 아닌 첫 칸이 가비지가 된다.
-        /// 무엇이 들어 있었든 사라진다.
+        /// 적에게 맞으면 다른 스택과 똑같은 방식(TryPickUp)으로 가비지 한 칸(HitStack)을 맨 아래에 쌓는다.
+        /// 기존 칸은 전혀 건드리지 않는다. 꽉 차서 쌓을 자리가 없으면 아무 일도 일어나지 않는다.
         /// </summary>
         public void TakeHit()
         {
-            if (Memory.Corrupt() < 0)
-                return;
-
-            OnMemoryChanged?.Invoke();
+            TryPickUp(new HitStack(_icon));
         }
 
 

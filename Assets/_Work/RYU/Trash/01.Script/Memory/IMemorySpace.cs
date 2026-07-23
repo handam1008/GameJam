@@ -26,14 +26,11 @@ namespace RYU.Memory
         /// <summary>맨 아래에 밀어넣고 나머지를 위로 민다. 빈칸이 없으면 false.</summary>
         bool TryPushBottom(AbstractStack item);
 
+        /// <summary>합칠 수 있는 같은 능력이 이미 들어있으면 그 인덱스를, 없으면 -1을 돌려준다.</summary>
+        int FindMergeable(AbstractStack item);
+
         /// <summary>칸을 비운다. 스캐너가 지나가며 쓴 것과 가비지를 치울 때 쓴다.</summary>
         void Clear(int index);
-
-        /// <summary>
-        /// 아래에서부터 훑어 가비지가 아닌 첫 칸을 가비지로 만든다.
-        /// 망가뜨린 칸의 인덱스를 돌려주고, 이미 전부 가비지면 -1.
-        /// </summary>
-        int Corrupt();
 
         /// <summary>모든 칸을 비우고 비운 칸 수를 반환한다.</summary>
         int CollectGarbage();

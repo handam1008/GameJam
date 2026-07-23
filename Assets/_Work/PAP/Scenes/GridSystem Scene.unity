@@ -1252,7 +1252,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -8, y: -5, z: 0}
-  m_Size: {x: 16, y: 9, z: 1}
+  m_Size: {x: 20, y: 9, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -1409,6 +1409,7 @@ GameObject:
   - component: {fileID: 967922261}
   - component: {fileID: 967922263}
   - component: {fileID: 967922262}
+  - component: {fileID: 967922264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1466,6 +1467,18 @@ MonoBehaviour:
   downIcon: {fileID: -1945138300, guid: 4ebd81bcd134d62449239e500bde8248, type: 3}
   leftIcon: {fileID: 5515439225188256779, guid: 4ebd81bcd134d62449239e500bde8248, type: 3}
   rightIcon: {fileID: -1945138300, guid: 4ebd81bcd134d62449239e500bde8248, type: 3}
+--- !u!114 &967922264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967922259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176470d2c02f0ea4588f26cf3d26113c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RYU.Memory.PlayerHitReceiver
 --- !u!1 &1021539527
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,10 +3681,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RYU.Memory.MemoryController
   capacity: 10
   attackCost: 1
-  gcKey: 32
   gcCooldown: 0.5
   overflowStunDuration: 1
   overflowDeathTime: 3
+  _icon: {fileID: -1945138300, guid: 4ebd81bcd134d62449239e500bde8248, type: 3}
 --- !u!1 &1871743021
 GameObject:
   m_ObjectHideFlags: 0
