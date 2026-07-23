@@ -61,30 +61,32 @@ namespace RYU.Memory
                 _items[i] = _items[i - 1];
             }
 
-            _slots[0] = SlotState.Data;
+            _slots[0] = item.SlotState;
             _items[0] = item;
             return true;
+        }
+
+        public int FindMergeable(AbstractStack item)
+        {
+            if (item == null)
+                return -1;
+
+            for (int i = 0; i < _items.Length; i++)
+            {
+                if (_slots[i] != SlotState.Data || _items[i] == null)
+                    continue;
+
+                if (_items[i].CanMergeWith(item))
+                    return i;
+            }
+
+            return -1;
         }
 
         public void Clear(int index)
         {
             _slots[index] = SlotState.Free;
             _items[index] = null;
-        }
-
-        public int Corrupt()
-        {
-            for (int i = 0; i < _slots.Length; i++)
-            {
-                if (_slots[i] == SlotState.Garbage)
-                    continue;
-
-                _slots[i] = SlotState.Garbage;
-                _items[i] = null;
-                return i;
-            }
-
-            return -1;
         }
 
         public int CollectGarbage()
