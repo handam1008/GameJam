@@ -17,13 +17,13 @@ namespace RYU.Dev
             _hp = maxHp;
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(Vector3 amount)
         {
-            _hp -= amount;
-            Debug.Log($"[Dummy] {name} 피해 {amount} → 남은 체력 {_hp}", this);
-
-            if (_hp <= 0f)
-                gameObject.SetActive(false);
+            // _hp -= amount;
+            // Debug.Log($"[Dummy] {name} 피해 {amount} → 남은 체력 {_hp}", this);
+            //
+            // if (_hp <= 0f)
+            //     gameObject.SetActive(false);
         }
     }
 }

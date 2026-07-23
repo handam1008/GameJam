@@ -3,13 +3,14 @@ using UnityEngine.InputSystem;
 
 public class WallRotate : MonoBehaviour
 {
-    // 초당 최대 회전 각도. 낮출수록 벽이 무겁게 따라온다.
     [SerializeField] private float rotateSpeed = 360f;
 
-    // 따라붙는 부드러움. 클수록 미끄러지듯 늦게 붙고, 0.02면 거의 즉각이다.
     [SerializeField] private float smoothTime = 0.08f;
 
     [SerializeField] private Transform rotateTarget;
+
+    /// <summary>부호 있는 각속도(도/초). 양수면 반시계, 음수면 시계 방향으로 돈다.</summary>
+    public float AngularSpeed { get; private set; }
 
     private Camera cam;
     private float angleVelocity;
@@ -21,15 +22,27 @@ public class WallRotate : MonoBehaviour
 
     private void Update()
     {
-        // 마우스 화면 좌표를 월드 좌표로 바꾼다
         Vector3 mouse = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-        // 축에서 마우스를 향하는 방향의 각도
         Vector2 dir = mouse - transform.position;
         float target = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        // 멀면 빠르게, 가까우면 천천히 붙는다. rotateSpeed보다 빨리 돌지는 못한다.
         float angle = Mathf.SmoothDampAngle(rotateTarget.eulerAngles.z, target, ref angleVelocity, smoothTime, rotateSpeed);
+        AngularSpeed = angleVelocity;
         rotateTarget.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    /// <summary>
+    /// 이 판이 회전하면서 world 좌표 point 지점이 순간적으로 갖게 되는 접선 속도(월드 단위/초).
+    /// 총알이 부딪힌 지점이 회전축에서 멀수록, 회전이 빠를수록 커진다.
+    /// </summary>
+    public Vector2 GetPointVelocity(Vector2 worldPoint)
+    {
+        Vector2 pivot = rotateTarget != null ? (Vector2)rotateTarget.position : (Vector2)transform.position;
+        Vector2 r = worldPoint - pivot;
+        float angularSpeedRad = AngularSpeed * Mathf.Deg2Rad;
+
+        // v = ω × r. 2D에서는 r을 90도 회전시킨 방향으로 |ω||r|만큼의 접선 속도가 생긴다.
+        return angularSpeedRad * new Vector2(-r.y, r.x);
     }
 }
