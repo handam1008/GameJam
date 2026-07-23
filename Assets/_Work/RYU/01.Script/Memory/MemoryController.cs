@@ -22,8 +22,11 @@ namespace RYU.Memory
         [SerializeField, Min(0f)] private float overflowStunDuration = 1f;
 
         [Header("Debug")]
+        [Tooltip("아래 디버그 키 두 개를 모두 켜고 끈다.")]
         [SerializeField] private bool useDebugAttackKey;
         [SerializeField] private Key debugAttackKey = Key.Z;
+        [SerializeField] private Key debugSkillKey = Key.X;
+        [SerializeField, Min(1)] private int debugSkillCost = 2;
 
         private IMemorySpace _memory;
         private float _stunTimer;
@@ -38,17 +41,32 @@ namespace RYU.Memory
         /// <summary>메모리가 모자라 할당에 실패했을 때 발행.</summary>
         public event Action OnOverflow;
 
-        public int Capacity => _memory.Capacity;
-        public int GarbageCount => _memory.GarbageCount;
-        public int FreeCount => _memory.FreeCount;
+        public int Capacity => Memory.Capacity;
+        public int GarbageCount => Memory.GarbageCount;
+        public int FreeCount => Memory.FreeCount;
         public bool IsStunned => _stunTimer > 0f;
 
-        public SlotState GetSlot(int index) => _memory.GetSlot(index);
+        public SlotState GetSlot(int index) => Memory.GetSlot(index);
 
-        private void Awake()
+        public AbstractStack GetItem(int index) => Memory.GetItem(index);
+
+        /// <summary>
+        /// 바닥에서 주운 것을 스택 맨 왼쪽에 넣는다.
+        /// 빈칸이 없으면 줍지 않고 false를 돌려준다.
+        /// </summary>
+        public bool TryPickUp(AbstractStack item)
         {
-            _memory = new MemorySpace(capacity);
+            if (!Memory.TryPushLeft(item))
+                return false;
+
+            OnMemoryChanged?.Invoke();
+            return true;
         }
+
+        /// <summary>
+        /// 다른 컴포넌트가 Awake 순서와 무관하게 접근할 수 있도록 첫 호출 시점에 만든다.
+        /// </summary>
+        private IMemorySpace Memory => _memory ??= new MemorySpace(capacity);
 
         private void Update()
         {
@@ -75,7 +93,7 @@ namespace RYU.Memory
             if (IsStunned)
                 return false;
 
-            if (!_memory.TryAllocate(cost))
+            if (!Memory.TryAllocate(cost))
             {
                 _stunTimer = overflowStunDuration;
                 OnOverflow?.Invoke();
@@ -91,7 +109,7 @@ namespace RYU.Memory
             if (IsStunned || _gcTimer > 0f)
                 return;
 
-            int cleared = _memory.CollectGarbage();
+            int cleared = Memory.CollectGarbage();
             if (cleared <= 0)
                 return;
 
@@ -109,8 +127,14 @@ namespace RYU.Memory
             if (keyboard[gcKey].wasPressedThisFrame)
                 CollectGarbage();
 
-            if (useDebugAttackKey && keyboard[debugAttackKey].wasPressedThisFrame)
+            if (!useDebugAttackKey)
+                return;
+
+            if (keyboard[debugAttackKey].wasPressedThisFrame)
                 TryConsume();
+
+            if (keyboard[debugSkillKey].wasPressedThisFrame)
+                TryConsume(debugSkillCost);
         }
     }
 }
