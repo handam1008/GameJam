@@ -1,7 +1,9 @@
+using Vector3 = UnityEngine.Vector3;
+
 namespace RYU.Combat
 {
     public interface IDamageable
     {
-        void TakeDamage(float amount);
+        void TakeDamage(Vector3 dir);
     }
 }

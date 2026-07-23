@@ -11,8 +11,8 @@ TagManager:
   - Wall
   - Water
   - UI
-  - 
-  - 
+  - Dead
+  - Agent
   - 
   - 
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Trail
+    uniqueID: 1486746283
+    locked: 0
+  - name: Agent
+    uniqueID: 533765097
     locked: 0
   m_RenderingLayers:
   - Default
