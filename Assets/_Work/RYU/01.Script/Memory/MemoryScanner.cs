@@ -1,4 +1,5 @@
 using System;
+using _Work.PAP.Scripts.Systems;
 using UnityEngine;
 
 namespace RYU.Memory
@@ -18,10 +19,8 @@ namespace RYU.Memory
         [SerializeField] private MemoryController memory;
 
         [Tooltip("1초에 몇 틱이 지나갈지. 게임 전체의 박자를 정한다.")]
-        public float gameSpeed = 2f;
 
         /// <summary>이번 틱이 얼마나 지났는지. 0에서 1 사이.</summary>
-        private float _tick;
 
         /// <summary>지금 머무르고 있는 칸. 훑을 게 없으면 -1.</summary>
         private int _current = -1;
@@ -38,7 +37,7 @@ namespace RYU.Memory
         public int CurrentIndex => _current;
 
         /// <summary>그 칸의 어디쯤인지. 0이면 위쪽 끝, 1이면 아래쪽 끝.</summary>
-        public float Fraction => _tick;
+        public float Fraction => GameManager.Instance.targetSpeed;
 
         /// <summary>칸이 실행됐을 때 그 칸의 인덱스를 발행한다.</summary>
         public event Action<int> OnSlotExecuted;
@@ -57,19 +56,19 @@ namespace RYU.Memory
                 memory = GetComponent<MemoryController>();
         }
 
+        private void Start()
+        {
+            // 이번 틱에 어느 방향으로 갈지(MoveStack.Execute 등)를 AgentMovement.TryStep보다 먼저 확정해야 한다.
+            GameManager.Instance.OnBeforeMoveEvent += Advance;
+        }
+
         private void Update()
         {
             if (memory == null)
                 return;
 
-            _tick += Time.deltaTime * Mathf.Max(0f, gameSpeed);
 
             // 프레임이 길어 틱을 여러 번 넘겼어도 넘긴 만큼 모두 처리한다.
-            while (_tick >= 1f)
-            {
-                _tick -= 1f;
-                Advance();
-            }
 
             AcquireIfIdle();
         }

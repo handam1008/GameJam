@@ -1171,7 +1171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RYU.Memory.MemoryScanner
   memory: {fileID: 811884649}
-  gameSpeed: 2
 --- !u!1 &866273024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,8 +1785,8 @@ MonoBehaviour:
   slotSize: {x: 72, y: 72}
   framePadding: 6
   frameColor: {r: 0.15, g: 0.15, b: 0.18, a: 1}
-  scanFrameColor: {r: 1, g: 0.85, b: 0.2, a: 1}
-  freeColor: {r: 0.25, g: 0.28, b: 0.35, a: 1}
+  scanFrameColor: {r: 0.78616345, g: 0.78616345, b: 0.78616345, a: 1}
+  freeColor: {r: 0, g: 0.27016708, b: 0.9559748, a: 1}
   dataColor: {r: 0.3, g: 0.75, b: 0.95, a: 1}
   garbageColor: {r: 0.85, g: 0.25, b: 0.3, a: 1}
   beamWidth: 6

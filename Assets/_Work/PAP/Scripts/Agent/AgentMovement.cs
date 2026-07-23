@@ -68,7 +68,6 @@ namespace _Work.PAP.Scripts.Agent
 
             if (!GridOccupancy.Reserve(this, target))
             {
-                Debug.Log("B");
                 BlockEvent?.Invoke();
                 return;
             }
@@ -80,8 +79,8 @@ namespace _Work.PAP.Scripts.Agent
             {
                 _isMoving = false;
                 GridOccupancy.Release(prevCell, this);
+                _moveDir = Vector2Int.zero;
             }).SetEase(moveEase);
-            Debug.Log(target);
             _isMoving = true;
             return;
         }
