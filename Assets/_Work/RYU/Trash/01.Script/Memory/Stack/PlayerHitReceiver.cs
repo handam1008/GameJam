@@ -16,7 +16,7 @@ namespace RYU.Memory
             _memory = GetComponentInChildren<MemoryController>();
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(Vector3 amount)
         {
             // 대미지 크기와 상관없이 칸 하나가 가비지가 된다.
             _memory.TakeHit();

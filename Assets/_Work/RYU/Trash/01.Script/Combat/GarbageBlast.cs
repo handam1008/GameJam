@@ -47,8 +47,8 @@ namespace RYU.Combat
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, targetLayers);
             for (int i = 0; i < hits.Length; i++)
             {
-                if (hits[i].TryGetComponent(out IDamageable target))
-                    target.TakeDamage(damage);
+                // if (hits[i].TryGetComponent(out IDamageable target))
+                    // target.TakeDamage(damage);
             }
         }
 

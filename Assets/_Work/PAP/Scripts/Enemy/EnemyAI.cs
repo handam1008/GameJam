@@ -27,7 +27,6 @@ namespace _Work.PAP.Scripts.Enemy
 
         private void Update()
         {
-            transform.LookAt(player.transform);
             SpawnBullet();
         }
 
@@ -35,7 +34,7 @@ namespace _Work.PAP.Scripts.Enemy
         {
             if (Time.time < lastFireTime) return;
             lastFireTime = Time.time + currentPattern.cooldown;
-            Vector2 baseDir = (player.transform.position - transform.position).normalized;
+            Vector2 baseDir = (player.transform.position + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.5f,0.5f),0) - transform.position).normalized;
             float baseAngle = Mathf.Atan2(baseDir.y, baseDir.x) * Mathf.Rad2Deg;
 
             int count = currentPattern.bulletCount;
@@ -49,7 +48,7 @@ namespace _Work.PAP.Scripts.Enemy
                 Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 
                 IPoolable bullet = PoolManager.Instance.Pop(currentPattern.bullet.ItemName);
-                bullet.GameObject.transform.position = transform.position;
+                bullet.GameObject.transform.position = transform.position + (Vector3)(baseDir * 2);
                 bullet.GameObject.GetComponent<Bullet>().Init(dir);
             }
             currentPattern = patterns[Random.Range(0, patterns.Count)];

@@ -7,10 +7,15 @@ namespace _Work.PAP.Scripts.Agent
     [RequireComponent(typeof(Rigidbody2D))]
     public class AgentMovement : MonoBehaviour
     {
-        private Vector2 _moveDir;
+        public Vector2 MoveDirection { get; private set; }
         private Rigidbody2D _rb;
+        private Vector2 _currentDirection;
 
         [SerializeField] private float speed = 5f;
+        [SerializeField] private float slipping = 1f;
+        
+        public bool CanMove { get; set; } = true;
+        
 
         private void Awake()
         {
@@ -19,12 +24,22 @@ namespace _Work.PAP.Scripts.Agent
 
         private void FixedUpdate()
         {
-            _rb.linearVelocity = _moveDir * speed;
+            if (!CanMove) return;
+            _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed, slipping * 0.1f);
+            _rb.linearVelocity = _currentDirection;
+        }
+        public void ApplyVelocity(Vector3 velocity, ForceMode2D forceMode = ForceMode2D.Impulse)
+        {
+            _rb.AddForce(velocity, forceMode);
+        }
+        public void StopImmediately()
+        {
+            _rb.linearVelocity = Vector3.zero;
         }
         
         public void SetMovementDir(Vector2 dir)
         {
-            _moveDir = dir;
+            MoveDirection = dir;
         }
     }
 }

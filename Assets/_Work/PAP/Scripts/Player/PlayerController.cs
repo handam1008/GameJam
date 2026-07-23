@@ -9,10 +9,18 @@ namespace _Work.PAP.Scripts.Player
         [SerializeField] private PlayerInputSO playerInput;
         
         public AgentMovement AgentMovement { get; private set; }
+        public DashMovement DashMovement { get; private set; }
 
         private void Awake()
         {
             AgentMovement = GetComponentInChildren<AgentMovement>();
+            DashMovement = GetComponentInChildren<DashMovement>();
+            playerInput.OnDashKeyPressed += HandleOnDash;
+        }
+
+        private void HandleOnDash()
+        {
+            DashMovement.UseDash();
         }
 
         private void Update()

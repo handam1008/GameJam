@@ -10,6 +10,7 @@ namespace _Work.PAP.Scripts
         private Controls _controls;
 
         public Vector2 MovementInput { get; private set; }
+        public event Action OnDashKeyPressed;
         private void OnEnable()
         {
             if (_controls == null)
@@ -33,5 +34,9 @@ namespace _Work.PAP.Scripts
             MovementInput = context.ReadValue<Vector2>();
         }
 
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (context.performed) OnDashKeyPressed?.Invoke();
+        }
     }
 }

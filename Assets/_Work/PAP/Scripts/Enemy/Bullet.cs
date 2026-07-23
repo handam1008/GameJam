@@ -1,4 +1,6 @@
+using RYU.Combat;
 using Systems;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
@@ -13,8 +15,13 @@ public class Bullet : MonoBehaviour, IPoolable
     Vector2 velocity;
     CircleCollider2D myCol;
     private int currentBounces = 0;
+    private CinemachineImpulseSource _impulseSource;
 
-    void Awake() => myCol = GetComponent<CircleCollider2D>();
+    void Awake()
+    {
+        myCol = GetComponent<CircleCollider2D>();
+        _impulseSource = GetComponentInChildren<CinemachineImpulseSource>();
+    }
 
     public void Init(Vector2 direction)
     {
@@ -56,6 +63,19 @@ public class Bullet : MonoBehaviour, IPoolable
     {
         if (Vector2.Dot(velocity, normal) >= 0f)
             return;
+        
+        WallHitEffect effect = wall.GetComponentInParent<WallHitEffect>();
+        if (effect != null)
+        {
+            effect.ShowHit(transform.position);
+            _impulseSource.GenerateImpulseWithVelocity(velocity * speed/2500f);
+        }
+        if (wall.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakeDamage(velocity);
+            PoolManager.Instance.Push(this);
+            return;
+        }
 
         if (++currentBounces > maxBounces)
         {
