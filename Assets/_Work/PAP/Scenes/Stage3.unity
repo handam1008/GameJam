@@ -1722,6 +1722,7 @@ GameObject:
   - component: {fileID: 1162522611}
   - component: {fileID: 1162522610}
   - component: {fileID: 1162522609}
+  - component: {fileID: 1162522614}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1828,6 +1829,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1162522614
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162522608}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1204516148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,6 +3075,7 @@ MonoBehaviour:
   - {fileID: -9008520635612759998, guid: 664cb81846bef014e8d3ca5919e43312, type: 3}
   - {fileID: -321519460, guid: 664cb81846bef014e8d3ca5919e43312, type: 3}
   CameraTrm: {fileID: 18414429}
+  group: {fileID: 0}
 --- !u!50 &1939348082
 Rigidbody2D:
   serializedVersion: 5
