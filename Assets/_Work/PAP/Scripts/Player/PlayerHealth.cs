@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _Work.PAP.Scripts.Agent;
+using _Work.RYU._01.Script.Player;
 using RYU.Combat;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace _Work.PAP.Scripts.Player
         AgentMovement AgentMovement;
         ShieldMode ShieldMode;
         [SerializeField] private int Health = 3;
-        
+
         public event Action OnDeath;
 
         public bool IsDead => Health <= 0;
@@ -24,7 +25,12 @@ namespace _Work.PAP.Scripts.Player
 
         public void TakeDamage(Vector3 dir)
         {
-            if (ShieldMode != null && ShieldMode.IsShielded) return;
+            // 실드 중이면 반짝하고 피해를 막는다
+            if (ShieldMode != null && ShieldMode.IsShielded)
+            {
+                ShieldMode.Blink();
+                return;
+            }
             if (IsDead) return;
 
             Health--;

@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks.Triggers;
+﻿using _Work.RYU._01.Script.Player;
 using UnityEngine;
 
 namespace _Work.RYU._01.Script.Item
@@ -7,12 +7,11 @@ namespace _Work.RYU._01.Script.Item
     public class MushRoom : AbstractItem
     {
         public float duration = 5f;
-        public float scale = 2.5f;
-        
+
         public override void Use(GameObject target)
         {
-            target.TryGetComponent(out GiantMode giantMode);
-            giantMode?.Activate(duration, scale);
+            target.TryGetComponent(out GiantMode giant);
+            giant?.Activate(duration);
         }
     }
 }

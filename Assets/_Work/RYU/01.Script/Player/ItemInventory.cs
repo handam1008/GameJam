@@ -29,10 +29,16 @@ public class ItemInventory : MonoBehaviour
             return;
 
         if (kb.qKey.wasPressedThisFrame)
+        {
+            Debug.Log($"[Inv] Q 눌림. Q슬롯={(qItem != null ? qItem.name : "비어있음")}", this);
             Use(ref qItem);
+        }
 
         if (kb.eKey.wasPressedThisFrame)
+        {
+            Debug.Log($"[Inv] E 눌림. E슬롯={(eItem != null ? eItem.name : "비어있음")}", this);
             Use(ref eItem);
+        }
     }
 
     // 주울 때 부른다. Q 먼저, 차 있으면 E. 둘 다 차 있으면 false
@@ -48,6 +54,7 @@ public class ItemInventory : MonoBehaviour
         else
             return false;
 
+        Debug.Log($"[Inv] 주움: {item.name} → Q={(qItem != null ? qItem.name : "-")}, E={(eItem != null ? eItem.name : "-")}", this);
         OnChanged?.Invoke();
         return true;
     }

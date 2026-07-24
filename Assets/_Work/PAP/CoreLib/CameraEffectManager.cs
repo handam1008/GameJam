@@ -13,5 +13,13 @@ namespace CoreLib
         {
             await DOTween.To(() => cinemachineCamera.Lens.OrthographicSize,x => cinemachineCamera.Lens.OrthographicSize = x,value,duration).SetEase(ease).AsyncWaitForCompletion();
         }
+
+        
+        public void Shake(float strength = 0.3f, float duration = 0.2f)
+        {
+            Transform cam = cinemachineCamera.transform;
+            cam.DOComplete();
+            cam.DOShakePosition(duration, strength, 12, 90f, false, true);
+        }
     }
 }

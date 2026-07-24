@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks.Triggers;
+﻿using _Work.RYU._01.Script.Player;
 using UnityEngine;
 
 namespace _Work.RYU._01.Script.Item
