@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SupplyPlane
   floor: {fileID: 318992233}
+  followMapRotation: 1
   interval: 3
   minInterval: 1
   speed: 25
