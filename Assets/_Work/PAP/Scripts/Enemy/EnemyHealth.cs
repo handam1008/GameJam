@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using _Work.PAP.Scripts.Systems;
 using RYU.Combat;
 using Unity.InferenceEngine;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace _Work.PAP.Scripts.Enemy
         [SerializeField] private int settingHealth;
         private int currentHealth;
         public UnityEvent OnDamaged;
+        public UnityEvent OnDeadEvent;
         private Rigidbody2D rigid;
 
         private void Awake()
@@ -31,9 +33,12 @@ namespace _Work.PAP.Scripts.Enemy
             else
             {
                 //쥬금
+                OnDeadEvent?.Invoke();
+                StageBreakingSystem.Instance.AddReach(1);
                 GetComponent<EnemyAI>().enabled = false;
                 rigid.linearVelocity = Vector3.zero;
                 transform.gameObject.layer = LayerMask.NameToLayer("Dead");
+                Destroy(gameObject);
             }
         }
 
