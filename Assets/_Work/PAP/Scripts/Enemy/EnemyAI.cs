@@ -19,6 +19,9 @@ namespace _Work.PAP.Scripts.Enemy
         private PlayerController player;
         private EnemyAttackPatternSO currentPattern;
         private Rigidbody2D _rb;
+        private Rigidbody2D parentRb;
+        private PlatformCarrier platformCarrier;
+        private Vector2 moveVelocity;
         private float lastPatrolTime;
         private Vector3 _originalLocalPosition;
         private float _originalLocalAngleZ;
@@ -38,6 +41,8 @@ namespace _Work.PAP.Scripts.Enemy
         private void Start()
         {
             player = FindFirstObjectByType<PlayerController>();
+            parentRb = GameObject.FindGameObjectsWithTag("RotatePlatform")[0].GetComponent<Rigidbody2D>();
+            platformCarrier = new PlatformCarrier(parentRb);
         }
 
         private void Update()
@@ -49,8 +54,13 @@ namespace _Work.PAP.Scripts.Enemy
             {
                 canSee = true;
                 lastPatrolTime = Time.time + Random.Range(0, 1.5f);
-                _rb.linearVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                moveVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
             }
+        }
+
+        private void FixedUpdate()
+        {
+            _rb.linearVelocity = moveVelocity + platformCarrier.GetCarriedVelocity(transform.position);
         }
 
         private void SeePlayer()

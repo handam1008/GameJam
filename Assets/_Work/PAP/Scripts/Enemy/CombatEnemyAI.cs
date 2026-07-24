@@ -1,7 +1,11 @@
 ﻿using System.Collections;
+using _Work.PAP.Scripts.Agent;
 using _Work.PAP.Scripts.Player;
 using RYU.Combat;
+using Systems;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Work.PAP.Scripts.Enemy
 {
@@ -15,18 +19,32 @@ namespace _Work.PAP.Scripts.Enemy
         [SerializeField] private float knockbackPower = 2f;
         [SerializeField] private float attackCooldown = 2f;
         [SerializeField] private ContactFilter2D whatIsTarget;
+        [SerializeField] private AgentAnimator animator;
 
         private float lastAttackTime;
         private PlayerController player;
         private Rigidbody2D _rb;
+        private Rigidbody2D parentRb;
+        private PlatformCarrier platformCarrier;
+        private Vector2 moveVelocity;
         private bool canSee;
+        private bool attacking = false;
+        private bool initAttack = true;
+        RaycastHit2D[] hits = new RaycastHit2D[1];
+
+        public UnityEvent OnEffectEvent;
+        public UnityEvent OnStartEvent;
+        public UnityEvent OnEndEvent;
+
+
+        private readonly int ATTACKING_HASHDATA = Animator.StringToHash("Attacking");
 
         private void Awake()
         {
-
             _rb = GetComponent<Rigidbody2D>();
             StartCoroutine(CanSeeCoroutine());
         }
+
 
         private IEnumerator CanSeeCoroutine()
         {
@@ -37,6 +55,8 @@ namespace _Work.PAP.Scripts.Enemy
         private void Start()
         {
             player = FindFirstObjectByType<PlayerController>();
+            parentRb = GameObject.FindGameObjectsWithTag("RotatePlatform")[0].GetComponent<Rigidbody2D>();
+            platformCarrier = new PlatformCarrier(parentRb);
         }
 
         private void Update()
@@ -45,21 +65,41 @@ namespace _Work.PAP.Scripts.Enemy
             AttackForward();
         }
 
+        private void FixedUpdate()
+        {
+            _rb.linearVelocity = moveVelocity + platformCarrier.GetCarriedVelocity(transform.position);
+        }
+
         private void AttackForward()
         {
             if ((player.transform.position - transform.position).magnitude < attackDistance && lastAttackTime < Time.time && canSee)
             {
+                attacking = true;
                 lastAttackTime = Time.time + attackCooldown;
-                RaycastHit2D[] hits = new RaycastHit2D[1];
-                
-                Physics2D.CircleCast(transform.position + transform.right * attackOrigin,
-                    attackRadius, Vector2.zero, whatIsTarget, hits);
-                foreach (RaycastHit2D hit in hits)
+                animator.SetBool(ATTACKING_HASHDATA, true);
+                animator.OnAnimationEvent += HandleDamageCast;
+                animator.OnAnimationEndEvent += HandleAnimationEnd;
+            }
+        }
+
+        private void HandleAnimationEnd()
+        {
+            animator.SetBool(ATTACKING_HASHDATA, false);
+            attacking = false;
+            animator.OnAnimationEndEvent -= HandleAnimationEnd;
+        }
+
+        private void HandleDamageCast()
+        {
+            hits = new RaycastHit2D[1];
+            animator.OnAnimationEvent -= HandleDamageCast;
+            Physics2D.CircleCast(transform.position + transform.right * attackOrigin,
+                attackRadius, Vector2.zero, whatIsTarget, hits);
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null && hit.collider.TryGetComponent(out IDamageable damageable))
                 {
-                    if (hit.collider != null && hit.collider.TryGetComponent(out IDamageable damageable))
-                    {
-                        damageable.TakeDamage((hit.collider.transform.position - transform.position).normalized * knockbackPower);
-                    }
+                    damageable.TakeDamage((hit.collider.transform.position - transform.position).normalized * knockbackPower);
                 }
             }
         }
@@ -70,14 +110,26 @@ namespace _Work.PAP.Scripts.Enemy
             Vector2 direction = player.transform.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, angle), lerpScale);
-            if (!(direction.magnitude < attackDistance))
+            if (!(direction.magnitude < attackDistance) && !attacking)
             {
+                if (!initAttack)
+                {
+                    initAttack = true;
+                    Debug.Log("A");
+                    OnEndEvent?.Invoke();
+                }
+                OnEndEvent?.Invoke();
                 Vector2 dir = (player.transform.position - transform.position).normalized;
-                _rb.linearVelocity = dir * speed;
+                moveVelocity = dir * speed;
             }
             else
             {
-                _rb.linearVelocity = Vector2.zero;
+                if (initAttack)
+                {
+                    initAttack = false;
+                    OnStartEvent?.Invoke();
+                }
+                moveVelocity = Vector2.zero;
             }
 
         }

@@ -15,13 +15,24 @@ namespace _Work.PAP.Scripts.Agent
 
         [SerializeField] private float speed = 5f;
         [SerializeField] private float slipping = 1f;
+        [SerializeField] private Rigidbody2D parentRb;
         
         public bool CanMove { get; set; } = true;
-        
+
+        float lastPlatformRotation;
+        Vector2 lastPlatformPosition;
+
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start()
+        {
+            if (parentRb == null) return;
+            lastPlatformRotation = parentRb.rotation;
+            lastPlatformPosition = parentRb.position;
         }
 
         private void FixedUpdate()
@@ -29,7 +40,24 @@ namespace _Work.PAP.Scripts.Agent
             _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed, slipping * 0.1f);
             RotateCharacter();
             if (!CanMove) return;
-            _rb.linearVelocity = _currentDirection;
+
+            Vector2 carriedVelocity = Vector2.zero;
+            if (parentRb != null)
+            {
+                float deltaRotation = parentRb.rotation - lastPlatformRotation;
+                Vector2 deltaPosition = parentRb.position - lastPlatformPosition;
+                lastPlatformRotation = parentRb.rotation;
+                lastPlatformPosition = parentRb.position;
+
+                Vector2 relativePosition = (Vector2)transform.position - parentRb.position;
+                float angularVelocityInRadians = (deltaRotation * Mathf.Deg2Rad) / Time.fixedDeltaTime;
+                Vector2 rotationVelocity = new Vector2(-relativePosition.y, relativePosition.x) * angularVelocityInRadians;
+                Vector2 platformLinearVelocity = deltaPosition / Time.fixedDeltaTime;
+
+                carriedVelocity = rotationVelocity + platformLinearVelocity;
+            }
+
+            _rb.linearVelocity = _currentDirection + carriedVelocity;
         }
         public void ApplyVelocity(Vector3 velocity, ForceMode2D forceMode = ForceMode2D.Impulse)
         {
