@@ -16,9 +16,9 @@ MonoBehaviour:
   soundType: 1
   clip: {fileID: 8300000, guid: 1a0ba8dd477800040b43d9f23b53c77d, type: 3}
   loop: 0
-  Priority: 128
+  Priority: 256
   volume: 1
-  pitch: 1.0185938
+  pitch: 1.0580888
   stereoPan: 0
   SpatialBlend: 0
   RandomPitch: 1

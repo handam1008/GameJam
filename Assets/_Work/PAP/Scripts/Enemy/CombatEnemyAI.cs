@@ -120,7 +120,6 @@ namespace _Work.PAP.Scripts.Enemy
                 if (!initAttack)
                 {
                     initAttack = true;
-                    Debug.Log("A");
                     OnEndEvent?.Invoke();
                 }
                 OnEndEvent?.Invoke();

@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7fd92f88934f39a3ad24c7105da3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Systems.StageBreakingSystem
-  reachToClear: 50
+  reachToClear: 20
   _curve:
     serializedVersion: 2
     m_Curve:
@@ -131,6 +131,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   noiseMat: {fileID: 4015287716121103352}
   targetTimeScale: 2
+  canvasGroup: {fileID: 0}
 --- !u!1 &6804830851292711940
 GameObject:
   m_ObjectHideFlags: 0

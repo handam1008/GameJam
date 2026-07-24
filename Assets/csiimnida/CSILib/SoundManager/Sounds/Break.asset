@@ -18,7 +18,7 @@ MonoBehaviour:
   loop: 0
   Priority: 128
   volume: 1
-  pitch: 1
+  pitch: 0.9891635
   stereoPan: 0
   SpatialBlend: 0
   RandomPitch: 1
