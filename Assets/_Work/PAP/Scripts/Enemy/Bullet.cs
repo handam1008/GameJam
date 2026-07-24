@@ -103,6 +103,13 @@ public class Bullet : MonoBehaviour, IPoolable
         SetRotation();
     }
 
+    // 온 방향 반대로 되돌려보낸다. 반사 포탑이 부른다
+    public void Reflect()
+    {
+        velocity = -velocity;
+        SetRotation();
+    }
+
     void SetRotation()
     {
         float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;

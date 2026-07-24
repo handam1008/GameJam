@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    
+
     [SerializeField] private AbstractItem item;
+
+    // 이 시간 안에 안 주우면 사라진다
+    [SerializeField] private float lifeTime = 10f;
+
+    private void Start()
+    {
+        Destroy(gameObject, lifeTime);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

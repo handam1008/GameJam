@@ -8,6 +8,9 @@ public class SupplyPlane : MonoBehaviour
     // 떨굴 지점을 고를 기준이 되는 바닥 사각형 (Map)
     [SerializeField] private Transform floor;
 
+    // 켜면 마커와 낙하물이 맵 따라 돈다(적 비행기용). 아이템 비행기는 끈다
+    [SerializeField] private bool followMapRotation = true;
+
     // 몇 초마다 자동으로 올지. 0이면 자동으로 오지 않는다
     [SerializeField] private float interval = 15f;
     [SerializeField] private float minInterval = 5f;
@@ -106,7 +109,9 @@ public class SupplyPlane : MonoBehaviour
                     if (prefab != null)
                     {
                         GameObject drop = Instantiate(prefab, CurrentDropPoint(i), Quaternion.identity);
-                        if (floor != null)
+
+                        // 맵 따라 도는 비행기(적)만 자식으로 붙인다
+                        if (floor != null && followMapRotation)
                             drop.transform.SetParent(floor, true);
                     }
 
@@ -207,8 +212,8 @@ public class SupplyPlane : MonoBehaviour
 
         marker[index] = Instantiate(markerPrefab, CurrentDropPoint(index), Quaternion.identity);
 
-        // 나중에 붙여야 바닥의 큰 스케일에 마커가 뻥튀기되지 않는다
-        if (floor != null)
+        // 맵 따라 도는 비행기(적)만 마커도 자식으로 붙인다
+        if (floor != null && followMapRotation)
             marker[index].transform.SetParent(floor, true);
 
         if (markerPulse > 0f)
