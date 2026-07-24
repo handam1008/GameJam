@@ -69,7 +69,7 @@ PrefabInstance:
     - target: {fileID: 2136520378848993199, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7070972389662258502, guid: d2a9bb4f78b944a48867cd334c95b06f, type: 3}
+      objectReference: {fileID: 6529086901754213640, guid: 7f14fc774e37eef42ab75989eb0aa8ae, type: 3}
     - target: {fileID: 4780459113479211284, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: OnDeadEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
       value: 0.25
@@ -81,14 +81,18 @@ PrefabInstance:
     - target: {fileID: 7477664365062569871, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 3992550447740882481, guid: 976c9ba4dcd2ebc47b5df5d321ada54b, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477664365062569871, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.78
+      value: -1.13695
       objectReference: {fileID: 0}
     - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: -0.21429
       objectReference: {fileID: 0}
     - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_LocalPosition.z

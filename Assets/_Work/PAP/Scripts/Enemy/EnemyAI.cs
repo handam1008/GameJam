@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Work.PAP.Scripts.Player;
+using csiimnida.CSILib.SoundManager.RunTime;
 using Systems;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -85,6 +86,7 @@ namespace _Work.PAP.Scripts.Enemy
         {
             if (Time.time < lastFireTime) return;
             FireAnimation();
+            SoundManager.Instance.PlaySound(currentPattern.soundEffect.soundName);
             lastFireTime = Time.time + currentPattern.cooldown;
             Vector2 baseDir = (player.transform.position + new Vector3(Random.Range(-1.5f,1.5f),Random.Range(-1.5f,1.5f),0) - transform.position).normalized;
             float baseAngle = Mathf.Atan2(baseDir.y, baseDir.x) * Mathf.Rad2Deg;

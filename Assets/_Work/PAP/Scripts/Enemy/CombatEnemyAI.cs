@@ -91,6 +91,7 @@ namespace _Work.PAP.Scripts.Enemy
 
         private void HandleDamageCast()
         {
+            OnEffectEvent?.Invoke();
             hits = new RaycastHit2D[1];
             animator.OnAnimationEvent -= HandleDamageCast;
             Physics2D.CircleCast(transform.position + transform.right * attackOrigin,

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using _Work.PAP.Scripts.Player;
+using _Work.PAP.Scripts.Systems;
 using Systems;
 using UnityEngine;
 using UnityEngine.Events;
@@ -53,6 +54,7 @@ namespace _Work.PAP.Scripts.Enemy.EnemyAIS
             {
                 canUseFlare = false;
                 flareEvent?.Invoke();
+                GameManager.Instance.CallPlane();
             }
         }
 
