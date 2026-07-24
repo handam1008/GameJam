@@ -16,6 +16,7 @@ namespace _Work.PAP.Scripts.Player
 
         public event Action OnDeath;
         public UnityEvent OnHitEvent;
+        public UnityEvent OnHitEndEvent;
 
         public bool IsDead => Health <= 0;
 
@@ -55,6 +56,7 @@ namespace _Work.PAP.Scripts.Player
             gameObject.layer = LayerMask.NameToLayer("Default");
             yield return new WaitForSeconds(1f);
             gameObject.layer = LayerMask.NameToLayer("Agent");
+            OnHitEndEvent?.Invoke();
         }
 
         public void TakeHeal(int amount)

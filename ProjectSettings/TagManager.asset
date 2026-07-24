@@ -52,5 +52,8 @@ TagManager:
   - name: Effect
     uniqueID: 852795079
     locked: 0
+  - name: GOD
+    uniqueID: 3903564695
+    locked: 0
   m_RenderingLayers:
   - Default
