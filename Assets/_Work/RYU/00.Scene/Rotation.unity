@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4188f8f3544dad9f5e52332e3f27b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Agent.DashMovement
+  circleCollider2D: {fileID: 0}
   effect: {fileID: 298318655}
   dashPower: 20
   duration: 0.3
@@ -586,9 +587,6 @@ GameObject:
   - component: {fileID: 298318657}
   - component: {fileID: 298318656}
   - component: {fileID: 298318655}
-  - component: {fileID: 298318658}
-  - component: {fileID: 298318659}
-  - component: {fileID: 298318660}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -683,48 +681,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 340972344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &298318658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298318654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54dbac4dad7571441ad1aedcf4fa82b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GiantMode
-  visual: {fileID: 298318657}
-  growTime: 0.3
---- !u!114 &298318659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298318654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba542d0d291ecfc429d5f7c441c66aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShieldMode
-  shieldVisual: {fileID: 8905424063912107505, guid: a64bbc73d69cebc43865bb90c9c829a0, type: 3}
-  popTime: 0.25
-  pulse: 0.08
---- !u!114 &298318660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298318654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c959cb5f898b442a3598737b7b844a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemInventory
-  user: {fileID: 0}
 --- !u!1 &328098167
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +786,9 @@ GameObject:
   - component: {fileID: 340972341}
   - component: {fileID: 340972340}
   - component: {fileID: 340972339}
+  - component: {fileID: 340972345}
+  - component: {fileID: 340972346}
+  - component: {fileID: 340972347}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -959,6 +918,48 @@ Transform:
   - {fileID: 1822758605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340972345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340972338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba542d0d291ecfc429d5f7c441c66aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldMode
+  shieldVisual: {fileID: 8905424063912107505, guid: a64bbc73d69cebc43865bb90c9c829a0, type: 3}
+  popTime: 0.25
+  pulse: 0.08
+--- !u!114 &340972346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340972338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54dbac4dad7571441ad1aedcf4fa82b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiantMode
+  visual: {fileID: 298318657}
+  growTime: 0.3
+--- !u!114 &340972347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340972338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c959cb5f898b442a3598737b7b844a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemInventory
+  user: {fileID: 0}
 --- !u!1 &467651720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,7 +3047,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
