@@ -112,7 +112,8 @@ public class SupplyPlane : MonoBehaviour
                     {
                         GameObject drop = Instantiate(prefab, CurrentDropPoint(i), Quaternion.identity);
 
-                        // 맵 따라 도는 비행기(적)만 자식으로 붙인다
+                        // followMapRotation이 켜진 비행기만 Floor 자식으로 붙어 맵 따라 돈다.
+                        // 폭격기처럼 끄면 마커·낙하물 다 화면 고정
                         if (floor != null && followMapRotation)
                             drop.transform.SetParent(floor, true);
                     }

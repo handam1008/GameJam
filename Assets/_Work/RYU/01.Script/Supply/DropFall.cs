@@ -21,6 +21,13 @@ public class DropFall : MonoBehaviour
 
     // 착지하면 끌 오브젝트 (낙하산 등)
     [SerializeField] private GameObject[] hideOnLand;
+
+    // 착지하면 이 자리에 소환할 프리팹들 (적 등). 적 종류마다 낙하산 안 만들어도 됨
+    [SerializeField] private GameObject[] spawnOnLand;
+
+    // 소환 후 낙하산(자기 자신)을 지울지. 적 배달용이면 켠다
+    [SerializeField] private bool destroySelfAfterSpawn = false;
+
     [SerializeField] private float startAlpha = 0.2f;
 
     private Vector3 groundScale;
@@ -89,6 +96,25 @@ public class DropFall : MonoBehaviour
 
         foreach (GameObject go in hideOnLand)
             go.SetActive(false);
+
+        // 후보 중 하나만 랜덤으로 뽑아 착지 자리에 소환한다. 같은 부모(맵)에 붙여 같이 움직이게 한다
+        if (spawnOnLand != null && spawnOnLand.Length > 0)
+        {
+            GameObject prefab = spawnOnLand[UnityEngine.Random.Range(0, spawnOnLand.Length)];
+            if (prefab != null)
+            {
+                GameObject spawned = Instantiate(prefab, transform.position, Quaternion.identity);
+                if (transform.parent != null)
+                    spawned.transform.SetParent(transform.parent, true);
+            }
+        }
+
+        // 배달만 하는 낙하산이면 소환 후 자기 자신을 지운다
+        if (destroySelfAfterSpawn)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         // 착지 순간 살짝 눌렸다 펴지는 반동
         transform.DOPunchScale(Vector3.one * -0.15f, 0.25f, 6)
