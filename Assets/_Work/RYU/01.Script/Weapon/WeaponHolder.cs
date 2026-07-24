@@ -14,7 +14,10 @@ public class WeaponHolder : MonoBehaviour
     public AbstractWeapon Weapon => weapon;
     public int UsesLeft => usesLeft;
     public bool HasWeapon => weapon != null;
-    
+
+    // UI 네모박스 크기용. 남은 사용량 0~1 (방패=게이지, 카타나=횟수)
+    public float RemainingRatio => weapon != null ? weapon.GetRemaining01(gameObject, usesLeft) : 0f;
+
     public event Action OnChanged;
 
     private void Awake()
@@ -45,17 +48,22 @@ public class WeaponHolder : MonoBehaviour
 
         if (weapon == null)
             return;
-        
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+
+        // 클릭형 무기만 좌클릭으로 발사. 방패는 스스로 입력받으니 건너뛴다
+        if (!weapon.ManagesOwnInput &&
+            Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             TryFire();
+
+        // 다 쓴 무기는 벗겨진다 (횟수 0 또는 방패 게이지 0)
+        if (weapon.IsDepleted(gameObject, usesLeft))
+            Unequip();
     }
 
     private void TryFire()
     {
-      
         if (cooldownTimer > 0f)
             return;
-        
+
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 dir = ((Vector2)(mouse - firePoint.position)).normalized;
 
@@ -65,11 +73,12 @@ public class WeaponHolder : MonoBehaviour
         cooldownTimer = weapon.cooldown;
         usesLeft--;
         OnChanged?.Invoke();
-        
-        if (usesLeft <= 0)
-        {
-            weapon = null;
-            OnChanged?.Invoke();
-        }
+    }
+
+    private void Unequip()
+    {
+        weapon.OnUnequip(gameObject);
+        weapon = null;
+        OnChanged?.Invoke();
     }
 }

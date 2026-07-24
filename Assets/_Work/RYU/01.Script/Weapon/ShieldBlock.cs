@@ -32,6 +32,10 @@ public class ShieldBlock : MonoBehaviour
 
     public bool IsBlocking { get; private set; }
 
+    // UI용. 남은 게이지 비율(0~1)과 다 썼는지
+    public float GaugeRatio => maxGauge > 0f ? Mathf.Clamp01(gauge / maxGauge) : 0f;
+    public bool IsGaugeEmpty => gauge <= 0f;
+
     // 방패 무기가 장착됐는지. 장착 안 됐으면 좌클릭해도 방패 안 나온다
     private bool equipped;
 

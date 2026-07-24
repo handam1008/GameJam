@@ -15,4 +15,14 @@ public class ShieldWeapon : AbstractWeapon
         if (user.TryGetComponent(out ShieldBlock shield))
             shield.SetEquipped(false);
     }
+
+    // 방패는 좌클릭을 스스로 받는다. Holder가 발사 처리하면 안 됨
+    public override bool ManagesOwnInput => true;
+
+    // 남은 양은 게이지 비율
+    public override float GetRemaining01(GameObject user, int usesLeft)
+        => user.TryGetComponent(out ShieldBlock shield) ? shield.GaugeRatio : 0f;
+
+    public override bool IsDepleted(GameObject user, int usesLeft)
+        => user.TryGetComponent(out ShieldBlock shield) && shield.IsGaugeEmpty;
 }

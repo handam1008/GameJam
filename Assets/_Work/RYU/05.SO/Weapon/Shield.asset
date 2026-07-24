@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e641b28f621585549a3f6e51d9d3807e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: Assembly-CSharp::ShieldWeapon
-  icon: {fileID: 0}
+  icon: {fileID: -599871841830597859, guid: 6f44ecbb610dcca4bb67738c75878e39, type: 3}
   weaponName: 
   cooldown: 4
   maxUses: 6
