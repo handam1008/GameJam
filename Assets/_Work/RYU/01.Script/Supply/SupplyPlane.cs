@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SupplyPlane : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class SupplyPlane : MonoBehaviour
 
     // 몇 초마다 자동으로 올지. 0이면 자동으로 오지 않는다
     [SerializeField] private float interval = 15f;
+    [SerializeField] private float minInterval = 5f;
+    private float targetinterval;
 
     // 비행 속도 (초당 유닛)
     [SerializeField] private float speed = 20f;
@@ -35,6 +38,9 @@ public class SupplyPlane : MonoBehaviour
     // 표시가 두근거리는 정도. 0이면 안 움직인다
     [SerializeField] private float markerPulse = 0.15f;
 
+    [SerializeField] private int count;
+    private int currentCount;
+
     // 이 비행기가 떨어뜨릴 후보들. 이 중 하나가 랜덤으로 나온다
     // 적 비행기엔 적들을, 아이템 비행기엔 아이템들을 넣는다
     [SerializeField] private GameObject[] dropPrefabs;
@@ -45,16 +51,17 @@ public class SupplyPlane : MonoBehaviour
     private float timer;
     private bool flying;
     private bool dropped;
-    private Vector2 dropLocal;      // 떨굴 지점. 바닥 기준 좌표라 맵이 돌면 같이 돈다
+    private Vector2[] dropLocal;      // 떨굴 지점. 바닥 기준 좌표라 맵이 돌면 같이 돈다
     private Vector2 flyDir;         // 진행 방향 (단위 벡터)
     private float offscreenDist;    // 화면 밖까지의 거리
     private float distAfterDrop;    // 떨군 뒤 날아간 거리
-    private GameObject marker;
+    private GameObject[] marker;
 
     private void Start()
     {
         // 평소엔 화면 밖에 세워둔다
         transform.position = new Vector3(-9999f, -9999f, transform.position.z);
+        timer = 9999999;
     }
 
     private void Update()
@@ -66,43 +73,51 @@ public class SupplyPlane : MonoBehaviour
 
             timer += Time.deltaTime;
             if (timer >= interval)
+            {
                 CallPlane();
+                targetinterval = Random.Range(minInterval, interval);
+            }
 
             return;
         }
+        
+            Vector2 target = CurrentDropPoint(0);
 
-        Vector2 target = CurrentDropPoint();
-
-        // 아직 안 떨궜으면 지점을 향해 서서히 진로를 튼다. 맵이 돌아도 따라간다
-        if (!dropped)
-        {
-            Vector2 aim = (target - (Vector2)transform.position).normalized;
-            flyDir = Vector2.Lerp(flyDir, aim, turnSpeed * Time.deltaTime).normalized;
-        }
-
-        transform.position += (Vector3)(flyDir * (speed * Time.deltaTime));
-        FaceFlyDirection();
-
-        // 지점을 지나치는 순간 한 번만 신호를 보낸다
-        if (!dropped && Vector2.Dot(target - (Vector2)transform.position, flyDir) <= 0f)
-        {
-            dropped = true;
-            OnDropPoint?.Invoke(target);
-            Debug.Log($"[Plane] 보급 지점 통과: {target}");
-
-            // 적이냐 아이템이냐 확률로 정하고, 그 리스트에서 하나 뽑아 떨어뜨린다
-            GameObject prefab = PickDrop();
-            if (prefab != null)
+            // 아직 안 떨궜으면 지점을 향해 서서히 진로를 튼다. 맵이 돌아도 따라간다
+            if (!dropped)
             {
-                GameObject drop = Instantiate(prefab, target, Quaternion.identity);
-                if (floor != null)
-                    drop.transform.SetParent(floor, true);
+                Vector2 aim = (target - (Vector2)transform.position).normalized;
+                flyDir = Vector2.Lerp(flyDir, aim, turnSpeed * Time.deltaTime).normalized;
             }
 
-            // 낙하물이 내려올 시간만큼 있다가 표시를 거둔다
-            if (marker != null)
-                Destroy(marker, markerHideDelay);
+            transform.position += (Vector3)(flyDir * (speed * Time.deltaTime));
+            FaceFlyDirection();
+
+            // 지점을 지나치는 순간 한 번만 신호를 보낸다
+            if (!dropped && Vector2.Dot(target - (Vector2)transform.position, flyDir) <= 0f)
+            {
+                for (int i = 0; i < currentCount; i++)
+                {
+                    dropped = true;
+                    OnDropPoint?.Invoke(target);
+
+                    // 적이냐 아이템이냐 확률로 정하고, 그 리스트에서 하나 뽑아 떨어뜨린다
+                    GameObject prefab = PickDrop();
+                    if (prefab != null)
+                    {
+                        GameObject drop = Instantiate(prefab, CurrentDropPoint(i), Quaternion.identity);
+                        if (floor != null)
+                            drop.transform.SetParent(floor, true);
+                    }
+
+                    // 낙하물이 내려올 시간만큼 있다가 표시를 거둔다
+                    if (marker[i] != null)
+                    {
+                        Destroy(marker[i], markerHideDelay);
+                    }
+                }
         }
+
 
         // 떨군 뒤에는 직진해서 화면 밖으로 나간다
         if (dropped)
@@ -128,11 +143,18 @@ public class SupplyPlane : MonoBehaviour
         distAfterDrop = 0f;
 
         // 바닥 사각형 안에서 랜덤 지점을 하나 고른다. 가장자리 10%는 피한다
-        dropLocal = new Vector2(
-            UnityEngine.Random.Range(-0.4f, 0.4f),
-            UnityEngine.Random.Range(-0.4f, 0.4f));
+        currentCount = Random.Range(1, count+1);
+        dropLocal = new Vector2[currentCount];
+        marker = new GameObject[currentCount];
+        for (int i = 0; i < currentCount; i++)
+        {
+            dropLocal[i] = new Vector2(
+                UnityEngine.Random.Range(-0.4f, 0.4f),
+                UnityEngine.Random.Range(-0.4f, 0.4f));
+            ShowMarker(i);
+        }
 
-        ShowMarker();
+
 
         // 대각선 방향을 하나 뽑는다. 좌우, 상하 진행 방향도 반반이다
         float angle = UnityEngine.Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
@@ -147,7 +169,7 @@ public class SupplyPlane : MonoBehaviour
         offscreenDist = Mathf.Sqrt(halfW * halfW + halfH * halfH) + margin;
 
         // 지점 반대편 화면 밖에서 출발한다
-        Vector2 start = CurrentDropPoint() - flyDir * offscreenDist;
+        Vector2 start = CurrentDropPoint(0) - flyDir * offscreenDist;
         transform.position = new Vector3(start.x, start.y, transform.position.z);
         FaceFlyDirection();
     }
@@ -162,9 +184,9 @@ public class SupplyPlane : MonoBehaviour
     }
 
     // 바닥이 돌아간 걸 반영한 지금 이 순간의 떨굴 지점
-    private Vector2 CurrentDropPoint()
+    private Vector2 CurrentDropPoint(int index)
     {
-        return floor != null ? (Vector2)floor.TransformPoint(dropLocal) : dropLocal;
+        return floor != null ? (Vector2)floor.TransformPoint(dropLocal[index]) : dropLocal[index];
     }
 
     // 기체가 진행 방향을 바라보게 돌린다. 그림이 원래 기울어진 만큼은 빼준다
@@ -175,25 +197,25 @@ public class SupplyPlane : MonoBehaviour
     }
 
     // 떨어질 자리에 표시를 띄운다. 바닥의 자식으로 붙여서 맵이 돌면 같이 돈다
-    private void ShowMarker()
+    private void ShowMarker(int index)
     {
         if (markerPrefab == null)
             return;
 
-        if (marker != null)
-            Destroy(marker);
+        if (marker[index] != null)
+            Destroy(marker[index]);
 
-        marker = Instantiate(markerPrefab, CurrentDropPoint(), Quaternion.identity);
+        marker[index] = Instantiate(markerPrefab, CurrentDropPoint(index), Quaternion.identity);
 
         // 나중에 붙여야 바닥의 큰 스케일에 마커가 뻥튀기되지 않는다
         if (floor != null)
-            marker.transform.SetParent(floor, true);
+            marker[index].transform.SetParent(floor, true);
 
         if (markerPulse > 0f)
         {
-            marker.transform.DOScale(marker.transform.localScale * (1f + markerPulse), 0.4f)
+            marker[index].transform.DOScale(marker[index].transform.localScale * (1f + markerPulse), 0.4f)
                 .SetLoops(-1, LoopType.Yoyo)
-                .SetLink(marker);
+                .SetLink(marker[index]);
         }
     }
 }

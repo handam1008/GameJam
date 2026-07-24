@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1facfe1fd1a44b1db354f04b9a0d891e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.FeedbackSystem.PlayEffectFeedback
-  effect: {fileID: 11400000, guid: b0bb1fcb1573f1f4d90a9e58ce21be84, type: 2}
+  effect: {fileID: 11400000, guid: 3116f9189e1b7ee4a8bab705a18846b3, type: 2}
 --- !u!1 &6381045432947864116
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,9 +154,9 @@ GameObject:
   - component: {fileID: 1633499730564515761}
   - component: {fileID: 2978683724408684987}
   - component: {fileID: 4788339106305038800}
-  - component: {fileID: 7944499153202026032}
+  - component: {fileID: 3413915748721659385}
   m_Layer: 0
-  m_Name: Bazooka
+  m_Name: SplitBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.158, y: -0.151, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3772319979681393843}
@@ -228,7 +228,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1405999767005050232, guid: 1b2a7d607d4128f4db68a83ad957ac56, type: 3}
+  m_Sprite: {fileID: -3500076459514152108, guid: 032bbaf06fd1c3341b0a234b505081bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -272,9 +272,9 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.15, y: 0}
-  m_Radius: 0.25
---- !u!114 &7944499153202026032
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.1
+--- !u!114 &3413915748721659385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,30 +283,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8439207391455635286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414d9fa01760489ca2e1f80b1ebb9635, type: 3}
+  m_Script: {fileID: 11500000, guid: ba5752a4180f41178e8692182d213389, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.Bazooka
-  speed: 8
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.SplitBullet
+  speed: 7
   maxSpeed: 12
   spinBonus: 0.05
   wallLayer:
     serializedVersion: 2
     m_Bits: 136
   maxBounces: 2
-  player: {fileID: 0}
-  <Item>k__BackingField: {fileID: 11400000, guid: 2b4543b81db8a7d448e7768df3139e85, type: 2}
-  whatIsTarget:
-    useTriggers: 1
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 128
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  feedBackPlayer: {fileID: 1828932626924087779}
+  player: {fileID: 1828932626924087779}
+  <Item>k__BackingField: {fileID: 11400000, guid: 065410ad0dae25940b589503471ebc73, type: 2}
+  feedbackPlayer: {fileID: 1828932626924087779}
+  bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
