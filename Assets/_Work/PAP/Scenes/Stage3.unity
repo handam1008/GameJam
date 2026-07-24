@@ -794,7 +794,7 @@ Transform:
   m_GameObject: {fileID: 406988858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.97, y: -6.69, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1130,7 +1130,7 @@ MonoBehaviour:
   markerPrefab: {fileID: 2233981552564181189, guid: 17eb8a0ace5dd8b448986cf8ddeb7173, type: 3}
   markerHideDelay: 1.5
   markerPulse: 0.15
-  count: 3
+  count: 2
   dropPrefabs:
   - {fileID: 8905539338927063950, guid: 11807258336ffc044953abd819589233, type: 3}
   - {fileID: 8905539338927063950, guid: efdc84d172f343548832c6584f97526c, type: 3}
@@ -1892,7 +1892,7 @@ Transform:
   m_GameObject: {fileID: 1255137396}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.53125, y: -1.19336, z: 0}
+  m_LocalPosition: {x: -15, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3396,10 +3396,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1609755682866319533, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3211437025127577442, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

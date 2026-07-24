@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9840c16c052ac0449a1a29ac60b1dd96
+guid: bfaae52d73eb6574e8c7a17a0c5050f7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1594000777492110289
-    second: ESlot_0
+      213: 6945625722491484056
+    second: Enemy2Armor_0
   - first:
-      213: 5585893309524274323
-    second: ESlot_1
+      213: 6626992746586992307
+    second: Enemy2Armor_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -129,45 +129,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ESlot_0
+      name: Enemy2Armor_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 24
-        width: 56
-        height: 56
+        x: 0
+        y: 38
+        width: 32
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1db1d1203470f1610800000000000000
-      internalID: 1594000777492110289
+      spriteID: 897bbeb8bc1d36060800000000000000
+      internalID: 6945625722491484056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ESlot_1
+      name: Enemy2Armor_1
       rect:
         serializedVersion: 2
-        x: 46
-        y: 73
-        width: 8
-        height: 11
+        x: 96
+        y: 38
+        width: 32
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39cec63ae54158d40800000000000000
-      internalID: 5585893309524274323
+      spriteID: 3be686daacec7fb50800000000000000
+      internalID: 6626992746586992307
       vertices: []
       indices: 
       edges: []
@@ -176,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f9e14831c1eb9274599b5a5c21479a0e
     internalID: 0
     vertices: []
     indices: 
@@ -184,10 +184,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":2.0},"gridSpriteSize":{"x":32.0,"y":38.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      ESlot_0: 1594000777492110289
-      ESlot_1: 5585893309524274323
+      Enemy2Armor_0: 6945625722491484056
+      Enemy2Armor_1: 6626992746586992307
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

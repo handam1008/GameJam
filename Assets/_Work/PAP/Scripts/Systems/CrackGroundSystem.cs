@@ -32,7 +32,7 @@ namespace _Work.PAP.Scripts.Systems
             {
                 _sr.sprite = levelSprites[currentIndex];
                 Time.timeScale = 0;
-                CameraTrm.DOMoveY(30f,2f).SetEase(Ease.InCubic).SetUpdate(true);
+                CameraTrm.DOMoveY(60f,4f).SetEase(Ease.InCubic).SetUpdate(true);
                 CameraTrm.DOShakeRotation(2f,Vector3.one).SetUpdate(true);
             }
         }
