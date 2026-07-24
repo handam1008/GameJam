@@ -65,10 +65,11 @@ public class Bullet : MonoBehaviour, IPoolable
     {
         if (wall.CompareTag("Going"))
         {
-            transform.position = -transform.position;
+            transform.position = -transform.position + (Vector3)(normal * 0.05f);
             return;
         }
-        _impulseSource.GenerateImpulseWithVelocity(velocity * speed/2500f);
+        _impulseSource.GenerateImpulseWithVelocity(velocity * speed/5000f);
+        player.PlayAllFeedBack();
         if (wall.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(velocity);
@@ -77,7 +78,6 @@ public class Bullet : MonoBehaviour, IPoolable
         }
         if (Vector2.Dot(velocity, normal) >= 0f)
             return;
-        player.PlayAllFeedBack();
         
         WallHitEffect effect = wall.GetComponentInParent<WallHitEffect>();
         if (effect != null)

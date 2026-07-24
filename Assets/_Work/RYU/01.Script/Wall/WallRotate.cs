@@ -19,7 +19,7 @@ public class WallRotate : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
-        rb = GetComponent<Rigidbody2D>();
+        rb = rotateTarget.GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()

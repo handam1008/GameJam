@@ -19,7 +19,7 @@ namespace _Work.PAP.Scripts.Enemy
         protected override void Bounce(Vector2 normal, Collider2D wall, Vector2 contactPoint)
         {
             feedBackPlayer.PlayAllFeedBack();
-            _impulseSource.GenerateImpulseWithVelocity(velocity * speed/50f);
+            _impulseSource.GenerateImpulseWithVelocity(velocity * speed/100f);
             WallHitEffect effect = wall.GetComponentInParent<WallHitEffect>();
             if (effect != null)
             {
