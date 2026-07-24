@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: efe5cb1e59c3fef44b8da5cf44c06a48
+guid: 1f7395276bf28df448a8bbbc9f2dd2fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8282298356607107637
-    second: www_0
+      213: 2012851961799686922
+    second: smooth-plaster-wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,12 +37,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -51,8 +51,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 33, y: 35, z: 34, w: 31}
+  spritePixelsToUnits: 2000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: www_0
+      name: smooth-plaster-wall_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 24
-        width: 56
-        height: 56
+        x: 0
+        y: 0
+        width: 2000
+        height: 2000
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bcdb1a2b68d5f0d80800000000000000
-      internalID: -8282298356607107637
+      spriteID: a0bb488d1361feb10800000000000000
+      internalID: 2012851961799686922
       vertices: []
       indices: 
       edges: []
@@ -152,7 +152,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      www_0: -8282298356607107637
+      smooth-plaster-wall_0: 2012851961799686922
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

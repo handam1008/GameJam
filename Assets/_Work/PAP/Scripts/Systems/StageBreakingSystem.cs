@@ -20,6 +20,7 @@ namespace _Work.PAP.Scripts.Systems
         [SerializeField] private int targetScene;
         MaterialPropertyBlock _mpb;
         private readonly int TIMESCALE_HASH = Shader.PropertyToID("_TimeScale");
+        private bool canMove = true;
 
         private void Awake()
         {
@@ -55,14 +56,21 @@ namespace _Work.PAP.Scripts.Systems
             _sr.DOColor(new Color(0, 0, 0, 1 - reach),1f);
             if (currentReach >= reachToClear)
             {
-                Time.timeScale = 0;
-                canvasGroup.DOFade(1f, 1f).SetUpdate(true).OnComplete(() =>
-                {
-                    DOTween.KillAll();
-                    SceneManager.LoadScene(targetScene);
-                });
-                CameraEffectManager.Instance.ZoomAsync(16f,1f).Forget();
+                SceneMoveTransition(targetScene);
             }
+        }
+
+        public void SceneMoveTransition(int scene)
+        {
+            if (!canMove) return;
+            canMove = false;
+            Time.timeScale = 0;
+            canvasGroup.DOFade(1f, 1f).SetUpdate(true).OnComplete(() =>
+            {
+                DOTween.KillAll();
+                SceneManager.LoadScene(scene);
+            });
+            CameraEffectManager.Instance.ZoomAsync(16f,1f).Forget();
         }
     }
 }
