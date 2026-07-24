@@ -1,3 +1,4 @@
+using _Work.RYU._01.Script.FeedBack;
 using RYU.Combat;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class SupplyBox : MonoBehaviour, IDamageable
 {
     // 부서지면 나올 아이템 후보들 (ItemPickup 붙은 것). 이 중 하나가 랜덤으로 나온다
     [SerializeField] private GameObject[] itemPrefabs;
+    [SerializeField] private FeedBackPlayer feedBackPlayer;
 
     private bool broken;
 
@@ -26,7 +28,8 @@ public class SupplyBox : MonoBehaviour, IDamageable
                 Instantiate(prefab, transform.position, Quaternion.identity);
         }
 
+        feedBackPlayer.PlayAllFeedBack();
         // 부서지는 연출은 나중에 여기 붙이면 된다
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

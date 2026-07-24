@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a7ce84883d4bcea75bfa9621845d4d, type: 3}
   m_Name: CrateEffectItem
   m_EditorClassIdentifier: Assembly-CSharp::Systems.PoolItemSO
-  ItemName: Explosion
-  Prefab: {fileID: 4791296511060966321, guid: 4299a91cc888a724ab60a6a351d09578, type: 3}
+  ItemName: Crate
+  Prefab: {fileID: 7813059646634836733, guid: e7cc38fca5c99734db248cb150a96dde, type: 3}
   Count: 2

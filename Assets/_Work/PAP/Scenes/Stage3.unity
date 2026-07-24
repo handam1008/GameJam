@@ -2634,7 +2634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6641368021131529501}
+  m_Father: {fileID: 6641368021131529514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1613238022
 GameObject:
@@ -3485,6 +3485,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: OnHealEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: OnHealEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1939348081}
@@ -3493,9 +3501,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 406988862}
     - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: OnHealEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1939348081}
+    - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: OnHitEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 406988862}
+    - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: OnHealEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: OnHealEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Recover
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: OnHealEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _Work.PAP.Scripts.Systems.CrackGroundSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: OnHealEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4513388257021519303, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3565,11 +3593,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4513388257021519303, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
   m_PrefabInstance: {fileID: 6641368021131529499}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6641368021131529501 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8792715582737976754, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-  m_PrefabInstance: {fileID: 6641368021131529499}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6641368021131529502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7012771080392317833, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
@@ -3636,6 +3659,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemInventory
   user: {fileID: 0}
+--- !u!4 &6641368021131529514 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8792715582737976754, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+  m_PrefabInstance: {fileID: 6641368021131529499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8065158237870100115
 PrefabInstance:
   m_ObjectHideFlags: 0
