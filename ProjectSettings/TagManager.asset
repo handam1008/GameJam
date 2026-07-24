@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Going
   - Enemy
+  - RotatePlatform
   layers:
   - Default
   - TransparentFX

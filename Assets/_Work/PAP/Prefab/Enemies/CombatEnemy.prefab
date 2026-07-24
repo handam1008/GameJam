@@ -146,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7325988861992634123, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_Name
-      value: NormalEnemy
+      value: SwordEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 7477664365062569871, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_Sprite
@@ -245,6 +245,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  animator: {fileID: 0}
 --- !u!4 &1924422517607674217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}

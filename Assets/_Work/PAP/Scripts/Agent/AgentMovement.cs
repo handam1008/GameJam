@@ -15,25 +15,49 @@ namespace _Work.PAP.Scripts.Agent
 
         [SerializeField] private float speed = 5f;
         [SerializeField] private float slipping = 1f;
-
-        // 방패 등에서 일시적으로 속도를 곱한다. 1이면 평소
-        private float speedMultiplier = 1f;
-        public void SetSpeedMultiplier(float multiplier) => speedMultiplier = multiplier;
-
-        public bool CanMove { get; set; } = true;
+        [SerializeField] private Rigidbody2D parentRb;
         
+        public bool CanMove { get; set; } = true;
+
+        float lastPlatformRotation;
+        Vector2 lastPlatformPosition;
+
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
         }
 
+        private void Start()
+        {
+            if (parentRb == null) return;
+            lastPlatformRotation = parentRb.rotation;
+            lastPlatformPosition = parentRb.position;
+        }
+
         private void FixedUpdate()
         {
-            _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed * speedMultiplier, slipping * 0.1f);
+            _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed, slipping * 0.1f);
             RotateCharacter();
             if (!CanMove) return;
-            _rb.linearVelocity = _currentDirection;
+
+            Vector2 carriedVelocity = Vector2.zero;
+            if (parentRb != null)
+            {
+                float deltaRotation = parentRb.rotation - lastPlatformRotation;
+                Vector2 deltaPosition = parentRb.position - lastPlatformPosition;
+                lastPlatformRotation = parentRb.rotation;
+                lastPlatformPosition = parentRb.position;
+
+                Vector2 relativePosition = (Vector2)transform.position - parentRb.position;
+                float angularVelocityInRadians = (deltaRotation * Mathf.Deg2Rad) / Time.fixedDeltaTime;
+                Vector2 rotationVelocity = new Vector2(-relativePosition.y, relativePosition.x) * angularVelocityInRadians;
+                Vector2 platformLinearVelocity = deltaPosition / Time.fixedDeltaTime;
+
+                carriedVelocity = rotationVelocity + platformLinearVelocity;
+            }
+
+            _rb.linearVelocity = _currentDirection + carriedVelocity;
         }
         public void ApplyVelocity(Vector3 velocity, ForceMode2D forceMode = ForceMode2D.Impulse)
         {
