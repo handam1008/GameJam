@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks.Triggers;
+﻿using _Work.PAP.Scripts.Player;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 
 namespace _Work.RYU._01.Script.Item
@@ -6,12 +7,13 @@ namespace _Work.RYU._01.Script.Item
     [CreateAssetMenu(fileName = "RYU", menuName = "RYU/Item/HealItem", order = 0)]
     public class HealItem : AbstractItem
     {
-        public float amount = 30f;
+        public int amount = 1;
 
 
         public override void Use(GameObject target)
         {
-            //플레이어 회복
+            target.TryGetComponent(out PlayerHealth  playerHealth);
+            playerHealth?.TakeHeal(amount);
         }
     }
 }

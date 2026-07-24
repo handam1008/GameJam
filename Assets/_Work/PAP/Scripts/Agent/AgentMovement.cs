@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,6 +42,18 @@ namespace _Work.PAP.Scripts.Agent
         public void SetMovementDir(Vector2 dir)
         {
             MoveDirection = dir;
+        }
+
+        public void PlusSpeed(float amount)
+        {
+            speed += amount;
+            StartCoroutine(SpeedTimer());
+            speed -= amount;
+        }
+
+        public IEnumerator SpeedTimer()
+        {
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

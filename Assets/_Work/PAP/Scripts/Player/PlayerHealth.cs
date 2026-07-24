@@ -9,18 +9,42 @@ namespace _Work.PAP.Scripts.Player
     public class PlayerHealth : MonoBehaviour,IDamageable
     {
         AgentMovement AgentMovement;
+        ShieldMode ShieldMode;
+        [SerializeField] private int Health = 3;
+        
+        public event Action OnDeath;
+
+        public bool IsDead => Health <= 0;
 
         private void Awake()
         {
             AgentMovement = GetComponent<AgentMovement>();
+            ShieldMode = GetComponent<ShieldMode>();
         }
 
         public void TakeDamage(Vector3 dir)
         {
+            if (ShieldMode != null && ShieldMode.IsShielded) return;
+            if (IsDead) return;
+
+            Health--;
+
             AgentMovement.CanMove = false;
             AgentMovement.StopImmediately();
             AgentMovement.ApplyVelocity(dir);
             StartCoroutine(ForceRoutine());
+
+            if (IsDead)
+            {
+                OnDeath?.Invoke();
+            }
+        }
+
+        public void TakeHeal(int amount)
+        {
+            if (Health >= 3) return;
+            
+            Health += amount;
         }
 
         private IEnumerator ForceRoutine()

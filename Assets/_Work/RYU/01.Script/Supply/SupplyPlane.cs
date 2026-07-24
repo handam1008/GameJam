@@ -35,8 +35,9 @@ public class SupplyPlane : MonoBehaviour
     // 표시가 두근거리는 정도. 0이면 안 움직인다
     [SerializeField] private float markerPulse = 0.15f;
 
-    // 지점을 지날 때 떨어뜨릴 것 (적, 아이템 등). DropFall이 붙어 있으면 낙하 연출이 나온다
-    [SerializeField] private GameObject dropPrefab;
+    // 이 비행기가 떨어뜨릴 후보들. 이 중 하나가 랜덤으로 나온다
+    // 적 비행기엔 적들을, 아이템 비행기엔 아이템들을 넣는다
+    [SerializeField] private GameObject[] dropPrefabs;
 
     // 나중에 마커/보급이 구독할 신호. 떨굴 지점 위를 지나는 순간 위치를 넘긴다
     public event Action<Vector2> OnDropPoint;
@@ -89,10 +90,11 @@ public class SupplyPlane : MonoBehaviour
             OnDropPoint?.Invoke(target);
             Debug.Log($"[Plane] 보급 지점 통과: {target}");
 
-            // 낙하물을 지점에 떨어뜨린다. 바닥의 자식으로 붙여서 맵이 돌면 같이 돈다
-            if (dropPrefab != null)
+            // 적이냐 아이템이냐 확률로 정하고, 그 리스트에서 하나 뽑아 떨어뜨린다
+            GameObject prefab = PickDrop();
+            if (prefab != null)
             {
-                GameObject drop = Instantiate(dropPrefab, target, Quaternion.identity);
+                GameObject drop = Instantiate(prefab, target, Quaternion.identity);
                 if (floor != null)
                     drop.transform.SetParent(floor, true);
             }
@@ -148,6 +150,15 @@ public class SupplyPlane : MonoBehaviour
         Vector2 start = CurrentDropPoint() - flyDir * offscreenDist;
         transform.position = new Vector3(start.x, start.y, transform.position.z);
         FaceFlyDirection();
+    }
+
+    // 후보 리스트에서 랜덤으로 하나 뽑는다
+    private GameObject PickDrop()
+    {
+        if (dropPrefabs == null || dropPrefabs.Length == 0)
+            return null;
+
+        return dropPrefabs[UnityEngine.Random.Range(0, dropPrefabs.Length)];
     }
 
     // 바닥이 돌아간 걸 반영한 지금 이 순간의 떨굴 지점
