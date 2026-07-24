@@ -1,4 +1,5 @@
-﻿using Systems;
+﻿using csiimnida.CSILib.SoundManager.RunTime;
+using Systems;
 using UnityEngine;
 
 namespace _Work.PAP.Scripts.Enemy
@@ -10,5 +11,6 @@ namespace _Work.PAP.Scripts.Enemy
         public float degree;
         public int bulletCount;
         public float cooldown;
+        public SoundSo soundEffect;
     }
 }

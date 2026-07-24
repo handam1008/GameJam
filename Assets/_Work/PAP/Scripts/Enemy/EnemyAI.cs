@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Work.PAP.Scripts.Player;
+using csiimnida.CSILib.SoundManager.RunTime;
 using Systems;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,6 +20,9 @@ namespace _Work.PAP.Scripts.Enemy
         private PlayerController player;
         private EnemyAttackPatternSO currentPattern;
         private Rigidbody2D _rb;
+        private Rigidbody2D parentRb;
+        private PlatformCarrier platformCarrier;
+        private Vector2 moveVelocity;
         private float lastPatrolTime;
         private Vector3 _originalLocalPosition;
         private float _originalLocalAngleZ;
@@ -38,6 +42,8 @@ namespace _Work.PAP.Scripts.Enemy
         private void Start()
         {
             player = FindFirstObjectByType<PlayerController>();
+            parentRb = GameObject.FindGameObjectsWithTag("RotatePlatform")[0].GetComponent<Rigidbody2D>();
+            platformCarrier = new PlatformCarrier(parentRb);
         }
 
         private void Update()
@@ -49,8 +55,13 @@ namespace _Work.PAP.Scripts.Enemy
             {
                 canSee = true;
                 lastPatrolTime = Time.time + Random.Range(0, 1.5f);
-                _rb.linearVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                moveVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
             }
+        }
+
+        private void FixedUpdate()
+        {
+            _rb.linearVelocity = moveVelocity + platformCarrier.GetCarriedVelocity(transform.position);
         }
 
         private void SeePlayer()
@@ -75,6 +86,7 @@ namespace _Work.PAP.Scripts.Enemy
         {
             if (Time.time < lastFireTime) return;
             FireAnimation();
+            SoundManager.Instance.PlaySound(currentPattern.soundEffect.soundName);
             lastFireTime = Time.time + currentPattern.cooldown;
             Vector2 baseDir = (player.transform.position + new Vector3(Random.Range(-1.5f,1.5f),Random.Range(-1.5f,1.5f),0) - transform.position).normalized;
             float baseAngle = Mathf.Atan2(baseDir.y, baseDir.x) * Mathf.Rad2Deg;

@@ -21,6 +21,7 @@ namespace _Work.PAP.Scripts.Agent
         // [SerializeField] private CinemachineImpulseSource impulser;
 
         public AgentMovement Movement { get; private set; }
+        private ShieldBlock _shield;
 
         public UnityEvent OnChargeDashed;
         // public NotifyValue<bool> DashState = new NotifyValue<bool>();
@@ -33,6 +34,7 @@ namespace _Work.PAP.Scripts.Agent
         private void Awake()
         {
             Movement = GetComponentInParent<AgentMovement>();
+            _shield = GetComponentInParent<ShieldBlock>();
             // _feedbackPlayer = GetComponentInChildren<FeedbackPlayer>();
         }
 
@@ -45,6 +47,8 @@ namespace _Work.PAP.Scripts.Agent
         public void UseDash()
         {
             if (!_active) return;
+            // 방패 드는 중엔 대쉬 못 쓴다
+            if (_shield != null && _shield.IsBlocking) return;
             _tokenSource?.Cancel();
             _tokenSource?.Dispose();
             _tokenSource = new CancellationTokenSource();
@@ -76,10 +80,13 @@ namespace _Work.PAP.Scripts.Agent
             }
             finally
             {
-                playerObject.layer = LayerMask.NameToLayer("Agent");
-                Movement.StopImmediately();
-                Movement.CanMove = true;
-                effect.StopTrail();
+                if (playerObject != null)
+                {
+                    playerObject.layer = LayerMask.NameToLayer("Agent");
+                    Movement.StopImmediately();
+                    Movement.CanMove = true;
+                    effect.StopTrail();
+                }
             }
         }
 

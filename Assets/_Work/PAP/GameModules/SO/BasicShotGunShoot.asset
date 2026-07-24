@@ -16,3 +16,4 @@ MonoBehaviour:
   degree: 40
   bulletCount: 3
   cooldown: 2
+  soundEffect: {fileID: 11400000, guid: acf89148cd382aa4b8caea9756476be2, type: 2}
