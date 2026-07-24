@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 368907860}
   m_Layer: 7
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1319,6 +1319,10 @@ PrefabInstance:
     - target: {fileID: 7325988861992634123, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325988861992634123, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2405,6 +2409,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6156064555368145746, guid: 5d5fdd923416e4e4bbf6de17d64e2ea3, type: 3}
       propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6156064555368145746, guid: 5d5fdd923416e4e4bbf6de17d64e2ea3, type: 3}
+      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
