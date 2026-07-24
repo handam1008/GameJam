@@ -1,4 +1,5 @@
 using _Work.RYU._01.Script.FeedBack;
+using csiimnida.CSILib.SoundManager.RunTime;
 using RYU.Combat;
 using Systems;
 using Unity.Cinemachine;
@@ -69,6 +70,7 @@ public class Bullet : MonoBehaviour, IPoolable
             transform.position = -transform.position + (Vector3)(normal * 0.05f);
             return;
         }
+        SoundManager.Instance.PlaySound("Bounce");
         _impulseSource.GenerateImpulseWithVelocity(velocity * speed/5000f);
         player.PlayAllFeedBack();
         if (wall.TryGetComponent(out IDamageable damageable))

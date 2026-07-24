@@ -80,10 +80,13 @@ namespace _Work.PAP.Scripts.Agent
             }
             finally
             {
-                playerObject.layer = LayerMask.NameToLayer("Agent");
-                Movement.StopImmediately();
-                Movement.CanMove = true;
-                effect.StopTrail();
+                if (playerObject != null)
+                {
+                    playerObject.layer = LayerMask.NameToLayer("Agent");
+                    Movement.StopImmediately();
+                    Movement.CanMove = true;
+                    effect.StopTrail();
+                }
             }
         }
 

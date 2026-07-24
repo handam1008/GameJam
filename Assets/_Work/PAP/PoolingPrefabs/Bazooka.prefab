@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8920104278966788786}
   - component: {fileID: 1828932626924087779}
   - component: {fileID: 7185755514848513643}
+  - component: {fileID: 1299506333059152345}
   m_Layer: 0
   m_Name: ExplosionFeedback
   m_TagString: Untagged
@@ -58,6 +59,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.FeedbackSystem.PlayEffectFeedback
   effect: {fileID: 11400000, guid: b0bb1fcb1573f1f4d90a9e58ce21be84, type: 2}
+--- !u!114 &1299506333059152345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713395584864245267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ba185f8fc14669b1c086d683d35cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.FeedbackSystem.PlaySoundFeedback
+  soundData: {fileID: 11400000, guid: 08da3734adcafdb4dad2adfe7c227d30, type: 2}
 --- !u!1 &6381045432947864116
 GameObject:
   m_ObjectHideFlags: 0

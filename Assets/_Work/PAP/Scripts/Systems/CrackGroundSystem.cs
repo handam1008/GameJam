@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using csiimnida.CSILib.SoundManager.RunTime;
 using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace _Work.PAP.Scripts.Systems
         private SpriteRenderer _sr;
         [SerializeField] private List<Sprite> levelSprites;
         [SerializeField] private Transform CameraTrm;
+        [SerializeField] private CanvasGroup group;
         private CinemachineImpulseSource impulser;
         private int currentIndex = 0;
 
@@ -25,13 +27,16 @@ namespace _Work.PAP.Scripts.Systems
             currentIndex++;
             if (currentIndex < levelSprites.Count-1)
             {
+                SoundManager.Instance.PlaySound("Crack");
                 _sr.sprite = levelSprites[currentIndex];
                 impulser.GenerateImpulseWithForce(0.5f);
             }
             else
             {
+                SoundManager.Instance.PlaySound("Break");
                 _sr.sprite = levelSprites[currentIndex];
                 Time.timeScale = 0;
+                group.DOFade(0, 2f);
                 CameraTrm.DOMoveY(60f,4f).SetEase(Ease.InCubic).SetUpdate(true);
                 CameraTrm.DOShakeRotation(2f,Vector3.one).SetUpdate(true);
             }

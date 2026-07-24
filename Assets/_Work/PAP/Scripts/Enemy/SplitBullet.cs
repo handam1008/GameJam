@@ -1,4 +1,5 @@
 ﻿using _Work.RYU._01.Script.FeedBack;
+using csiimnida.CSILib.SoundManager.RunTime;
 using RYU.Combat;
 using Systems;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace _Work.PAP.Scripts.Enemy
         [SerializeField] private PoolItemSO bullet;
         protected override void Bounce(Vector2 normal, Collider2D wall, Vector2 contactPoint)
         {
+            SoundManager.Instance.PlaySound("Bounce");
             feedbackPlayer.PlayAllFeedBack();
             _impulseSource.GenerateImpulseWithVelocity(velocity * speed/2500f);
             WallHitEffect effect = wall.GetComponentInParent<WallHitEffect>();

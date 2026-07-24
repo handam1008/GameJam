@@ -11,7 +11,7 @@ namespace CoreLib
 
         public async UniTask ZoomAsync(float value,float duration = 0.2f,Ease ease = Ease.InBack)
         {
-            await DOTween.To(() => cinemachineCamera.Lens.OrthographicSize,x => cinemachineCamera.Lens.OrthographicSize = x,value,duration).SetEase(ease).AsyncWaitForCompletion();
+            await DOTween.To(() => cinemachineCamera.Lens.OrthographicSize,x => cinemachineCamera.Lens.OrthographicSize = x,value,duration).SetEase(ease).SetUpdate(true).AsyncWaitForCompletion();
         }
 
         

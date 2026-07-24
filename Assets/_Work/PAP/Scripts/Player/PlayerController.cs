@@ -18,6 +18,11 @@ namespace _Work.PAP.Scripts.Player
             playerInput.OnDashKeyPressed += HandleOnDash;
         }
 
+        private void OnDestroy()
+        {
+            playerInput.OnDashKeyPressed -= HandleOnDash;
+        }
+
         private void HandleOnDash()
         {
             DashMovement.UseDash();
