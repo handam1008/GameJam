@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAI
   patterns:
-  - {fileID: 11400000, guid: d6f86f2d3198e0640a23ba5758c565ad, type: 2}
+  - {fileID: 11400000, guid: a287acfffacf2bf44aae70a7691b48be, type: 2}
   lerpScale: 0.1
   gunTrm: {fileID: 5474219820531751126}
   kickDistance: 0.1
@@ -396,7 +396,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 1
+          m_FloatArgument: 0.25
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

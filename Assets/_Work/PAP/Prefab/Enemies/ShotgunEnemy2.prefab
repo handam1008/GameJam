@@ -1,0 +1,223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7477646303633976910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7781122562418416032}
+  - component: {fileID: 5065097820897050360}
+  - component: {fileID: 3578701780310861334}
+  m_Layer: 0
+  m_Name: Armor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7781122562418416032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477646303633976910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5191497811719372261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!212 &5065097820897050360
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477646303633976910}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 533765097
+  m_SortingLayer: 2
+  m_SortingOrder: 2
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 5865499113685303836, guid: 721aa2eef9239f848b97876611be79c5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.32, y: 0.38}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!114 &3578701780310861334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477646303633976910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da399f82e3154419aedd799134e92525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.ArmorDestruction
+--- !u!1001 &211004832936498147
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 976626127384873870, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: patterns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 976626127384873870, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: 'patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c4369c3689c5a0b4d9d4280910e2c5c6, type: 2}
+    - target: {fileID: 976626127384873870, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: 'patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: aee5da31edd247840b3c1d14d705fc10, type: 2}
+    - target: {fileID: 2571249726851487930, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5066631433027433944, guid: 5a7d2edb48c1c6441a751e97dbd9c0d2, type: 3}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.17766
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.35065
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471281140618918042, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3721133566067515088, guid: a2b73a1a9b43bde4b900a32cd4a49172, type: 3}
+    - target: {fileID: 6603332551516536862, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: m_Name
+      value: ShotgunEnemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: settingHealth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3578701780310861334}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DestructionArmor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _Work.PAP.Scripts.Enemy.ArmorDestruction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961883751715294721, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 7781122562418416032}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+--- !u!4 &5191497811719372261 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5397075996393483782, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
+  m_PrefabInstance: {fileID: 211004832936498147}
+  m_PrefabAsset: {fileID: 0}

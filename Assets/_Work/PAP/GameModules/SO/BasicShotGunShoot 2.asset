@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BasicShotGunShoot 2
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAttackPatternSO
   bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
-  degree: 180
-  bulletCount: 10
-  cooldown: 3
+  degree: 40
+  bulletCount: 4
+  cooldown: 0.5

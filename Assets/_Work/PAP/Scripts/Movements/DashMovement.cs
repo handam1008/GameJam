@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using _Work.RYU._01.Script.FeedBack;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace _Work.PAP.Scripts.Agent
@@ -15,11 +16,13 @@ namespace _Work.PAP.Scripts.Agent
         [SerializeField] private float dashPower = 10f;
         [SerializeField] private float duration = 0.5f;
         [SerializeField] private float cooldown = 0f;
-
+        [SerializeField] private GameObject playerObject;
         [SerializeField] private FeedBackPlayer player;
         // [SerializeField] private CinemachineImpulseSource impulser;
 
         public AgentMovement Movement { get; private set; }
+
+        public UnityEvent OnChargeDashed;
         // public NotifyValue<bool> DashState = new NotifyValue<bool>();
         
         private CancellationTokenSource _tokenSource;
@@ -53,6 +56,7 @@ namespace _Work.PAP.Scripts.Agent
             try
             {
                 _active = false;
+                playerObject.layer = LayerMask.NameToLayer("Default");
                 CoolDownAsync().Forget();
                 // _feedbackPlayer.PlayAllFeedback();
                 player.PlayAllFeedBack();
@@ -64,7 +68,6 @@ namespace _Work.PAP.Scripts.Agent
                 Movement.CanMove = false;
                 Movement.StopImmediately();
                 Movement.ApplyVelocity(direction * dashPower);
-                circleCollider2D.radius = 0f;
                 await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: _tokenSource.Token);
             }
             catch (TaskCanceledException)
@@ -73,7 +76,7 @@ namespace _Work.PAP.Scripts.Agent
             }
             finally
             {
-                circleCollider2D.radius = 0.25f;
+                playerObject.layer = LayerMask.NameToLayer("Agent");
                 Movement.StopImmediately();
                 Movement.CanMove = true;
                 effect.StopTrail();
@@ -83,6 +86,7 @@ namespace _Work.PAP.Scripts.Agent
         private async UniTaskVoid CoolDownAsync()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(duration+cooldown), cancellationToken: _tokenSource.Token);
+            OnChargeDashed?.Invoke();
             _active = true;
         }
     }

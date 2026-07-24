@@ -35,7 +35,6 @@ namespace _Work.PAP.Scripts.Enemy
                 //쥬금
                 OnDeadEvent?.Invoke();
                 StageBreakingSystem.Instance.AddReach(1);
-                GetComponent<EnemyAI>().enabled = false;
                 rigid.linearVelocity = Vector3.zero;
                 transform.gameObject.layer = LayerMask.NameToLayer("Dead");
                 Destroy(gameObject);

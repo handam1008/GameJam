@@ -8,9 +8,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3712434764540857499, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: 'patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 84bfcf1f913533b48b2eb7b24868b8f3, type: 2}
+    - target: {fileID: 4780459113479211284, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: OnDeadEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7325988861992634123, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_Name
-      value: SplitEnemy Variant
+      value: SplitEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
       propertyPath: m_LocalPosition.x

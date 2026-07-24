@@ -3,6 +3,7 @@ using System.Collections;
 using _Work.PAP.Scripts.Agent;
 using RYU.Combat;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Work.PAP.Scripts.Player
 {
@@ -13,6 +14,7 @@ namespace _Work.PAP.Scripts.Player
         [SerializeField] private int Health = 3;
         
         public event Action OnDeath;
+        public UnityEvent OnHitEvent;
 
         public bool IsDead => Health <= 0;
 
@@ -33,11 +35,20 @@ namespace _Work.PAP.Scripts.Player
             AgentMovement.StopImmediately();
             AgentMovement.ApplyVelocity(dir);
             StartCoroutine(ForceRoutine());
+            StartCoroutine(InfRoutine());
+            OnHitEvent?.Invoke();
 
             if (IsDead)
             {
                 OnDeath?.Invoke();
             }
+        }
+
+        private IEnumerator InfRoutine()
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            yield return new WaitForSeconds(1f);
+            gameObject.layer = LayerMask.NameToLayer("Agent");
         }
 
         public void TakeHeal(int amount)
