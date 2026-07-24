@@ -15,7 +15,11 @@ namespace _Work.PAP.Scripts.Agent
 
         [SerializeField] private float speed = 5f;
         [SerializeField] private float slipping = 1f;
-        
+
+        // 방패 등에서 일시적으로 속도를 곱한다. 1이면 평소
+        private float speedMultiplier = 1f;
+        public void SetSpeedMultiplier(float multiplier) => speedMultiplier = multiplier;
+
         public bool CanMove { get; set; } = true;
         
 
@@ -26,7 +30,7 @@ namespace _Work.PAP.Scripts.Agent
 
         private void FixedUpdate()
         {
-            _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed, slipping * 0.1f);
+            _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed * speedMultiplier, slipping * 0.1f);
             RotateCharacter();
             if (!CanMove) return;
             _rb.linearVelocity = _currentDirection;
