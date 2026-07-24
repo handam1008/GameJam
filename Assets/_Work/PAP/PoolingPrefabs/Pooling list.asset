@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Systems.PoolingListSO
   list:
   - {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
+  - {fileID: 11400000, guid: 2b4543b81db8a7d448e7768df3139e85, type: 2}
+  - {fileID: 11400000, guid: b0bb1fcb1573f1f4d90a9e58ce21be84, type: 2}
+  - {fileID: 11400000, guid: 3116f9189e1b7ee4a8bab705a18846b3, type: 2}

@@ -85,6 +85,64 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!1 &8163341642936247378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7566597698455940030}
+  - component: {fileID: 5517424214530545631}
+  - component: {fileID: 3843107060023634478}
+  m_Layer: 0
+  m_Name: BounceFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7566597698455940030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163341642936247378}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1633499730564515761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5517424214530545631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163341642936247378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47165f49a48047c4bd96488dac230e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.FeedBack.FeedBackPlayer
+--- !u!114 &3843107060023634478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163341642936247378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1facfe1fd1a44b1db354f04b9a0d891e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.FeedbackSystem.PlayEffectFeedback
+  effect: {fileID: 11400000, guid: 3116f9189e1b7ee4a8bab705a18846b3, type: 2}
 --- !u!1 &8439207391455635286
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +176,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3772319979681393843}
+  - {fileID: 7566597698455940030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2978683724408684987
@@ -198,6 +257,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   maxBounces: 2
+  player: {fileID: 5517424214530545631}
   <Item>k__BackingField: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
 --- !u!58 &4788339106305038800
 CircleCollider2D:

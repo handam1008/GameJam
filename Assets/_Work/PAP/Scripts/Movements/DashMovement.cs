@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using _Work.RYU._01.Script.FeedBack;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Work.PAP.Scripts.Agent
 {
     public class DashMovement : MonoBehaviour
     {
+        [SerializeField] private CircleCollider2D circleCollider2D;
         [SerializeField] private AfterImageEffect effect;
         [SerializeField] private float dashPower = 10f;
         [SerializeField] private float duration = 0.5f;
@@ -62,6 +64,7 @@ namespace _Work.PAP.Scripts.Agent
                 Movement.CanMove = false;
                 Movement.StopImmediately();
                 Movement.ApplyVelocity(direction * dashPower);
+                circleCollider2D.radius = 0f;
                 await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: _tokenSource.Token);
             }
             catch (TaskCanceledException)
@@ -70,6 +73,7 @@ namespace _Work.PAP.Scripts.Agent
             }
             finally
             {
+                circleCollider2D.radius = 0.25f;
                 Movement.StopImmediately();
                 Movement.CanMove = true;
                 effect.StopTrail();

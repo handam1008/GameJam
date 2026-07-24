@@ -48,5 +48,8 @@ TagManager:
   - name: Agent
     uniqueID: 533765097
     locked: 0
+  - name: Effect
+    uniqueID: 852795079
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BasicAroundShoot
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAttackPatternSO
   bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
-  degree: 180
+  degree: 360
   bulletCount: 4
   cooldown: 2

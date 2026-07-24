@@ -1,3 +1,4 @@
+using _Work.RYU._01.Script.FeedBack;
 using RYU.Combat;
 using Systems;
 using Unity.Cinemachine;
@@ -6,18 +7,19 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Bullet : MonoBehaviour, IPoolable
 {
-    [SerializeField] float speed = 20f;
-    [SerializeField] float maxSpeed = 60f;
-    [SerializeField] float spinBonus = 0.05f;
-    [SerializeField] LayerMask wallLayer;
-    [SerializeField] private int maxBounces = 2;
+    [SerializeField] protected float speed = 20f;
+    [SerializeField] protected float maxSpeed = 60f;
+    [SerializeField] protected float spinBonus = 0.05f;
+    [SerializeField] protected LayerMask wallLayer;
+    [SerializeField] protected int maxBounces = 2;
+    [SerializeField] private FeedBackPlayer player;
 
-    Vector2 velocity;
-    CircleCollider2D myCol;
-    private int currentBounces = 0;
-    private CinemachineImpulseSource _impulseSource;
+    protected Vector2 velocity;
+    protected CircleCollider2D myCol;
+    protected int currentBounces = 0;
+    protected CinemachineImpulseSource _impulseSource;
 
-    void Awake()
+    protected virtual void Awake()
     {
         myCol = GetComponent<CircleCollider2D>();
         _impulseSource = GetComponentInChildren<CinemachineImpulseSource>();
@@ -29,7 +31,7 @@ public class Bullet : MonoBehaviour, IPoolable
         SetRotation();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         float r = myCol.radius * Mathf.Abs(transform.lossyScale.x);
         Collider2D wall = Physics2D.OverlapCircle(transform.position, r, wallLayer);
@@ -59,16 +61,17 @@ public class Bullet : MonoBehaviour, IPoolable
         transform.position += (Vector3)(velocity * Time.deltaTime);
     }
     
-    void Bounce(Vector2 normal, Collider2D wall, Vector2 contactPoint)
+    protected virtual void Bounce(Vector2 normal, Collider2D wall, Vector2 contactPoint)
     {
         if (Vector2.Dot(velocity, normal) >= 0f)
             return;
+        player.PlayAllFeedBack();
         
         WallHitEffect effect = wall.GetComponentInParent<WallHitEffect>();
+        _impulseSource.GenerateImpulseWithVelocity(velocity * speed/2500f);
         if (effect != null)
         {
             effect.ShowHit(transform.position);
-            _impulseSource.GenerateImpulseWithVelocity(velocity * speed/2500f);
         }
         if (wall.TryGetComponent(out IDamageable damageable))
         {
