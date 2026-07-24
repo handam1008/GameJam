@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -263,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7360750e1f252d94bb3cb934031b5454
-      internalID: -219739003
+      spriteID: 9e4a18b788be2714784eba61ab07148e
+      internalID: -321519460
       vertices: []
       indices: 
       edges: []
@@ -273,7 +273,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3cd21ac6f78d8b24e9cc3877c065ad32
+    spriteID: c296ec878d0367f48ac23ed42a0821d2
     internalID: 0
     vertices: []
     indices: 
@@ -290,7 +290,7 @@ TextureImporter:
       GroundCrack_2: 5665025436290860748
       GroundCrack_3: -2259330620224730814
       GroundCrack_4: -9008520635612759998
-      GroundCrack_5: -219739003
+      GroundCrack_5: -321519460
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
