@@ -10,7 +10,7 @@ namespace _Work.PAP.Scripts.FeedbackSystem
         public override void CreateFeedBack()
         {
             EffectPlayer effectPlayer = PoolManager.Instance.Pop(effect.ItemName) as EffectPlayer;
-            effectPlayer?.SetPositionAndPlay(transform.position);
+            effectPlayer.SetPositionAndPlay(transform.position);
         }
 
         public override void StopFeedBack()
