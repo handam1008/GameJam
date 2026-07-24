@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7130357709570671346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8788842041020949221}
+  - component: {fileID: 2364610045138089140}
+  - component: {fileID: 8425296452508334990}
+  m_Layer: 7
+  m_Name: CallAirPlaneFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8788842041020949221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130357709570671346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2772821636163737748}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2364610045138089140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130357709570671346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47165f49a48047c4bd96488dac230e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.FeedBack.FeedBackPlayer
+--- !u!114 &8425296452508334990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130357709570671346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1facfe1fd1a44b1db354f04b9a0d891e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.FeedbackSystem.PlayEffectFeedback
+  effect: {fileID: 11400000, guid: 4f314deb638e15644aa59b338c06d62d, type: 2}
+--- !u!1001 &5950897117890113927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4780459113479211284, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: OnDeadEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325988861992634123, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_Name
+      value: RunEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3712434764540857499, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8788842041020949221}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7325988861992634123, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3140490178311264810}
+  m_SourcePrefab: {fileID: 100100000, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+--- !u!4 &2772821636163737748 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8425918175005305107, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+  m_PrefabInstance: {fileID: 5950897117890113927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3980884551319058060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7325988861992634123, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
+  m_PrefabInstance: {fileID: 5950897117890113927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3140490178311264810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3980884551319058060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a13a1b3faac482b9d5f89cfe53bed09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAIS.RunEnemyAI
+  lerpScale: 0.1
+  flareEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2364610045138089140}
+        m_TargetAssemblyTypeName: _Work.RYU._01.Script.FeedBack.FeedBackPlayer, Assembly-CSharp
+        m_MethodName: PlayAllFeedBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
