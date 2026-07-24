@@ -18,10 +18,10 @@ namespace _Work.PAP.Scripts.Agent
             _renderer = GetComponent<SpriteRenderer>();
         }
 
-        public void StartTrail()
+        public void StartTrail(bool isColored = false)
         {
             _tokenSource = new CancellationTokenSource();
-            TrailAsync().Forget();
+            TrailAsync(isColored).Forget();
         }
 
         public void StopTrail()
@@ -44,25 +44,33 @@ namespace _Work.PAP.Scripts.Agent
             }
         }
 
-        private async UniTaskVoid TrailAsync()
+        private async UniTaskVoid TrailAsync(bool isColored)
         {
             while (true)
             {
-                SpawnGhost();
+                SpawnGhost(isColored);
                 await UniTask.Delay(TimeSpan.FromSeconds(spawnInterval),cancellationToken: _tokenSource.Token);
             }
         }
 
-        public void SpawnGhost()
+        public void SpawnGhost(bool isColored)
         {
             GameObject go = new GameObject("Trail");
             SpriteRenderer spriteRenderer = go.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = _renderer.sprite;
-            spriteRenderer.color = new Color(1,1,1,0.6f);
+            if (isColored)
+            {
+                spriteRenderer.color = new Color(0f,1f,0f,0.7f);
+                spriteRenderer.DOColor(new Color(1f, 0f, 0f,0.7f), 0.5f).OnComplete(() => Destroy(go));
+            }
+            else
+            {
+                spriteRenderer.color = new Color(1,1,1,0.6f);
+                spriteRenderer.DOFade(0f, 0.5f).OnComplete(() => Destroy(go));
+            }
             spriteRenderer.sortingLayerName = "Trail";
             go.transform.SetPositionAndRotation(transform.position,transform.rotation);
             go.transform.localScale = transform.localScale;
-            spriteRenderer.DOFade(0f, 0.5f).OnComplete(() => Destroy(go));
         }
     }
 }

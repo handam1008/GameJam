@@ -51,6 +51,7 @@ namespace _Work.PAP.Scripts.Enemy
             {
                 lastAttackTime = Time.time + attackCooldown;
                 RaycastHit2D[] hits = new RaycastHit2D[1];
+                
                 Physics2D.CircleCast(transform.position + transform.right * attackOrigin,
                     attackRadius, Vector2.zero, whatIsTarget, hits);
                 foreach (RaycastHit2D hit in hits)

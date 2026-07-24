@@ -10,7 +10,6 @@ namespace _Work.RYU._01.Script.Item
 
         public override void Use(GameObject target)
         {
-            //임태헌 잔상처리해
             target.TryGetComponent(out SlowMode slow);
             slow?.Activate(duration);
         }

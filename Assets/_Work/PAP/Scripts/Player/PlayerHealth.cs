@@ -13,15 +13,18 @@ namespace _Work.PAP.Scripts.Player
         AgentMovement AgentMovement;
         ShieldMode ShieldMode;
         [SerializeField] private int Health = 3;
+        private int maxHealth;
 
         public event Action OnDeath;
         public UnityEvent OnHitEvent;
         public UnityEvent OnHitEndEvent;
+        public UnityEvent OnHealEvent;
 
         public bool IsDead => Health <= 0;
 
         private void Awake()
         {
+            maxHealth = Health;
             AgentMovement = GetComponent<AgentMovement>();
             ShieldMode = GetComponent<ShieldMode>();
         }
@@ -61,8 +64,8 @@ namespace _Work.PAP.Scripts.Player
 
         public void TakeHeal(int amount)
         {
-            if (Health >= 3) return;
-            
+            if (Health >= maxHealth) return;
+            OnHealEvent?.Invoke();
             Health += amount;
         }
 
