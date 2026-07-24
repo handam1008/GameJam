@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a0ae70c67e22543b8f560445c14185, type: 3}
+  m_Name: CatItem
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.CatItem
+  icon: {fileID: 3267720713543008788, guid: 3516b44e1a214544a860faafe22b5fd1, type: 3}
+  description: 
+  bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
+  bulletCount: 10
+  spawnRadius: 1
