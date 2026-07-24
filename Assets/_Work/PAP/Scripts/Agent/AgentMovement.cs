@@ -26,8 +26,9 @@ namespace _Work.PAP.Scripts.Agent
 
         private void FixedUpdate()
         {
-            if (!CanMove) return;
             _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed, slipping * 0.1f);
+            RotateCharacter();
+            if (!CanMove) return;
             _rb.linearVelocity = _currentDirection;
         }
         public void ApplyVelocity(Vector3 velocity, ForceMode2D forceMode = ForceMode2D.Impulse)
@@ -54,6 +55,13 @@ namespace _Work.PAP.Scripts.Agent
         public IEnumerator SpeedTimer()
         {
             yield return new WaitForSeconds(0.5f);
+        }
+
+        private void RotateCharacter()
+        {
+            float angle = Mathf.Atan2(_currentDirection.y, _currentDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(0, 0, angle),slipping * 0.1f);
+            _rb.rotation = angle;
         }
     }
 }
