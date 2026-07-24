@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c32755cef4f784ab6582bd331841f7, type: 3}
-  m_Name: SniperShot
+  m_Name: Explosion
   m_EditorClassIdentifier: SoundManager.runtime::csiimnida.CSILib.SoundManager.RunTime.SoundSo
-  soundName: SniperShot
+  soundName: Explosion
   soundType: 1
-  clip: {fileID: 8300000, guid: 52efff17a6927034fa3e7da029dbc434, type: 3}
+  clip: {fileID: 8300000, guid: ef6c808cb96969744a4aa97c89429b1c, type: 3}
   loop: 0
   Priority: 128
-  volume: 0.3
-  pitch: 1.0677078
+  volume: 0.5
+  pitch: 1
   stereoPan: 0
   SpatialBlend: 0
-  RandomPitch: 1
-  MinPitch: 0.9
-  MaxPitch: 1.1
+  RandomPitch: 0
+  MinPitch: 0.95
+  MaxPitch: 1.05

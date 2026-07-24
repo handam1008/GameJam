@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c32755cef4f784ab6582bd331841f7, type: 3}
-  m_Name: SniperShot
+  m_Name: Crack
   m_EditorClassIdentifier: SoundManager.runtime::csiimnida.CSILib.SoundManager.RunTime.SoundSo
-  soundName: SniperShot
+  soundName: Crack
   soundType: 1
-  clip: {fileID: 8300000, guid: 52efff17a6927034fa3e7da029dbc434, type: 3}
+  clip: {fileID: 8300000, guid: f2e55b32864bf0544bb7dba72612e138, type: 3}
   loop: 0
   Priority: 128
-  volume: 0.3
-  pitch: 1.0677078
+  volume: 0.4
+  pitch: 1
   stereoPan: 0
   SpatialBlend: 0
   RandomPitch: 1

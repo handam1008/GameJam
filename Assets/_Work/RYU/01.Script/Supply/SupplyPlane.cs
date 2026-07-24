@@ -1,4 +1,5 @@
 using System;
+using csiimnida.CSILib.SoundManager.RunTime;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -99,6 +100,7 @@ public class SupplyPlane : MonoBehaviour
             // 지점을 지나치는 순간 한 번만 신호를 보낸다
             if (!dropped && Vector2.Dot(target - (Vector2)transform.position, flyDir) <= 0f)
             {
+                SoundManager.Instance.PlaySound("Fall");
                 for (int i = 0; i < currentCount; i++)
                 {
                     dropped = true;

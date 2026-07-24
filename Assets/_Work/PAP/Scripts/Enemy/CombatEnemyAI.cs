@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using _Work.PAP.Scripts.Agent;
 using _Work.PAP.Scripts.Player;
+using csiimnida.CSILib.SoundManager.RunTime;
 using RYU.Combat;
 using Systems;
 using Unity.VisualScripting;
@@ -20,6 +21,7 @@ namespace _Work.PAP.Scripts.Enemy
         [SerializeField] private float attackCooldown = 2f;
         [SerializeField] private ContactFilter2D whatIsTarget;
         [SerializeField] private AgentAnimator animator;
+        [SerializeField] private SoundSo targetSound;
 
         private float lastAttackTime;
         private PlayerController player;
@@ -76,6 +78,8 @@ namespace _Work.PAP.Scripts.Enemy
             {
                 attacking = true;
                 lastAttackTime = Time.time + attackCooldown;
+                if (targetSound != null)
+                    SoundManager.Instance.PlaySound(targetSound.soundName);
                 animator.SetBool(ATTACKING_HASHDATA, true);
                 animator.OnAnimationEvent += HandleDamageCast;
                 animator.OnAnimationEndEvent += HandleAnimationEnd;

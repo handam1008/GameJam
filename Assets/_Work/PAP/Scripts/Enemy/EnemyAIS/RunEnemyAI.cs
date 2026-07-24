@@ -54,7 +54,7 @@ namespace _Work.PAP.Scripts.Enemy.EnemyAIS
             {
                 canUseFlare = false;
                 flareEvent?.Invoke();
-                GameManager.Instance.CallPlane();
+                Systems.GameManager.Instance.CallPlane();
             }
         }
 
