@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a7373afc8f4e2b81d88c807af0ca83, type: 3}
   m_Name: ShieldItem
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.ShieldItem
-  icon: {fileID: 0}
+  icon: {fileID: -6909766172045017399, guid: 3029f0bd2ef4ded4ba06a17276708b7a, type: 3}
   description: 
   duration: 4

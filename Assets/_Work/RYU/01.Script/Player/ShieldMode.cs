@@ -1,70 +1,51 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class ShieldMode : MonoBehaviour
+namespace _Work.RYU._01.Script.Player
 {
-   
-    [SerializeField] private GameObject shieldVisual;
-    
-    [SerializeField] private float popTime = 0.25f;
-    
-    [SerializeField] private float pulse = 0.08f;
-
-    public bool IsShielded { get; private set; }
-
-    private Vector3 normalScale;
-    private float timer;
-
-    private void Awake()
+    public class ShieldMode : TimedMode
     {
-        normalScale = shieldVisual.transform.localScale;
-        shieldVisual.SetActive(false);
-    }
+        // 내가 만든 실드 오브젝트 (파란 막). 여기에 끌어다 넣는다
+        [SerializeField] private GameObject shieldVisual;
 
-    private void Update()
-    {
-        if (!IsShielded)
-            return;
+        // 막을 때 반짝이는 세기 (0.2 = 20% 커졌다 돌아옴)
+        [SerializeField] private float blinkScale = 0.2f;
 
-        timer -= Time.deltaTime;
-        if (timer > 0f)
-            return;
+        // 실드가 켜져 있으면 피해를 막는다
+        public bool IsShielded => IsActive;
 
-       
-        IsShielded = false;
-        shieldVisual.transform.DOKill();
-        shieldVisual.transform.DOScale(Vector3.zero, popTime)
-            .SetEase(Ease.InBack)
-            .OnComplete(() => shieldVisual.SetActive(false))
-            .SetLink(shieldVisual);
-    }
+        private Vector3 normalScale;
 
-    public void Activate(float duration)
-    {
-        timer = duration;
+        private void Awake()
+        {
+            if (shieldVisual == null)
+                return;
 
-       
-        if (IsShielded)
-            return;
+            normalScale = shieldVisual.transform.localScale;
+            shieldVisual.SetActive(false);
+        }
 
-        IsShielded = true;
-        shieldVisual.SetActive(true);
+        protected override void OnEnter()
+        {
+            if (shieldVisual != null)
+                shieldVisual.SetActive(true);
+        }
 
-        
-        shieldVisual.transform.localScale = Vector3.zero;
-        shieldVisual.transform.DOScale(normalScale, popTime)
-            .SetEase(Ease.OutBack)
-            .OnComplete(StartPulse)
-            .SetLink(shieldVisual);
-    }
+        protected override void OnExit()
+        {
+            if (shieldVisual != null)
+                shieldVisual.SetActive(false);
+        }
 
-    private void StartPulse()
-    {
-        if (pulse <= 0f)
-            return;
+        // 피해를 막은 순간 실드가 반짝한다. PlayerHealth가 불러준다
+        public void Blink()
+        {
+            if (shieldVisual == null)
+                return;
 
-        shieldVisual.transform.DOScale(normalScale * (1f + pulse), 0.5f)
-            .SetLoops(-1, LoopType.Yoyo)
-            .SetLink(shieldVisual);
+            shieldVisual.transform.DOComplete();
+            shieldVisual.transform.DOPunchScale(normalScale * blinkScale, 0.25f, 6, 0.5f)
+                .SetLink(shieldVisual);
+        }
     }
 }

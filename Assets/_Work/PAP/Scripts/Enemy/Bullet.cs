@@ -47,7 +47,8 @@ public class Bullet : MonoBehaviour, IPoolable
         }
         else
         {
-            float move = velocity.magnitude * Time.deltaTime;
+            // Slow 아이템이 걸리면 BulletTime.Scale이 낮아져 이동 거리도 줄어든다
+            float move = velocity.magnitude * BulletTime.Scale * Time.deltaTime;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, velocity.normalized, move + 0.05f, wallLayer);
 
             if (hit.collider != null)
@@ -57,8 +58,8 @@ public class Bullet : MonoBehaviour, IPoolable
             }
         }
 
-        if (this == null) return; 
-        transform.position += (Vector3)(velocity * Time.deltaTime);
+        if (this == null) return;
+        transform.position += (Vector3)(velocity * BulletTime.Scale * Time.deltaTime);
     }
     
     protected virtual void Bounce(Vector2 normal, Collider2D wall, Vector2 contactPoint)
@@ -99,6 +100,13 @@ public class Bullet : MonoBehaviour, IPoolable
 
         velocity = Vector2.ClampMagnitude(reflected, maxSpeed);
 
+        SetRotation();
+    }
+
+    // 온 방향 반대로 되돌려보낸다. 반사 포탑이 부른다
+    public void Reflect()
+    {
+        velocity = -velocity;
         SetRotation();
     }
 

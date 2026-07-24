@@ -48,13 +48,14 @@ namespace _Work.PAP.Scripts.Agent
         public void PlusSpeed(float amount)
         {
             speed += amount;
-            StartCoroutine(SpeedTimer());
-            speed -= amount;
+            StartCoroutine(SpeedTimer(amount));
+            
         }
 
-        public IEnumerator SpeedTimer()
+        public IEnumerator SpeedTimer(float amount)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
+            speed -= amount;
         }
 
         private void RotateCharacter()
