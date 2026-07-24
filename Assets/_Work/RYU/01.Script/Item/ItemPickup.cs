@@ -4,8 +4,6 @@ public class ItemPickup : MonoBehaviour
 {
 
     [SerializeField] private AbstractItem item;
-
-    // 이 시간 안에 안 주우면 사라진다
     [SerializeField] private float lifeTime = 10f;
 
     private void Start()
@@ -22,7 +20,7 @@ public class ItemPickup : MonoBehaviour
         if (inventory == null)
             return;
 
-        // 슬롯이 꽉 차 있으면 줍지 않고 바닥에 남는다
+       
         if (!inventory.TryPickUp(item))
             return;
 

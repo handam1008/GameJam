@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632834d65f814fe7a9f10c87d03a0209, type: 3}
+  m_Name: LandMineItem
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.LandMineItem
+  icon: {fileID: -396309887504945837, guid: 36fb7b0244966bc44a3da0ce452e1dcb, type: 3}
+  description: 
+  minePrefab: {fileID: 1262316937270632193, guid: 211aa4f0dcf9f7a49b31f6479389528f, type: 3}
+  forwardDistance: 1.5
