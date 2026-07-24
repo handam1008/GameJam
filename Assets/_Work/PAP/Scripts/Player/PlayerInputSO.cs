@@ -11,6 +11,7 @@ namespace _Work.PAP.Scripts
 
         public Vector2 MovementInput { get; private set; }
         public event Action OnDashKeyPressed;
+        public event Action OnMouseKeyPressed;
         private void OnEnable()
         {
             if (_controls == null)
@@ -37,6 +38,11 @@ namespace _Work.PAP.Scripts
         public void OnDash(InputAction.CallbackContext context)
         {
             if (context.performed) OnDashKeyPressed?.Invoke();
+        }
+
+        public void OnMouse(InputAction.CallbackContext context)
+        {
+            if (context.performed) OnMouseKeyPressed?.Invoke();
         }
     }
 }
