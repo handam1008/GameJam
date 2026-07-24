@@ -63,21 +63,26 @@ public class Bullet : MonoBehaviour, IPoolable
     
     protected virtual void Bounce(Vector2 normal, Collider2D wall, Vector2 contactPoint)
     {
-        if (Vector2.Dot(velocity, normal) >= 0f)
-            return;
-        player.PlayAllFeedBack();
-        
-        WallHitEffect effect = wall.GetComponentInParent<WallHitEffect>();
-        _impulseSource.GenerateImpulseWithVelocity(velocity * speed/2500f);
-        if (effect != null)
+        if (wall.CompareTag("Going"))
         {
-            effect.ShowHit(transform.position);
+            transform.position = -transform.position + (Vector3)(normal * 0.05f);
+            return;
         }
+        _impulseSource.GenerateImpulseWithVelocity(velocity * speed/5000f);
+        player.PlayAllFeedBack();
         if (wall.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(velocity);
             PoolManager.Instance.Push(this);
             return;
+        }
+        if (Vector2.Dot(velocity, normal) >= 0f)
+            return;
+        
+        WallHitEffect effect = wall.GetComponentInParent<WallHitEffect>();
+        if (effect != null)
+        {
+            effect.ShowHit(transform.position);
         }
 
         if (++currentBounces > maxBounces)

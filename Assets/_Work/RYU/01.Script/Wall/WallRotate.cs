@@ -14,13 +14,15 @@ public class WallRotate : MonoBehaviour
 
     private Camera cam;
     private float angleVelocity;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
         cam = Camera.main;
+        rb = rotateTarget.GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 mouse = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
@@ -29,7 +31,7 @@ public class WallRotate : MonoBehaviour
 
         float angle = Mathf.SmoothDampAngle(rotateTarget.eulerAngles.z, target, ref angleVelocity, smoothTime, rotateSpeed);
         AngularSpeed = angleVelocity;
-        rotateTarget.rotation = Quaternion.Euler(0f, 0f, angle);
+        rb.MoveRotation(Quaternion.Euler(0f, 0f, angle));
     }
 
     /// <summary>

@@ -10,18 +10,29 @@ namespace _Work.PAP.Scripts.Enemy
     public class EnemyAI : MonoBehaviour
     {
         [SerializeField] private List<EnemyAttackPatternSO> patterns;
+        [SerializeField] private float lerpScale = 0.1f;
+        [SerializeField] private Transform gunTrm;
+        [SerializeField] private float kickDistance = 0.1f;
+        [SerializeField] private float gunRecovery = 12f;
         
         private float lastFireTime;
         private PlayerController player;
         private EnemyAttackPatternSO currentPattern;
         private Rigidbody2D _rb;
         private float lastPatrolTime;
+        private Vector3 _originalLocalPosition;
+        private float _originalLocalAngleZ;
+        private bool canSee;
 
         private void Awake()
         {
+
+            _rb = GetComponent<Rigidbody2D>();
             currentPattern = patterns[Random.Range(0, patterns.Count)];
             lastPatrolTime = Time.time + 1.5f;
-            _rb = GetComponent<Rigidbody2D>();
+            lastFireTime = lastPatrolTime + 0.5f;
+            _originalLocalPosition = gunTrm.localPosition;
+            _originalLocalAngleZ = gunTrm.localEulerAngles.z;
         }
 
         private void Start()
@@ -31,19 +42,41 @@ namespace _Work.PAP.Scripts.Enemy
 
         private void Update()
         {
+            SeePlayer();
+            GunKickBack();
             SpawnBullet();
             if (Time.time > lastPatrolTime)
             {
+                canSee = true;
                 lastPatrolTime = Time.time + Random.Range(0, 1.5f);
                 _rb.linearVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
             }
         }
 
+        private void SeePlayer()
+        {
+            if (!canSee) return;
+            Vector2 direction = player.transform.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, angle), lerpScale);
+        }
+
+        private void GunKickBack()
+        {
+            gunTrm.localPosition = Vector3.Lerp(
+                gunTrm.localPosition, _originalLocalPosition,gunRecovery * Time.deltaTime);
+            
+            float currentZ = gunTrm.localEulerAngles.z;
+            float targetZ = Mathf.LerpAngle(currentZ, _originalLocalAngleZ, gunRecovery * Time.deltaTime);
+            gunTrm.localEulerAngles = new Vector3(0, 0, targetZ);
+        }
+
         private void SpawnBullet()
         {
             if (Time.time < lastFireTime) return;
+            FireAnimation();
             lastFireTime = Time.time + currentPattern.cooldown;
-            Vector2 baseDir = (player.transform.position + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.5f,0.5f),0) - transform.position).normalized;
+            Vector2 baseDir = (player.transform.position + new Vector3(Random.Range(-1.5f,1.5f),Random.Range(-1.5f,1.5f),0) - transform.position).normalized;
             float baseAngle = Mathf.Atan2(baseDir.y, baseDir.x) * Mathf.Rad2Deg;
 
             int count = currentPattern.bulletCount;
@@ -61,6 +94,11 @@ namespace _Work.PAP.Scripts.Enemy
                 bullet.GameObject.GetComponent<Bullet>().Init(dir);
             }
             currentPattern = patterns[Random.Range(0, patterns.Count)];
+        }
+
+        private void FireAnimation()
+        {
+            gunTrm.localPosition -= new Vector3(kickDistance, 0, 0);
         }
     }
 }
