@@ -25,7 +25,14 @@ public class SupplyBox : MonoBehaviour, IDamageable
         {
             GameObject prefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
             if (prefab != null)
-                Instantiate(prefab, transform.position, Quaternion.identity);
+            {
+                GameObject item = Instantiate(prefab, transform.position, Quaternion.identity);
+
+                // 맵(RotatePlatform)의 자식으로 붙여서 아이템도 맵 따라 돌게 한다
+                GameObject floor = GameObject.FindWithTag("RotatePlatform");
+                if (floor != null)
+                    item.transform.SetParent(floor.transform, true);
+            }
         }
 
         feedBackPlayer.PlayAllFeedBack();

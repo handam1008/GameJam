@@ -549,6 +549,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1449335792604934576, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: shieldVisual
+      value: 
+      objectReference: {fileID: 450045688}
     - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -629,6 +633,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c959cb5f898b442a3598737b7b844a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemInventory
+--- !u!1 &450045688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7636344933052053409, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+  m_PrefabInstance: {fileID: 450045686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &581250076
 GameObject:
   m_ObjectHideFlags: 0
