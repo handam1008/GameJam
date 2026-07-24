@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc64d8696e2d4803891bf90ad8c73fdb, type: 3}
+  m_Name: AngerItem
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.AngerItem
+  icon: {fileID: -7690792068403419055, guid: 28adb9ece6664c64facc9b84cb197cd8, type: 3}
+  description: 
+  rageIcon: {fileID: 5056628667063805970, guid: 032bbaf06fd1c3341b0a234b505081bc, type: 3}

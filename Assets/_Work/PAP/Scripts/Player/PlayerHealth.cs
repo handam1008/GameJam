@@ -22,6 +22,9 @@ namespace _Work.PAP.Scripts.Player
 
         public bool IsDead => Health <= 0;
 
+        // 패시브 아이템 등이 현재 체력을 읽는다
+        public int CurrentHealth => Health;
+
         private void Awake()
         {
             maxHealth = Health;

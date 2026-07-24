@@ -1,21 +1,37 @@
+using _Work.RYU._01.Script.Item;
+using _Work.RYU._01.Script.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
 // Q/E 슬롯의 아이콘을 인벤토리 상태에 맞춰 갱신한다.
-// 슬롯이 바뀔 때마다(OnChanged) 아이콘을 새 아이템 그림으로 바꾸고,
-// 비면 아이콘을 숨긴다.
+// 분노 아이템은 발동 중(체력 1)이면 빨간 아이콘으로 바뀐다.
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private ItemInventory inventory;
+    [SerializeField] private LastStand lastStand;
 
     // 각 슬롯의 Icon 이미지 (Canvas/Q/Icon, Canvas/E/Icon)
     [SerializeField] private Image qIcon;
     [SerializeField] private Image eIcon;
 
+    // 각 슬롯의 쿨타임/지속시간 표시 (Image Type = Filled). 효과 진행도만큼 채워진다
+    [SerializeField] private Image qFill;
+    [SerializeField] private Image eFill;
+
+    private void Awake()
+    {
+        if (lastStand == null)
+            lastStand = FindAnyObjectByType<LastStand>();
+    }
+
     private void OnEnable()
     {
         if (inventory != null)
             inventory.OnChanged += Refresh;
+
+        // 분노 발동/해제 시에도 아이콘을 다시 그린다
+        if (lastStand != null)
+            lastStand.OnRageChanged += OnRage;
 
         Refresh();
     }
@@ -24,6 +40,34 @@ public class InventoryUI : MonoBehaviour
     {
         if (inventory != null)
             inventory.OnChanged -= Refresh;
+
+        if (lastStand != null)
+            lastStand.OnRageChanged -= OnRage;
+    }
+
+    private void OnRage(bool raging) => Refresh();
+
+    // 쿨타임/지속시간은 매 프레임 변하니 폴링해서 채운다
+    private void Update()
+    {
+        if (inventory == null)
+            return;
+
+        SetFill(qFill, inventory.QItem);
+        SetFill(eFill, inventory.EItem);
+    }
+
+    private void SetFill(Image fill, AbstractItem item)
+    {
+        if (fill == null)
+            return;
+
+        float ratio = item != null ? item.CooldownRatio01(inventory.User) : 0f;
+        fill.fillAmount = ratio;
+
+        // 임시 로그: 아이템 있고 진행도 0 넘을 때만
+        if (item != null && ratio > 0f)
+            Debug.Log($"[슬롯Fill] {item.name} 진행도={ratio:F2}, Image타입={fill.type}", fill);
     }
 
     private void Refresh()
@@ -35,15 +79,25 @@ public class InventoryUI : MonoBehaviour
         Show(eIcon, inventory.EItem);
     }
 
-    // 아이템이 있으면 그 아이콘을 보여주고, 없으면 숨긴다
     private void Show(Image icon, AbstractItem item)
     {
         if (icon == null)
             return;
 
-        if (item != null && item.icon != null)
+        if (item == null)
         {
-            icon.sprite = item.icon;
+            icon.enabled = false;
+            return;
+        }
+
+        // 분노 아이템이고 발동 중이면 빨간 아이콘, 아니면 평소 아이콘
+        Sprite sprite = item.icon;
+        if (item is AngerItem anger && lastStand != null && lastStand.IsRaging && anger.rageIcon != null)
+            sprite = anger.rageIcon;
+
+        if (sprite != null)
+        {
+            icon.sprite = sprite;
             icon.enabled = true;
         }
         else

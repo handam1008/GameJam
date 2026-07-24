@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 28adb9ece6664c64facc9b84cb197cd8
+guid: da901fc81a8ce0d449888682f937c845
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7690792068403419055
-    second: image-removebg-preview (13)_0
+      213: -7007202859289600984
+    second: imanjhges_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: image-removebg-preview (13)_0
+      name: imanjhges_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 356
-        height: 365
+        width: 142
+        height: 190
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1582c618c51d44590800000000000000
-      internalID: -7690792068403419055
+      spriteID: 82c11fe002a61ce90800000000000000
+      internalID: -7007202859289600984
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      image-removebg-preview (13)_0: -7690792068403419055
+      imanjhges_0: -7007202859289600984
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -9,10 +9,15 @@ namespace _Work.RYU._01.Script.Player
         public bool IsActive { get; private set; }
 
         private float timer;
+        private float duration;
+
+        // 남은 지속시간 비율 0~1. 슬롯 UI용
+        public float RemainingRatio => IsActive && duration > 0f ? Mathf.Clamp01(timer / duration) : 0f;
 
         public void Activate(float duration)
         {
             timer = duration;
+            this.duration = duration;
 
             // 이미 켜져 있으면 시간만 연장한다
             if (IsActive)

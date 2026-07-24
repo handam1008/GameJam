@@ -17,9 +17,34 @@ namespace _Work.PAP.Scripts.Agent
         [SerializeField] private float slipping = 1f;
         [SerializeField] private Rigidbody2D parentRb;
 
-        // 방패 등에서 일시적으로 속도를 곱한다. 1이면 평소
-        private float speedMultiplier = 1f;
-        public void SetSpeedMultiplier(float multiplier) => speedMultiplier = multiplier;
+        // 여러 곳(방패/분노/신발)이 각자 배율을 등록하면 전부 곱해진다.
+        // 소스별로 저장해서 서로 안 덮어쓴다
+        private readonly System.Collections.Generic.Dictionary<UnityEngine.Object, float> _speedMultipliers
+            = new System.Collections.Generic.Dictionary<UnityEngine.Object, float>();
+
+        // source가 배율을 등록/갱신한다
+        public void SetSpeedMultiplier(UnityEngine.Object source, float multiplier)
+        {
+            _speedMultipliers[source] = multiplier;
+        }
+
+        // source의 배율을 뗀다 (효과 끝날 때)
+        public void ClearSpeedMultiplier(UnityEngine.Object source)
+        {
+            _speedMultipliers.Remove(source);
+        }
+
+        // 등록된 배율을 다 곱한 값
+        private float SpeedMultiplier
+        {
+            get
+            {
+                float m = 1f;
+                foreach (float v in _speedMultipliers.Values)
+                    m *= v;
+                return m;
+            }
+        }
 
         public bool CanMove { get; set; } = true;
 
@@ -41,7 +66,7 @@ namespace _Work.PAP.Scripts.Agent
 
         private void FixedUpdate()
         {
-            _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed * speedMultiplier, slipping * 0.1f);
+            _currentDirection = Vector3.Lerp(_currentDirection, MoveDirection * speed * SpeedMultiplier, slipping * 0.1f);
             RotateCharacter();
             if (!CanMove) return;
 

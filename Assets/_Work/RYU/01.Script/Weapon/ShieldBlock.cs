@@ -104,7 +104,7 @@ public class ShieldBlock : MonoBehaviour
         IsBlocking = true;
 
         if (movement != null)
-            movement.SetSpeedMultiplier(slowFactor);
+            movement.SetSpeedMultiplier(this, slowFactor);
 
         if (shieldVisual != null)
             shieldVisual.SetActive(true);
@@ -116,7 +116,7 @@ public class ShieldBlock : MonoBehaviour
         cooldown = recoolTime;   // 내리면 재사용 쿨타임 시작
 
         if (movement != null)
-            movement.SetSpeedMultiplier(1f);
+            movement.ClearSpeedMultiplier(this);
 
         if (shieldVisual != null)
             shieldVisual.SetActive(false);

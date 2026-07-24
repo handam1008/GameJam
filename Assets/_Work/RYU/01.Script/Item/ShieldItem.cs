@@ -13,5 +13,15 @@ namespace _Work.RYU._01.Script.Item
             target.TryGetComponent(out ShieldMode shield);
             shield?.Activate(duration);
         }
+
+        // 지속 동안 슬롯에 남아 남은 시간이 표시된다
+        public override bool KeepAfterUse(GameObject user) => true;
+
+        public override float CooldownRatio01(GameObject user)
+            => user.TryGetComponent(out ShieldMode shield) ? shield.RemainingRatio : 0f;
+
+        // 실드가 꺼지면(IsActive false) 효과 끝
+        public override bool IsFinished(GameObject user)
+            => !user.TryGetComponent(out ShieldMode shield) || !shield.IsActive;
     }
 }
