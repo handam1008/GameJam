@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27b95d8917146e6978173050e340dea, type: 3}
   m_Name: MushRoom
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.MushRoom
-  icon: {fileID: 1635044370023475632, guid: 46f0c1b72ad6d63489e182491f32ec09, type: 3}
+  icon: {fileID: 21300000, guid: 0af6e8b70817b0f40ae9444416afaae3, type: 3}
   description: 
   useSound: Mushroom
   duration: 5

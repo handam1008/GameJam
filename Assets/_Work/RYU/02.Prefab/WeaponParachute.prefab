@@ -316,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SupplyBox
   itemPrefabs:
   - {fileID: 7232969242382078541, guid: 6a5ec1f8ac7aa124a81b4472c64e6b17, type: 3}
+  - {fileID: 549456554722546537, guid: e3088b89a27e65642939298bfed20ef2, type: 3}
   feedBackPlayer: {fileID: 69409509884221098}
 --- !u!61 &3054721768356452362
 BoxCollider2D:

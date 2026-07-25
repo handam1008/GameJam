@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc64d8696e2d4803891bf90ad8c73fdb, type: 3}
   m_Name: AngerItem
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.AngerItem
-  icon: {fileID: -7690792068403419055, guid: 28adb9ece6664c64facc9b84cb197cd8, type: 3}
+  icon: {fileID: 21300000, guid: b33a493b315c2214890c6464b8a809cc, type: 3}
   description: 
-  rageIcon: {fileID: 5056628667063805970, guid: 032bbaf06fd1c3341b0a234b505081bc, type: 3}
+  useSound: 
+  rageIcon: {fileID: 21300000, guid: 64e94dbed8f72254b9c0a8633200ec4d, type: 3}
