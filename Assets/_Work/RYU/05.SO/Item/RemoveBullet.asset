@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48fd2077b9d04a3993b3b10b7b76130d, type: 3}
   m_Name: RemoveBullet
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.RemoveBulletItem
-  icon: {fileID: 759507939251695807, guid: b109a778a6e883b4d9e6a930cc51ff38, type: 3}
+  icon: {fileID: 21300000, guid: 62f92b12ce368de4f9c47c6fbbba0aa3, type: 3}
   description: 
   useSound: RemoveBullet

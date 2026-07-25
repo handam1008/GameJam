@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using _Work.PAP.Scripts.Agent;
+using csiimnida.CSILib.SoundManager.RunTime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +13,12 @@ public class ShieldBlock : MonoBehaviour
     [SerializeField] private float blockRadius = 1.5f;
     // 정면 각도(도). 180이면 앞쪽 절반 다 막는다
     [SerializeField] private float blockAngle = 180f;
+    // 같은 총알을 이 시간 안에는 다시 튕기지 않는다. 매 프레임 재반사·연사음 방지
+    [SerializeField] private float sameBulletCooldown = 0.3f;
+
+    [Header("사운드")]
+    // 총알을 막을 때마다 재생할 사운드 이름. 비우면 소리 안 남
+    [SerializeField] private string blockSound = "Bounce";
 
     [Header("게이지")]
     // 총 사용 가능 시간(초). 누르면 줄고 0이 되면 방패가 사라진다
@@ -44,6 +52,9 @@ public class ShieldBlock : MonoBehaviour
 
     private float gauge;      // 남은 사용 시간
     private float cooldown;   // 남은 재사용 쿨타임
+
+    // 최근에 튕긴 총알과 그 시각. 쿨다운 안이면 다시 안 튕긴다
+    private readonly Dictionary<Bullet, float> lastReflectTime = new Dictionary<Bullet, float>();
 
     private void Awake()
     {
@@ -157,7 +168,16 @@ public class ShieldBlock : MonoBehaviour
             if (angle > blockAngle * 0.5f)
                 continue;
 
+            // 방금 튕긴 총알이면 쿨다운 동안 건너뛴다. 매 프레임 재반사·연사음 방지
+            if (lastReflectTime.TryGetValue(bullet, out float t) && Time.time - t < sameBulletCooldown)
+                continue;
+
             bullet.Reflect();
+            lastReflectTime[bullet] = Time.time;
+
+            // 총알을 막을 때마다 사운드 재생
+            if (!string.IsNullOrEmpty(blockSound))
+                SoundManager.Instance.PlaySound(blockSound);
         }
     }
 
