@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using _Work.RYU._01.Script.FeedBack;
+using csiimnida.CSILib.SoundManager.RunTime;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -61,6 +62,7 @@ namespace _Work.PAP.Scripts.Agent
             {
                 _active = false;
                 playerObject.layer = LayerMask.NameToLayer("Default");
+                SoundManager.Instance.PlaySound("Whoosh");
                 CoolDownAsync().Forget();
                 // _feedbackPlayer.PlayAllFeedback();
                 player.PlayAllFeedBack();
