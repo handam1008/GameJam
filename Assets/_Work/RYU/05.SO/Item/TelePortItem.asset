@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd3f2a3f7ccd53479b004602bf2c1c4, type: 3}
   m_Name: TelePortItem
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.TeleportItem
-  icon: {fileID: 21300000, guid: 875719b117c21944e94ff29aed963a32, type: 3}
+  icon: {fileID: -9059596547335465990, guid: 96e975c944aa2014dba5d446bbe4bd55, type: 3}
   description: 
   useSound: Teleport
   markPrefab: {fileID: 3082304287632840717, guid: c2654934e1fc96b48a423e8c74a4e759, type: 3}
