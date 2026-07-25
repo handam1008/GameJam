@@ -1264,6 +1264,7 @@ MonoBehaviour:
   - {fileID: -321519460, guid: 664cb81846bef014e8d3ca5919e43312, type: 3}
   CameraTrm: {fileID: 189972297}
   group: {fileID: 808408350}
+  targetObject: {fileID: 0}
 --- !u!50 &527124604
 Rigidbody2D:
   serializedVersion: 5
@@ -1650,6 +1651,8 @@ MonoBehaviour:
   eIcon: {fileID: 206535957}
   qFill: {fileID: 0}
   eFill: {fileID: 0}
+  qShake: {fileID: 0}
+  eShake: {fileID: 0}
 --- !u!114 &808408352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2988,8 +2991,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD29C\uD1A0\uB9AC\uC5BC \uB9CC\uB4E4\uAE30 \uADC0\uCC2E\uB124 \uB9AC\uC5BC\uB9AC\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8fc608e5ec6317448965ac16ad5c73c5, type: 2}
-  m_sharedMaterial: {fileID: 1418015448914087312, guid: 8fc608e5ec6317448965ac16ad5c73c5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 03e1d0c5107edcc4f93986e386fa2daf, type: 2}
+  m_sharedMaterial: {fileID: -3672134017634112776, guid: 03e1d0c5107edcc4f93986e386fa2daf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
