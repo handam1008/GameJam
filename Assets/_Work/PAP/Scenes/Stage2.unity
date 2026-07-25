@@ -1003,7 +1003,7 @@ PrefabInstance:
       objectReference: {fileID: 1148894053}
     - target: {fileID: 7269600066953680417, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
       propertyPath: targetScene
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7342223643074590541, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
       propertyPath: m_Name
@@ -3454,9 +3454,9 @@ MonoBehaviour:
   markerPrefab: {fileID: 2233981552564181189, guid: 17eb8a0ace5dd8b448986cf8ddeb7173, type: 3}
   markerHideDelay: 0.5
   markerPulse: 0.15
-  count: 3
+  count: 4
   dropPrefabs:
-  - {fileID: 1047259003018118981, guid: b04ab7d40caeef74799724476860d02e, type: 3}
+  - {fileID: 1047259003018118981, guid: 3e06feaaf5b7d5d469ecd5c053922064, type: 3}
 --- !u!212 &1115908672
 SpriteRenderer:
   serializedVersion: 2

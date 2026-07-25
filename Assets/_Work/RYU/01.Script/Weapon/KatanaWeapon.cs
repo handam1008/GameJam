@@ -1,3 +1,5 @@
+using Combat.Effects;
+using Systems;
 using UnityEngine;
 
 // 카타나 제로 스타일 무기. 좌클릭하면 마우스 방향 앞의 총알을 온 반대로 튕겨낸다.
@@ -11,11 +13,16 @@ public class KatanaWeapon : AbstractWeapon
     [SerializeField] private float slashOffset = 1f;
     // 정면 각도(도). 180이면 앞쪽 절반. 좁힐수록 마우스 방향만
     [SerializeField] private float slashAngle = 120f;
+    
+    [SerializeField] private PoolItemSO effectPrefab;
 
     public override void Fire(GameObject user, Vector3 origin, Vector2 direction)
     {
         // TODO(애니메이션): 여기서 카타나 휘두르는 애니메이션 재생 (친구가 붙일 예정)
         // 예) user.GetComponentInChildren<Animator>()?.SetTrigger("Slash");
+        EffectPlayer effect = PoolManager.Instance.Pop(effectPrefab.ItemName) as EffectPlayer;
+        effect.transform.rotation = Quaternion.LookRotation(direction);
+        effect.SetPositionAndPlay(user.transform.position);
 
         // 마우스 방향 앞을 중심으로 총알을 찾는다
         Vector2 center = (Vector2)origin + direction * slashOffset;
