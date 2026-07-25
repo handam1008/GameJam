@@ -12,6 +12,14 @@ public class ItemInventory : MonoBehaviour
     // 증폭 2번째 발동까지의 간격(초)
     [SerializeField] private float amplifyDelay = 0.5f;
 
+    [Header("줍기 팝업")]
+    // 아이템 주울 때 머리 위에 아이콘을 띄울 SpriteRenderer (플레이어 자식 HandRender). 평소엔 꺼둔다
+    [SerializeField] private SpriteRenderer headIcon;
+    // 아이콘이 떠 있는 시간(초)
+    [SerializeField] private float popupDuration = 1f;
+
+    private Coroutine popupRoutine;
+
     private AbstractItem qItem;
     private AbstractItem eItem;
 
@@ -33,6 +41,10 @@ public class ItemInventory : MonoBehaviour
     {
         if (user == null)
             user = gameObject;
+
+        // 머리 위 아이콘(빛 자식 포함)은 주울 때만 보이게 평소엔 통째로 꺼둔다
+        if (headIcon != null)
+            headIcon.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -61,6 +73,10 @@ public class ItemInventory : MonoBehaviour
 
         // 증폭이나 패시브는 자기 키로 발동 안 된다
         if (slot is AmplifyItem || slot.IsPassive)
+            return;
+
+        // 지금 못 쓰면(지속 버프가 켜져 있는 등) 아무것도 안 한다. 사운드·흔들림도 없음
+        if (!slot.CanUse(user))
             return;
 
         // 첫 발동
@@ -140,8 +156,34 @@ public class ItemInventory : MonoBehaviour
         if (item.IsPassive)
             item.Use(user);
 
+        // 줍는 순간 머리 위에 아이템 아이콘을 잠깐 띄운다
+        ShowPickupPopup(item.icon);
+
         OnChanged?.Invoke();
         return true;
+    }
+
+    // 머리 위 아이콘을 아이템 그림으로 켜고 popupDuration 뒤 다시 끈다
+    private void ShowPickupPopup(Sprite icon)
+    {
+        if (headIcon == null || icon == null)
+            return;
+
+        headIcon.sprite = icon;
+        headIcon.gameObject.SetActive(true);   // 빛 자식까지 같이 켜진다
+
+        // 연속으로 주우면 타이머를 새로 시작한다
+        if (popupRoutine != null)
+            StopCoroutine(popupRoutine);
+        popupRoutine = StartCoroutine(HidePopupAfter(popupDuration));
+    }
+
+    private IEnumerator HidePopupAfter(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (headIcon != null)
+            headIcon.gameObject.SetActive(false);   // 빛 자식까지 같이 꺼진다
+        popupRoutine = null;
     }
 
 }
