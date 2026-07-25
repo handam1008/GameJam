@@ -13,6 +13,7 @@ namespace _Work.PAP.Scripts.Systems
         [SerializeField] private List<Sprite> levelSprites;
         [SerializeField] private Transform CameraTrm;
         [SerializeField] private CanvasGroup group;
+        [SerializeField] private GameObject targetObject;
         private CinemachineImpulseSource impulser;
         private int currentIndex = 0;
 
@@ -36,8 +37,11 @@ namespace _Work.PAP.Scripts.Systems
                 SoundManager.Instance.PlaySound("Break");
                 _sr.sprite = levelSprites[currentIndex];
                 Time.timeScale = 0;
-                group.DOFade(0, 2f);
-                CameraTrm.DOMoveY(60f,4f).SetEase(Ease.InCubic).SetUpdate(true);
+                group.DOFade(0, 2f).SetUpdate(true);
+                CameraTrm.DOMoveY(60f,4f).SetEase(Ease.InCubic).SetUpdate(true).OnComplete(() =>
+                {
+                    targetObject.SetActive(true);
+                });
                 CameraTrm.DOShakeRotation(2f,Vector3.one).SetUpdate(true);
             }
         }

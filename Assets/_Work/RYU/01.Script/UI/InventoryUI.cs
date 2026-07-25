@@ -18,6 +18,10 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Image qFill;
     [SerializeField] private Image eFill;
 
+    // 아이템 사용 시 살짝 흔들 슬롯. 각 슬롯 루트에 UIShake를 붙여 연결
+    [SerializeField] private UIShake qShake;
+    [SerializeField] private UIShake eShake;
+
     private void Awake()
     {
         if (lastStand == null)
@@ -27,7 +31,10 @@ public class InventoryUI : MonoBehaviour
     private void OnEnable()
     {
         if (inventory != null)
+        {
             inventory.OnChanged += Refresh;
+            inventory.OnItemUsed += OnUsed;
+        }
 
         // 분노 발동/해제 시에도 아이콘을 다시 그린다
         if (lastStand != null)
@@ -39,10 +46,21 @@ public class InventoryUI : MonoBehaviour
     private void OnDisable()
     {
         if (inventory != null)
+        {
             inventory.OnChanged -= Refresh;
+            inventory.OnItemUsed -= OnUsed;
+        }
 
         if (lastStand != null)
             lastStand.OnRageChanged -= OnRage;
+    }
+
+    // 아이템 쓴 슬롯을 살짝 흔든다
+    private void OnUsed(bool isQ)
+    {
+        UIShake shake = isQ ? qShake : eShake;
+        if (shake != null)
+            shake.Pulse();
     }
 
     private void OnRage(bool raging) => Refresh();
@@ -64,10 +82,6 @@ public class InventoryUI : MonoBehaviour
 
         float ratio = item != null ? item.CooldownRatio01(inventory.User) : 0f;
         fill.fillAmount = ratio;
-
-        // 임시 로그: 아이템 있고 진행도 0 넘을 때만
-        if (item != null && ratio > 0f)
-            Debug.Log($"[슬롯Fill] {item.name} 진행도={ratio:F2}, Image타입={fill.type}", fill);
     }
 
     private void Refresh()
