@@ -26,6 +26,9 @@ public class ItemInventory : MonoBehaviour
     // 슬롯이 바뀔 때 발행. UI 갱신용
     public event Action OnChanged;
 
+    // 아이템을 쓰는 순간 발행(true=Q, false=E). UI 흔들기용
+    public event Action<bool> OnItemUsed;
+
     private void Awake()
     {
         if (user == null)
@@ -62,12 +65,13 @@ public class ItemInventory : MonoBehaviour
 
         // 첫 발동
         slot.Use(user);
+        OnItemUsed?.Invoke(isQ);
 
         // 반대편에 증폭이 있으면 0.5초 뒤 한 번 더 발동하고 증폭을 소진한다
         AbstractItem other = isQ ? eItem : qItem;
         if (other is AmplifyItem)
         {
-            StartCoroutine(UseAgainAfter(slot, amplifyDelay));
+            StartCoroutine(UseAgainAfter(slot, amplifyDelay, isQ));
 
             if (isQ) eItem = null;
             else qItem = null;
@@ -87,11 +91,14 @@ public class ItemInventory : MonoBehaviour
     }
 
     // 증폭의 두 번째 발동. 간격을 두고 한 번 더 Use
-    private IEnumerator UseAgainAfter(AbstractItem item, float delay)
+    private IEnumerator UseAgainAfter(AbstractItem item, float delay, bool isQ)
     {
         yield return new WaitForSeconds(delay);
         if (item != null)
+        {
             item.Use(user);
+            OnItemUsed?.Invoke(isQ);
+        }
     }
 
     private void ClearIfExpired(ref AbstractItem slot, ref bool used)

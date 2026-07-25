@@ -18,7 +18,13 @@ public class WeaponHolder : MonoBehaviour
     // UI 네모박스 크기용. 남은 사용량 0~1 (방패=게이지, 카타나=횟수)
     public float RemainingRatio => weapon != null ? weapon.GetRemaining01(gameObject, usesLeft) : 0f;
 
+    // 지금 무기를 사용 중인지(방패 홀드 등). UI 지속 흔들기용
+    public bool IsWeaponInUse => weapon != null && weapon.IsInUse(gameObject);
+
     public event Action OnChanged;
+
+    // 클릭형 무기가 발사되는 순간 발행. UI 1회 흔들기용
+    public event Action OnFired;
 
     private void Awake()
     {
@@ -72,6 +78,7 @@ public class WeaponHolder : MonoBehaviour
 
         cooldownTimer = weapon.cooldown;
         usesLeft--;
+        OnFired?.Invoke();
         OnChanged?.Invoke();
     }
 
