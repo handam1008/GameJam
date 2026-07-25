@@ -65,6 +65,7 @@ public class ItemInventory : MonoBehaviour
 
         // 첫 발동
         slot.Use(user);
+        slot.PlayUseSound();
         OnItemUsed?.Invoke(isQ);
 
         // 반대편에 증폭이 있으면 0.5초 뒤 한 번 더 발동하고 증폭을 소진한다
@@ -97,6 +98,7 @@ public class ItemInventory : MonoBehaviour
         if (item != null)
         {
             item.Use(user);
+            item.PlayUseSound();
             OnItemUsed?.Invoke(isQ);
         }
     }

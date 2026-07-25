@@ -1,15 +1,26 @@
+using csiimnida.CSILib.SoundManager.RunTime;
 using UnityEngine;
 
 public abstract class AbstractItem : ScriptableObject
 {
     public Sprite icon;
     public string description;
-    
-    
+
+    // 사용될 때 재생할 사운드 이름. 비우면 소리 안 난다
+    public string useSound;
+
+
     // true면 QE로 발동 안 되고, 줍는 즉시 Use가 불린다 (분노 같은 패시브)
     public virtual bool IsPassive => false;
 
     public abstract void Use(GameObject target);
+
+    // 아이템이 실제로 사용될 때 호출한다. useSound가 지정돼 있으면 재생한다
+    public void PlayUseSound()
+    {
+        if (!string.IsNullOrEmpty(useSound))
+            SoundManager.Instance.PlaySound(useSound);
+    }
 
     // 슬롯 UI에 채워질 효과 진행도 0~1 (1=효과 꽉 참, 0=효과 없음/끝).
     // 쿨타임/지속시간 있는 아이템이 오버라이드한다. 기본은 0 (표시 안 함)

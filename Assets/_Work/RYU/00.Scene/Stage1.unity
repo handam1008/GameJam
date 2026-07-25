@@ -1288,8 +1288,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
   inventory: {fileID: 1455378713}
+  lastStand: {fileID: 0}
   qIcon: {fileID: 0}
   eIcon: {fileID: 0}
+  qFill: {fileID: 0}
+  eFill: {fileID: 0}
+  qShake: {fileID: 0}
+  eShake: {fileID: 0}
 --- !u!1 &887847649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +1982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Agent.AgentMovement
   speed: 6
   slipping: 2
+  parentRb: {fileID: 0}
 --- !u!114 &1455378710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2044,6 +2050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemInventory
   user: {fileID: 0}
+  amplifyDelay: 0.5
 --- !u!114 &1455378714
 MonoBehaviour:
   m_ObjectHideFlags: 0
