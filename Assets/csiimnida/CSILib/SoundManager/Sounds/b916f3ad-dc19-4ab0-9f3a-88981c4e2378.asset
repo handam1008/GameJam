@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c32755cef4f784ab6582bd331841f7, type: 3}
-  m_Name: a3fc165f-d129-4035-b5f6-e149d2818af5
+  m_Name: b916f3ad-dc19-4ab0-9f3a-88981c4e2378
   m_EditorClassIdentifier: SoundManager.runtime::csiimnida.CSILib.SoundManager.RunTime.SoundSo
-  soundName: a3fc165f-d129-4035-b5f6-e149d2818af5
+  soundName: b916f3ad-dc19-4ab0-9f3a-88981c4e2378
   soundType: 1
   clip: {fileID: 0}
   loop: 0

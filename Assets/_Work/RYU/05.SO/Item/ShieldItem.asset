@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.ShieldItem
   icon: {fileID: -6909766172045017399, guid: 3029f0bd2ef4ded4ba06a17276708b7a, type: 3}
   description: 
+  useSound: Shield
   duration: 4

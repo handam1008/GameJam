@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.LandMineItem
   icon: {fileID: -396309887504945837, guid: 36fb7b0244966bc44a3da0ce452e1dcb, type: 3}
   description: 
+  useSound: LandMine
   minePrefab: {fileID: 1262316937270632193, guid: 211aa4f0dcf9f7a49b31f6479389528f, type: 3}
   forwardDistance: 1.5

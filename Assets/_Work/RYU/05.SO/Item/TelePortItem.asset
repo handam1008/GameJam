@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.TeleportItem
   icon: {fileID: -9059596547335465990, guid: 96e975c944aa2014dba5d446bbe4bd55, type: 3}
   description: 
+  useSound: Teleport
   markPrefab: {fileID: 3082304287632840717, guid: c2654934e1fc96b48a423e8c74a4e759, type: 3}
   cooldown: 3

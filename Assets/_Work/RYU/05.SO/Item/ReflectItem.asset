@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.ReflectItem
   icon: {fileID: 6243355746201222545, guid: a337c7bb450d50242b7c7893de2dfa2b, type: 3}
   description: 
+  useSound: Reflect
   turretPrefab: {fileID: 3982237856975126175, guid: c907ee2ed41d9f14daf1c405f81e593f, type: 3}
+  forwardDistance: 1.5
