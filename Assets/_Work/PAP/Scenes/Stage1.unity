@@ -4699,6 +4699,10 @@ PrefabInstance:
       propertyPath: targetScene
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7269600066953680417, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
+      propertyPath: reachToClear
+      value: 27
+      objectReference: {fileID: 0}
     - target: {fileID: 7342223643074590541, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
       propertyPath: m_Name
       value: Sky
