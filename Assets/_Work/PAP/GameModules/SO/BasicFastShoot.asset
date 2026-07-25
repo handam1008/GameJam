@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e788c3b40bb542d58ba605b18b0f5a92, type: 3}
   m_Name: BasicFastShoot
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAttackPatternSO
-  bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
+  bullet: {fileID: 11400000, guid: afbbc6b005c039d43b2f7e6265598cb9, type: 2}
   degree: 0
   bulletCount: 1
   cooldown: 0.4
