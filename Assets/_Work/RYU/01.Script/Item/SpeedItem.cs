@@ -11,8 +11,14 @@ namespace _Work.RYU._01.Script.Item
 
         public override void Use(GameObject target)
         {
-            target.TryGetComponent(out SpeedMode speed);
-            speed?.Activate(duration);
+            if (!target.TryGetComponent(out SpeedMode speed))
+                return;
+
+            // 이미 켜져 있으면 다시 켜지 않는다. 연타로 시간이 계속 갱신되는 것 방지
+            if (speed.IsActive)
+                return;
+
+            speed.Activate(duration);
         }
 
         // 지속 동안 슬롯에 남아 남은 시간이 표시된다

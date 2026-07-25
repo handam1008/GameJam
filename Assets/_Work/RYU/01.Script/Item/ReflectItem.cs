@@ -18,7 +18,12 @@ namespace _Work.RYU._01.Script.Item
 
             
             Vector3 spawnPos = target.transform.position + target.transform.right * forwardDistance;
-            Instantiate(turretPrefab, spawnPos, Quaternion.identity);
+            GameObject turret = Instantiate(turretPrefab, spawnPos, Quaternion.identity);
+
+            // 맵(RotatePlatform)의 자식으로 붙여서 인형도 맵 따라 돌게 한다
+            GameObject floor = GameObject.FindWithTag("RotatePlatform");
+            if (floor != null)
+                turret.transform.SetParent(floor.transform, true);
         }
     }
 }

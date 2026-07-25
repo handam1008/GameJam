@@ -10,8 +10,14 @@ namespace _Work.RYU._01.Script.Item
 
         public override void Use(GameObject target)
         {
-            target.TryGetComponent(out SlowMode slow);
-            slow?.Activate(duration);
+            if (!target.TryGetComponent(out SlowMode slow))
+                return;
+
+            // 이미 켜져 있으면 다시 켜지 않는다. 연타로 시간이 계속 갱신되는 것 방지
+            if (slow.IsActive)
+                return;
+
+            slow.Activate(duration);
         }
 
         // 지속 동안 슬롯에 남아 남은 시간이 표시된다
