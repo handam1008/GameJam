@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 1890785481578539121}
   - component: {fileID: 8999333913081894542}
   m_Layer: 0
-  m_Name: 'GoodParachute '
+  m_Name: GoodParachute
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +113,8 @@ MonoBehaviour:
   - {fileID: 5203333284880362895}
   hideOnLand:
   - {fileID: 5304264665870811331}
+  spawnOnLand: []
+  destroySelfAfterSpawn: 0
   startAlpha: 0.2
   sr: {fileID: 2065278478192190177}
 --- !u!1 &5203333284880362895
