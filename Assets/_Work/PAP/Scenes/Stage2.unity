@@ -2074,8 +2074,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SupplyPlane
   floor: {fileID: 1648677882}
   followMapRotation: 1
-  interval: 10
-  minInterval: 15
+  interval: 7
+  minInterval: 12
   speed: 25
   margin: 5
   minAngle: 15
@@ -2087,9 +2087,11 @@ MonoBehaviour:
   markerPulse: 0.15
   count: 0
   dropPrefabs:
-  - {fileID: 4473318539097325475, guid: 0ce0fbd1c248e3c49aff61282b8ef510, type: 3}
-  - {fileID: 1047259003018118981, guid: 40c619f04a4a4db4aa497ceb2a0d4ed2, type: 3}
   - {fileID: 1047259003018118981, guid: c0fc59c8590cba148a5f438b4a7ad2ab, type: 3}
+  - {fileID: 1047259003018118981, guid: 40c619f04a4a4db4aa497ceb2a0d4ed2, type: 3}
+  - {fileID: 1047259003018118981, guid: 40c619f04a4a4db4aa497ceb2a0d4ed2, type: 3}
+  - {fileID: 4473318539097325475, guid: 0ce0fbd1c248e3c49aff61282b8ef510, type: 3}
+  - {fileID: 4473318539097325475, guid: 0ce0fbd1c248e3c49aff61282b8ef510, type: 3}
 --- !u!212 &737692536
 SpriteRenderer:
   serializedVersion: 2
