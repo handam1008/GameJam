@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8149508110619717446}
   - component: {fileID: 7045465504736947675}
   m_Layer: 0
-  m_Name: EnemyParachute
+  m_Name: EnemyParachute 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,25 +53,15 @@ MonoBehaviour:
   hideOnLand:
   - {fileID: 1928469906096854510}
   spawnOnLand:
-  - {fileID: 2895824466711833101, guid: 9865917d619f4414eb9415d1e03f7cfa, type: 3}
+  - {fileID: 7042467116529178707, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
   - {fileID: 6821135655635291779, guid: 11807258336ffc044953abd819589233, type: 3}
   - {fileID: 1805312000364968685, guid: efdc84d172f343548832c6584f97526c, type: 3}
-  - {fileID: 4665682820585075375, guid: 41c660836cbcb674ea4655f4504773ec, type: 3}
-  - {fileID: 3663318321678404237, guid: 73176875e2659f845a78a1700e154ca4, type: 3}
-  - {fileID: 8352619545971854490, guid: e0b78e48de3337b4991b52c0f069e12c, type: 3}
   - {fileID: 953030874027702445, guid: 5098ad6ee7ed56f4d9a5851e17089cce, type: 3}
-  - {fileID: 6610374702320966769, guid: 08add70908b18304baedf0976c497cd1, type: 3}
-  - {fileID: 1739147020032683773, guid: fb00f6767f08880428e6b8cd7a076c20, type: 3}
-  - {fileID: 2299597148570327231, guid: de156c1b3082e63438bf31c4ba576e10, type: 3}
-  - {fileID: 7042467116529178707, guid: cfc62cc28450f9049b606418b25c6dd3, type: 3}
-  - {fileID: 5022262854212244244, guid: f662285b07a226d408d4c551308b125d, type: 3}
-  - {fileID: 5693653310595791085, guid: a4e950f234659514ea00048ca670c228, type: 3}
-  - {fileID: 8564326547145033750, guid: 4a1551e13c438ad4daa6a40c45099db4, type: 3}
   - {fileID: 3597453788440979212, guid: c354dbc3f7b1f564da42e5c2289da684, type: 3}
-  - {fileID: 8637787613682880869, guid: 5f20d1d6bb41e33459cade92451819ab, type: 3}
+  - {fileID: 4665682820585075375, guid: 41c660836cbcb674ea4655f4504773ec, type: 3}
+  - {fileID: 8352619545971854490, guid: e0b78e48de3337b4991b52c0f069e12c, type: 3}
+  - {fileID: 8564326547145033750, guid: 4a1551e13c438ad4daa6a40c45099db4, type: 3}
   - {fileID: 3370571662514696828, guid: c808788ae8becc14699cd32cbf7ccd8d, type: 3}
-  - {fileID: 6774908791507396187, guid: f9784418847a3ab4589cb57501b4d7fc, type: 3}
-  - {fileID: 1051266791124038246, guid: de276233257f42e4d9fbb942c55951d1, type: 3}
   destroySelfAfterSpawn: 0
   startAlpha: 0.2
   sr: {fileID: 4128453797497081083}

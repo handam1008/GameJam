@@ -15,5 +15,5 @@ MonoBehaviour:
   bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
   degree: 0
   bulletCount: 1
-  cooldown: 0.5
+  cooldown: 0.3
   soundEffect: {fileID: 11400000, guid: 9d12b0cd1e9371248b4eb577fe118a7a, type: 2}
