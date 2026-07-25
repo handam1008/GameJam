@@ -667,6 +667,8 @@ MonoBehaviour:
   patterns:
   - {fileID: 11400000, guid: c4369c3689c5a0b4d9d4280910e2c5c6, type: 2}
   - {fileID: 11400000, guid: aee5da31edd247840b3c1d14d705fc10, type: 2}
+  - {fileID: 11400000, guid: aee5da31edd247840b3c1d14d705fc10, type: 2}
+  - {fileID: 11400000, guid: aee5da31edd247840b3c1d14d705fc10, type: 2}
   lerpScale: 0.1
   gunTrm: {fileID: 7291898927197686645}
   kickDistance: 0.15

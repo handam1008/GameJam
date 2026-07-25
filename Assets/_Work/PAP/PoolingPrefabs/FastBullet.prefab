@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c94c5e96ae4aa4b7dcb610d5df612c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.Bullet
-  speed: 20
+  speed: 15
   maxSpeed: 30
   spinBonus: 0.2
   wallLayer:

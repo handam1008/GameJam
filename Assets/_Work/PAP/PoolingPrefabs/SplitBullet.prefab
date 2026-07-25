@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5752a4180f41178e8692182d213389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.SplitBullet
-  speed: 7
+  speed: 6
   maxSpeed: 7
   spinBonus: 0.05
   wallLayer:
