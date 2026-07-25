@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414d9fa01760489ca2e1f80b1ebb9635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.Bazooka
-  speed: 7
+  speed: 5
   maxSpeed: 7
   spinBonus: 0.05
   wallLayer:
