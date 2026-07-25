@@ -41,6 +41,7 @@ namespace _Work.PAP.Scripts.Systems
                 CameraTrm.DOMoveY(60f,4f).SetEase(Ease.InCubic).SetUpdate(true).OnComplete(() =>
                 {
                     targetObject.SetActive(true);
+                    targetObject.GetComponent<CanvasGroup>().DOFade(1, 1.5f).SetUpdate(true);
                 });
                 CameraTrm.DOShakeRotation(2f,Vector3.one).SetUpdate(true);
             }
