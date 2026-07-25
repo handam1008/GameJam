@@ -2101,8 +2101,8 @@ MonoBehaviour:
   - {fileID: -9008520635612759998, guid: 664cb81846bef014e8d3ca5919e43312, type: 3}
   - {fileID: -321519460, guid: 664cb81846bef014e8d3ca5919e43312, type: 3}
   CameraTrm: {fileID: 1850110413}
-  group: {fileID: 0}
-  targetObject: {fileID: 0}
+  group: {fileID: 1932829579}
+  targetObject: {fileID: 918266392}
 --- !u!50 &853270120
 Rigidbody2D:
   serializedVersion: 5
@@ -2390,7 +2390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e7447858304637a42d3febd10b4fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Systems.Reset
-  stageBreakingSystem: {fileID: 0}
+  stageBreakingSystem: {fileID: 1798165824}
 --- !u!225 &918266398
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3212,7 +3212,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 16, y: 16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4634,6 +4634,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
+--- !u!114 &1798165824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7269600066953680417, guid: 1e3290fc0b272f5418d3dd89c4dbd144, type: 3}
+  m_PrefabInstance: {fileID: 1798165823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7fd92f88934f39a3ad24c7105da3fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Systems.StageBreakingSystem
 --- !u!1 &1808258326
 GameObject:
   m_ObjectHideFlags: 0
