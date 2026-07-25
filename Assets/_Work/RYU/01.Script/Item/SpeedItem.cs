@@ -9,6 +9,10 @@ namespace _Work.RYU._01.Script.Item
         // 빨라지는 지속시간(초)
         public float duration = 4f;
 
+        // 켜져 있는 동안은 다시 못 쓴다 (연타 방지)
+        public override bool CanUse(GameObject user)
+            => !(user.TryGetComponent(out SpeedMode speed) && speed.IsActive);
+
         public override void Use(GameObject target)
         {
             if (!target.TryGetComponent(out SpeedMode speed))

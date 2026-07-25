@@ -15,6 +15,10 @@ public abstract class AbstractItem : ScriptableObject
 
     public abstract void Use(GameObject target);
 
+    // 지금 사용할 수 있는지. false면 UseSlot이 발동·사운드·흔들림을 다 건너뛴다.
+    // 지속 버프가 켜져 있는 동안 재사용(연타)을 막을 때 오버라이드한다
+    public virtual bool CanUse(GameObject user) => true;
+
     // 아이템이 실제로 사용될 때 호출한다. useSound가 지정돼 있으면 재생한다
     public void PlayUseSound()
     {
