@@ -19,3 +19,4 @@ MonoBehaviour:
   slashRange: 2
   slashOffset: 1
   slashAngle: 120
+  effectPrefab: {fileID: 11400000, guid: 6c0806c0d7686394d9f32d06fccdab61, type: 2}
