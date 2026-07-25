@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afccab5f674fcead720eb356a5b3ca, type: 3}
   m_Name: HealItem
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.HealItem
-  icon: {fileID: 2467491259192402747, guid: 4b9ed7789ae08ac40843a65ce7b9fb30, type: 3}
+  icon: {fileID: 21300000, guid: 26e909b1c85c6b14585dbaf0e27a699c, type: 3}
   description: 
   useSound: Heal
   amount: 1
