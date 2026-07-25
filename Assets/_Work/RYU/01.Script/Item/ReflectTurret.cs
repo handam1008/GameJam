@@ -39,7 +39,6 @@ public class ReflectTurret : MonoBehaviour
             bullet.Reflect();
             lastReflectTime[bullet] = Time.time;
             reflectCount++;
-            Debug.Log($"[Turret] 튕김 {reflectCount}/{maxReflects} ({bullet.name})", this);
 
             if (reflectCount >= maxReflects)
             {
