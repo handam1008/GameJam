@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _Work.PAP.Scripts.Systems;
+using csiimnida.CSILib.SoundManager.RunTime;
 using RYU.Combat;
 using Unity.InferenceEngine;
 using UnityEngine;
@@ -34,6 +35,7 @@ namespace _Work.PAP.Scripts.Enemy
             {
                 //쥬금
                 OnDeadEvent?.Invoke();
+                SoundManager.Instance.PlaySound("Explosion");
                 StageBreakingSystem.Instance.AddReach(1);
                 rigid.linearVelocity = Vector3.zero;
                 transform.gameObject.layer = LayerMask.NameToLayer("Dead");
