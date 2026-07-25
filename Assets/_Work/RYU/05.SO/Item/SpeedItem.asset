@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c995f18209884c69a59560557a671792, type: 3}
   m_Name: SpeedItem
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.SpeedItem
-  icon: {fileID: 21300000, guid: a3039df345a0e5b458b3980b18211014, type: 3}
+  icon: {fileID: -602324347073204013, guid: ab82aae3826073e4a93ecb7d045b8292, type: 3}
   description: 
-<<<<<<< HEAD
   useSound: Speed
-=======
-  useSound: 
->>>>>>> JUN
   duration: 4

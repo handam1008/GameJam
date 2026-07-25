@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632834d65f814fe7a9f10c87d03a0209, type: 3}
   m_Name: LandMineItem
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.LandMineItem
-  icon: {fileID: 6243355746201222545, guid: a337c7bb450d50242b7c7893de2dfa2b, type: 3}
+  icon: {fileID: -396309887504945837, guid: 36fb7b0244966bc44a3da0ce452e1dcb, type: 3}
   description: 
   useSound: LandMine
   minePrefab: {fileID: 1262316937270632193, guid: 211aa4f0dcf9f7a49b31f6479389528f, type: 3}
