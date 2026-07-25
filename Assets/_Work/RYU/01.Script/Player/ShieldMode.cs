@@ -1,3 +1,4 @@
+using csiimnida.CSILib.SoundManager.RunTime;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace _Work.RYU._01.Script.Player
 
         // 막을 때 반짝이는 세기 (0.2 = 20% 커졌다 돌아옴)
         [SerializeField] private float blinkScale = 0.2f;
+
+        // 피해를 막을 때마다 재생할 사운드 이름. 비우면 소리 안 남
+        [SerializeField] private string blockSound = "Bounce";
 
         // 실드가 켜져 있으면 피해를 막는다
         public bool IsShielded => IsActive;
@@ -40,6 +44,10 @@ namespace _Work.RYU._01.Script.Player
         // 피해를 막은 순간 실드가 반짝한다. PlayerHealth가 불러준다
         public void Blink()
         {
+            // 피해를 막을 때마다 사운드
+            if (!string.IsNullOrEmpty(blockSound))
+                SoundManager.Instance.PlaySound(blockSound);
+
             if (shieldVisual == null)
                 return;
 

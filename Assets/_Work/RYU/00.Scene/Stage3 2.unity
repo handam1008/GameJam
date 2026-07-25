@@ -313,11 +313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093185951540837962, guid: bf70ee6e4f5681040afcd9482744a14f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.62
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6093185951540837962, guid: bf70ee6e4f5681040afcd9482744a14f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.19000004
+      value: -1.21
       objectReference: {fileID: 0}
     - target: {fileID: 6093185951540837962, guid: bf70ee6e4f5681040afcd9482744a14f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4008,11 +4008,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 128543235356294116, guid: 6a5ec1f8ac7aa124a81b4472c64e6b17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.57
+      value: 23.2
       objectReference: {fileID: 0}
     - target: {fileID: 128543235356294116, guid: 6a5ec1f8ac7aa124a81b4472c64e6b17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4
+      value: -3.32
       objectReference: {fileID: 0}
     - target: {fileID: 128543235356294116, guid: 6a5ec1f8ac7aa124a81b4472c64e6b17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4915,11 +4915,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922493224222585329, guid: 8d5259ccfe8f5894aba7e4c1a2f1df70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.160002
+      value: 2.97
       objectReference: {fileID: 0}
     - target: {fileID: 7922493224222585329, guid: 8d5259ccfe8f5894aba7e4c1a2f1df70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.30000004
+      value: -2.36
       objectReference: {fileID: 0}
     - target: {fileID: 7922493224222585329, guid: 8d5259ccfe8f5894aba7e4c1a2f1df70, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5121,14 +5121,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1449335792604934576, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-      propertyPath: blockSound
-      value: Minecraft
-      objectReference: {fileID: 0}
-    - target: {fileID: 1449335792604934576, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-      propertyPath: shieldVisual
-      value: 
-      objectReference: {fileID: 6641368021131529501}
     - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5148,10 +5140,6 @@ PrefabInstance:
     - target: {fileID: 4513388257021519303, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7636344933052053409, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8421244715333322823, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: parentRb
@@ -5213,11 +5201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5ad9cf5f3e05746bce1fd2c1c2d34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
---- !u!1 &6641368021131529501 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7636344933052053409, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-  m_PrefabInstance: {fileID: 6641368021131529499}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6641368021131529506 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6403155393685343661, guid: 39568e6d626777440bd65be786d7cccf, type: 3}

@@ -8,6 +8,10 @@ namespace _Work.RYU._01.Script.Item
     {
         public float duration = 4f;
 
+        // 실드가 켜져 있는 동안은 다시 못 쓴다 (연타 방지)
+        public override bool CanUse(GameObject user)
+            => !(user.TryGetComponent(out ShieldMode shield) && shield.IsActive);
+
         public override void Use(GameObject target)
         {
             if (!target.TryGetComponent(out ShieldMode shield))
