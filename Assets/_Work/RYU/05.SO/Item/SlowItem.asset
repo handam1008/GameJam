@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3f130f96ad463194c60b0cad627ae9, type: 3}
   m_Name: SlowItem
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.SlowItem
-  icon: {fileID: 647979536588038774, guid: bd01363b5ff91954dbafa40385b9b7f0, type: 3}
+  icon: {fileID: 21300000, guid: 8f692066c26e1d540aefe0691033eae0, type: 3}
   description: 
+  useSound: 
   duration: 4

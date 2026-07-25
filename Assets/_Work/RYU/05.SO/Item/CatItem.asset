@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Item.CatItem
   icon: {fileID: 3267720713543008788, guid: 3516b44e1a214544a860faafe22b5fd1, type: 3}
   description: 
+  useSound: 
   bullet: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
   bulletCount: 10
   spawnRadius: 1
