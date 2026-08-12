@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Work.PAP.Scripts.Player;
 using _Work.PAP.Scripts.Systems;
+using csiimnida.CSILib.SoundManager.RunTime;
 using Systems;
 using UnityEngine;
 using UnityEngine.Events;
@@ -54,6 +55,7 @@ namespace _Work.PAP.Scripts.Enemy.EnemyAIS
             {
                 canUseFlare = false;
                 flareEvent?.Invoke();
+                SoundManager.Instance.PlaySound("FlareShot");
                 Systems.GameManager.Instance.CallPlane();
             }
         }

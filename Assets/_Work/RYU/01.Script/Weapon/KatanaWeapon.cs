@@ -1,4 +1,5 @@
 using Combat.Effects;
+using csiimnida.CSILib.SoundManager.RunTime;
 using Systems;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class KatanaWeapon : AbstractWeapon
         EffectPlayer effect = PoolManager.Instance.Pop(effectPrefab.ItemName) as EffectPlayer;
         effect.transform.rotation = Quaternion.LookRotation(direction);
         effect.SetPositionAndPlay(user.transform.position);
+        SoundManager.Instance.PlaySound("SwordClash");
 
         // 마우스 방향 앞을 중심으로 총알을 찾는다
         Vector2 center = (Vector2)origin + direction * slashOffset;
