@@ -1,4 +1,7 @@
+using Combat.Effects;
+using csiimnida.CSILib.SoundManager.RunTime;
 using RYU.Combat;
+using Systems;
 using UnityEngine;
 
 
@@ -67,7 +70,10 @@ public class LandMine : MonoBehaviour
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explodeRadius, targetLayer);
 
-        Debug.Log($"[지뢰] 폭발! 반경 안 대상 {hits.Length}개", this);
+        EffectPlayer explosionEffect = PoolManager.Instance.Pop("Explosion") as EffectPlayer;
+        explosionEffect?.SetPositionAndPlay(transform.position);
+        SoundManager.Instance.PlaySound("Explosion");
+        
 
         foreach (Collider2D hit in hits)
         {
