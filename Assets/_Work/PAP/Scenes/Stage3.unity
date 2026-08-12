@@ -6563,7 +6563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c04d8151a3b4e0bb0bdeed2259ddfd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Systems.GameManager
-  itemPlane: {fileID: 0}
+  itemPlane: {fileID: 1335186377}
 --- !u!4 &2100381517
 Transform:
   m_ObjectHideFlags: 0
