@@ -224,9 +224,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SupplyBox
   itemPrefabs:
-  - {fileID: 2839011153138449671, guid: a457b0ee41628e24c9bb30916d736b2a, type: 3}
-  - {fileID: 1266035403159716030, guid: f540b68066f438b4d8916600ac448829, type: 3}
-  - {fileID: 3982237856975126175, guid: 476fdab1167e0014cbae576fc1aafe5f, type: 3}
+  - {fileID: 49975639432840305, guid: 8073cac0cb5f38848bb6f41a7aebf5b9, type: 3}
+  - {fileID: 7985232963943585498, guid: 6116b195241295b46ba6c9da781f7ee0, type: 3}
+  - {fileID: 2959218292416957643, guid: adea8d538590eae43ad75f1fda6161e0, type: 3}
+  - {fileID: 2309633087378325650, guid: b309f560e039a1940adddedf58a175f9, type: 3}
+  - {fileID: 1690833886043189342, guid: a6e6f833ab97ca243b3fa619a1b9c376, type: 3}
+  - {fileID: 1064566633247772747, guid: 2c7e0cbe26d525e46ae48913916707ed, type: 3}
+  - {fileID: 1306026216532523990, guid: 63d5202bf04adcb4ea19f1e56df0256a, type: 3}
   feedBackPlayer: {fileID: 263457581357302559}
 --- !u!61 &2576902902284942220
 BoxCollider2D:

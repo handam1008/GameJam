@@ -40,7 +40,7 @@ namespace _Work.PAP.Scripts.TutorialSystem
 
         private IEnumerator Tutorial()
         {
-            writer.ShowText("안녕! 지금부터 게임 플레이 방법을 알려줄게!\n클릭하면 다음으로 넘어갈 수 있어.");
+            writer.ShowText("안녕! 지금부터 플레이 방법을 알려줄게!\n클릭하면 다음으로 넘어갈 수 있어.");
             ClickTutorial();
             yield return null;
 
@@ -52,7 +52,7 @@ namespace _Work.PAP.Scripts.TutorialSystem
             ClickTutorial();
             yield return null;
 
-            writer.ShowText("마우스를 움직이면 바닥도 함께 회전해!");
+            writer.ShowText("마우스를 움직이면 바닥도 함께 회전해!\nESC를 눌러 감도를 조절해줘");
             ClickTutorial();
             yield return null;
 

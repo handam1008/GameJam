@@ -668,19 +668,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a287acfffacf2bf44aae70a7691b48be, type: 2}
   - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
   - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
-  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
   lerpScale: 0.1
   gunTrm: {fileID: 9120348940585993762}
   kickDistance: 0.1
-  gunRecovery: 12
+  gunRecovery: 6
 --- !u!114 &2946473388357396847
 MonoBehaviour:
   m_ObjectHideFlags: 0

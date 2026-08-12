@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAttackPatternSO
   bullet: {fileID: 11400000, guid: afbbc6b005c039d43b2f7e6265598cb9, type: 2}
   degree: 40
-  bulletCount: 3
-  cooldown: 0.5
+  bulletCount: 2
+  cooldown: 0.7
   soundEffect: {fileID: 11400000, guid: acf89148cd382aa4b8caea9756476be2, type: 2}

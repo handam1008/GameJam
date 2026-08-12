@@ -256,7 +256,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 136
-  maxBounces: 2
+  maxBounces: 4
   player: {fileID: 5517424214530545631}
   <Item>k__BackingField: {fileID: 11400000, guid: 0ad209661e8c396429a7caca4453451f, type: 2}
 --- !u!58 &4788339106305038800
