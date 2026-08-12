@@ -3867,7 +3867,7 @@ MonoBehaviour:
   markerPrefab: {fileID: 2233981552564181189, guid: 17eb8a0ace5dd8b448986cf8ddeb7173, type: 3}
   markerHideDelay: 0.5
   markerPulse: 0.15
-  count: 4
+  count: 2
   dropPrefabs:
   - {fileID: 1047259003018118981, guid: 3e06feaaf5b7d5d469ecd5c053922064, type: 3}
 --- !u!212 &1115908672
