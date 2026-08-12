@@ -5429,7 +5429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c9d05ebbfc4251aaecde4c682bbb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Systems.BGMPlayer
-  soundData: {fileID: 11400000, guid: 589765767998eca4b8117c3f2f3092ed, type: 2}
+  soundData: {fileID: 11400000, guid: 9ac9acf9238bc8c4b816ad09cd4bf20a, type: 2}
 --- !u!114 &1491161143
 MonoBehaviour:
   m_ObjectHideFlags: 0
