@@ -7,30 +7,35 @@ public class WallRotate : MonoBehaviour
 
     [SerializeField] private float smoothTime = 0.08f;
 
+    [SerializeField] private float mouseSensitivity = 0.5f;
+
     [SerializeField] private Transform rotateTarget;
 
     /// <summary>부호 있는 각속도(도/초). 양수면 반시계, 음수면 시계 방향으로 돈다.</summary>
     public float AngularSpeed { get; private set; }
 
-    private Camera cam;
     private float angleVelocity;
     private Rigidbody2D rb;
+    private Vector2 previousMouseScreenPos;
 
     private void Awake()
     {
-        cam = Camera.main;
         rb = rotateTarget.GetComponent<Rigidbody2D>();
+        previousMouseScreenPos = Mouse.current.position.ReadValue();
     }
 
     private void FixedUpdate()
     {
-        Vector3 mouse = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+        float deltaX = mouseScreenPos.x - previousMouseScreenPos.x;
+        previousMouseScreenPos = mouseScreenPos;
 
-        Vector2 dir = mouse - transform.position;
-        float target = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        // 마우스가 오른쪽으로 움직인 만큼 시계 방향(-), 왼쪽으로 움직인 만큼 반시계 방향(+)으로 회전한다.
+        // 마우스가 반대로 움직이면 deltaX 부호가 뒤집혀 자연스럽게 반대편으로 돌아온다.
+        float instantAngularSpeed = Mathf.Clamp(-deltaX * mouseSensitivity / Time.fixedDeltaTime, -rotateSpeed, rotateSpeed);
+        AngularSpeed = Mathf.SmoothDamp(AngularSpeed, instantAngularSpeed, ref angleVelocity, smoothTime);
 
-        float angle = Mathf.SmoothDampAngle(rotateTarget.eulerAngles.z, target, ref angleVelocity, smoothTime, rotateSpeed);
-        AngularSpeed = angleVelocity;
+        float angle = rotateTarget.eulerAngles.z + AngularSpeed * Time.fixedDeltaTime;
         rb.MoveRotation(Quaternion.Euler(0f, 0f, angle));
     }
 

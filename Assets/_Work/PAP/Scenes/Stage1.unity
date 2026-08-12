@@ -3720,10 +3720,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1449335792604934576, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-      propertyPath: shieldVisual
-      value: 
-      objectReference: {fileID: 1500000374}
     - target: {fileID: 2567243577222193082, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3744,9 +3740,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7636344933052053409, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7012771080392317833, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012771080392317833, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012771080392317833, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8421244715333322823, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: parentRb
@@ -3754,11 +3758,11 @@ PrefabInstance:
       objectReference: {fileID: 1361084905}
     - target: {fileID: 8792715582737976754, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 8792715582737976754, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.46
+      value: -4.34
       objectReference: {fileID: 0}
     - target: {fileID: 8792715582737976754, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3808,11 +3812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044fd289ac7dfa746885b71837652219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.RYU._01.Script.Player.LastStand
---- !u!1 &1500000374 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7636344933052053409, guid: 39568e6d626777440bd65be786d7cccf, type: 3}
-  m_PrefabInstance: {fileID: 1500000372}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1500000375 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2334631518755429271, guid: 39568e6d626777440bd65be786d7cccf, type: 3}

@@ -118,7 +118,7 @@ namespace _Work.PAP.Scripts.Agent
         private void RotateCharacter()
         {
             float angle = Mathf.Atan2(_currentDirection.y, _currentDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(0, 0, angle),slipping * 0.1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(0, 0, angle-90f),slipping * 0.1f);
             _rb.rotation = angle;
         }
     }
