@@ -23,15 +23,21 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private Slider masterSlider;
 
+    [Header("감도")]
+    [SerializeField] private Slider sensitivitySlider;
+    [SerializeField] private float minSensitivity = 0.1f;
+    [SerializeField] private float maxSensitivity = 3f;
+
     private bool paused;
 
     private void Start()
     {
-       
+
         menuPanel.anchoredPosition = new Vector2(hiddenX, menuPanel.anchoredPosition.y);
         dimBackground.gameObject.SetActive(false);
-        
+
         SetupSlider(masterSlider, "Master");
+        SetupSensitivitySlider();
     }
 
     private void Update()
@@ -87,7 +93,23 @@ public class PauseMenu : MonoBehaviour
         slider.onValueChanged.AddListener(v => mixer.SetFloat(param, LinearToDb(v)));
     }
 
-    
+    private void SetupSensitivitySlider()
+    {
+        if (sensitivitySlider == null)
+            return;
+
+        sensitivitySlider.minValue = minSensitivity;
+        sensitivitySlider.maxValue = maxSensitivity;
+        sensitivitySlider.SetValueWithoutNotify(WallRotate.SensitivityMultiplier);
+
+        sensitivitySlider.onValueChanged.AddListener(v =>
+        {
+            WallRotate.SensitivityMultiplier = v;
+            PlayerPrefs.SetFloat(WallRotate.SensitivityPrefKey, v);
+        });
+    }
+
+
     private static float LinearToDb(float v) => v <= 0.0001f ? -80f : Mathf.Log10(v) * 20f;
     private static float DbToLinear(float db) => Mathf.Pow(10f, db / 20f);
 }

@@ -11,6 +11,11 @@ public class WallRotate : MonoBehaviour
 
     [SerializeField] private Transform rotateTarget;
 
+    /// <summary>모든 WallRotate에 공통으로 곱해지는 감도 배율. PauseMenu 설정에서 조절한다.</summary>
+    public static float SensitivityMultiplier { get; set; }
+
+    public const string SensitivityPrefKey = "MapSensitivity";
+
     /// <summary>부호 있는 각속도(도/초). 양수면 반시계, 음수면 시계 방향으로 돈다.</summary>
     public float AngularSpeed { get; private set; }
 
@@ -22,6 +27,7 @@ public class WallRotate : MonoBehaviour
     {
         rb = rotateTarget.GetComponent<Rigidbody2D>();
         previousMouseScreenPos = Mouse.current.position.ReadValue();
+        SensitivityMultiplier = PlayerPrefs.GetFloat(SensitivityPrefKey, 1f);
     }
 
     private void FixedUpdate()
@@ -32,7 +38,7 @@ public class WallRotate : MonoBehaviour
 
         // 마우스가 오른쪽으로 움직인 만큼 시계 방향(-), 왼쪽으로 움직인 만큼 반시계 방향(+)으로 회전한다.
         // 마우스가 반대로 움직이면 deltaX 부호가 뒤집혀 자연스럽게 반대편으로 돌아온다.
-        float instantAngularSpeed = Mathf.Clamp(-deltaX * mouseSensitivity / Time.fixedDeltaTime, -rotateSpeed, rotateSpeed);
+        float instantAngularSpeed = Mathf.Clamp(-deltaX * mouseSensitivity * SensitivityMultiplier / Time.fixedDeltaTime, -rotateSpeed, rotateSpeed);
         AngularSpeed = Mathf.SmoothDamp(AngularSpeed, instantAngularSpeed, ref angleVelocity, smoothTime);
 
         float angle = rotateTarget.eulerAngles.z + AngularSpeed * Time.fixedDeltaTime;
