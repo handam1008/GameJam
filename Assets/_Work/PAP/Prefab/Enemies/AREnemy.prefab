@@ -287,7 +287,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Work.PAP.Scripts.Enemy.EnemyAI
   patterns:
-  - {fileID: 11400000, guid: a917fdc5d1cfae347856d2b5cf0f030a, type: 2}
+  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
+  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
+  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
+  - {fileID: 11400000, guid: 91c1ba8d1763e424787a8557e67d9f07, type: 2}
+  - {fileID: 11400000, guid: a287acfffacf2bf44aae70a7691b48be, type: 2}
   lerpScale: 0.1
   gunTrm: {fileID: 2987187383237310999}
   kickDistance: 0.1
